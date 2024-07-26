@@ -1,0 +1,7 @@
+<header class="border-b border-b-black">
+  <ul class="page-layout flex flex-row justify-center gap-5">
+    <li *ngFor="let item of headerItems" class="p-4 w-24 text-center cursor-pointer">
+      <a [href]="item.url">{{ item.label }}</a>
+    </li>
+  </ul>
+</header>
