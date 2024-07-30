@@ -16,7 +16,9 @@
     -webkit-tap-highlight-color: transparent;
     scroll-behavior: smooth;
   }
+}
 
+@layer utilities {
   .page-layout {
     display: flex;
     flex-direction: column;
@@ -25,5 +27,10 @@
     padding-right: 16px;
     margin-left: auto;
     margin-right: auto;
+
+    /* @apply desktop:max-w-[1224px]; */
+    @media (min-width: 1224px) {
+      max-width: 1224px;
+    }
   }
 }

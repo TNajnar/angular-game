@@ -1,0 +1,9 @@
+<section class="page-layout flex flex-col desktop:flex-row gap-5 w-full">
+  <div class="border-4 border-black desktop:w-1/2 h-[500px]">
+    <img class="object-cover h-full w-full" src="/lucian-hero.jpg" />
+  </div>
+
+  <div class="grid grid-cols-4 gap-2 w-1/2">
+    <div *ngFor="let inventoryItem of inventory" class="border border-black p-4"></div>
+  </div>
+</section>
