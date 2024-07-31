@@ -8,9 +8,9 @@
     padding: 0;
     margin: 0;
     min-width: 320px;
-    background-color: #fff;
+    background-color: #393E41;  /* Onyx */
     font-size: 100%;
-    color: #000;
+    color: #E7E5DF;    /* Platinum */
     font-family: Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: transparent;
@@ -32,5 +32,12 @@
     @media (min-width: 1224px) {
       max-width: 1224px;
     }
+  }
+
+  .equipWrapper > :last-child {
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    right: 0;
   }
 }
