@@ -26,10 +26,11 @@ const equipIcons: EIconVariants[] = [
 })
 
 export class HeroComponent {
-  weapon: TWeapon = { name: 'Sword', damage: 50 };
   equipIcons: EIconVariants[] = equipIcons;
   heroAttributes: THeroAttributes;
   EIconVariants = EIconVariants;
+
+  weapon: TWeapon = { name: 'Sword', damage: 50 };
 
   constructor () {
     this.heroAttributes = {

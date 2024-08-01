@@ -1,0 +1,5 @@
+<ul>
+  <li *ngFor="let monster of monsters">
+    <button (click)="navigateMonsterDetail(monster.index)">{{ monster.name }}</button>
+  </li>
+</ul>

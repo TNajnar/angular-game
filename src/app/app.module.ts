@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { HeaderComponent } from './components/header/header.component';
-import { CustomIconComponent } from './ui/custom-icon/custom-icon.component';
+import { provideHttpClient } from '@angular/common/http';
 
 @NgModule({
-  imports: [CommonModule, BrowserModule, HeaderComponent],
+  imports: [CommonModule, BrowserModule],
+  providers: [
+    provideHttpClient(),
+  ],
 })
 
 export class AppModule { }
