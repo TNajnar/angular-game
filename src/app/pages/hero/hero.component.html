@@ -1,14 +1,15 @@
 <section class="page-layout flex flex-col gap-12 w-full">
-  <div class="flex flex-row gap-5 w-full">
+  <div class="flex flex-col desktop:flex-row gap-5 w-full">
     <div class="desktop:w-[40%] h-[500px] border-4 border-timberWolf">
       <img class="object-cover h-full w-full" src="/lucian-hero.jpg" />
     </div>
-    <div class="relative flex flex-col justify-between items-start gap-5 pl-24 w-[35%] equipWrapper">
+
+    <div class="relative flex flex-col justify-between items-start gap-5 desktop:pl-24 w-[35%] equipWrapper">
       <div *ngFor="let equipIcon of equipIcons" class="flex justify-center items-center border w-[100px] h-[110px]">
         <app-icon [variant]="equipIcon" fill="#d3d0cb"></app-icon>
       </div>
     </div>
-    
+
     <div class="flex flex-col pl-10 w-[25%] text-lg">
       <span>Hrdina: 
         <span class="text-xl text-saffron">{{ heroAttributes.name }}</span>

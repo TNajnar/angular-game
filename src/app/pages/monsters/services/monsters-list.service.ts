@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 import { IMonsterDetail, IMonsters } from './types';
 
@@ -17,9 +17,15 @@ export class MonstersListService {
   }
 
   fetchMonsters(): Observable<IMonsters> {
-    return this.http.get<IMonsters>(this.monstersApiUrl);
+    return this.http.get<IMonsters>(this.monstersApiUrl).pipe(
+      map((monsters: IMonsters) => ({
+        ...monsters,
+        results: monsters.results.slice(-20)
+      }))
+    );
   }
 
+  // Index is correct url from monsters API
   fetchMonster(index: string): Observable<IMonsterDetail> {
     return this.http.get<IMonsterDetail>(`${this.monstersApiUrl}/${index}`);
   }

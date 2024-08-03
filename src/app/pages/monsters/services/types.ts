@@ -1,5 +1,13 @@
+export type TMonsterDataItem = {
+  src: string,
+  health: number;
+  damage: number;
+}
 
-/* #region Monster Detail */
+export type TMonstersData = Record<string, TMonsterDataItem>;
+
+
+/* #region Monster List */
 
 export interface IMonsters {
   count: number;
@@ -17,37 +25,38 @@ export interface IMonster {
 /* #region Monster Detail */
 
 export interface IMonsterDetail {
-  index: string;
-  name: string;
-  size: string;
-  type: string;
+  actions: IAction[];
   alignment: string;
   armor_class: IArmorClass[];
-  hit_points: number;
+  challenge_rating: number;
+  charisma: number;
+  condition_immunities: string[];
+  constitution: number;
+  damage_immunities: string[];
+  damage_resistances: string[];
+  damage_vulnerabilities: string[];
+  desc?: string;
+  dexterity: number;
   hit_dice: string;
   hit_points_roll: string;
+  hit_points: number;
+  image: string;
+  index: string;
+  intelligence: number;
+  languages: string;
+  legendary_actions: ILegendaryAction[];
+  name: string;
+  proficiencies: IProficiency[];
+  proficiency_bonus: number;
+  senses: ISenses;
+  size: string;
+  special_abilities: ISpecialAbility[];
   speed: ISpeed;
   strength: number;
-  dexterity: number;
-  constitution: number;
-  intelligence: number;
-  wisdom: number;
-  charisma: number;
-  proficiencies: IProficiency[];
-  damage_vulnerabilities: string[];
-  damage_resistances: string[];
-  damage_immunities: string[];
-  condition_immunities: string[];
-  senses: ISenses;
-  languages: string;
-  challenge_rating: number;
-  proficiency_bonus: number;
-  xp: number;
-  special_abilities: ISpecialAbility[];
-  actions: IAction[];
-  legendary_actions: ILegendaryAction[];
-  image: string;
+  type: string;
   url: string;
+  wisdom: number;
+  xp: number;
 }
 
 interface IArmorClass {

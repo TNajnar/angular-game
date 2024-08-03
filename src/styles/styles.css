@@ -28,12 +28,13 @@
     margin-left: auto;
     margin-right: auto;
 
-    /* @apply desktop:max-w-[1224px]; */
     @media (min-width: 1224px) {
       max-width: 1224px;
     }
   }
+}
 
+@layer components {
   .equipWrapper > :last-child {
     position: absolute;
     transform: translateY(-50%);

@@ -1,1 +1,26 @@
-<p>{{ monsterDetails?.name }}</p>
+<section *ngIf="isLoading !== true" class="page-layout">
+  <div class="flex gap-5">
+    <div class="w-1/2">
+      <img class="w-full h-full object-cover" [src]="staticMonstersData[monsterIndex].src" alt="monsterDetails?.name" />
+    </div>
+    
+    <div class="w-1/2 text-lg">
+      <p>Name: {{ monsterDetails?.name }}</p>
+      <p>Alignment: {{ monsterDetails?.alignment }}</p>
+      <p>Monster type: {{ monsterDetails?.type }}</p>
+      <p>Charisma: {{ monsterDetails?.charisma }}</p>
+      <p>Size: {{ monsterDetails?.size }}</p>
+    
+      <p *ngIf="monsterDetails?.desc; else noDescription">
+        Description: {{ monsterDetails?.desc }}
+      </p>
+      <ng-template #noDescription>
+        <p>Description: Not available</p>
+      </ng-template>
+
+
+      <p>Health: {{ staticMonstersData[monsterIndex].health }}</p>
+      <p>Damage: {{ staticMonstersData[monsterIndex].damage }}</p>
+    </div>
+  </div>
+</section>

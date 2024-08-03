@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
 import { MonstersListService } from '../services/monsters-list.service';
-import { IMonsters } from '../services/types';
+import { IMonster, IMonsters, TMonstersData } from '../services/types';
+import { staticMonstersData } from '../data';
 
 @Component({
   selector: 'app-enemy-list',
@@ -15,24 +16,24 @@ import { IMonsters } from '../services/types';
 export class MonstersListComponent implements OnInit {
   private router: Router;
   monsters: IMonsters['results'] | undefined;
+  staticMonstersData: TMonstersData = staticMonstersData;
 
-  constructor (private monstersList: MonstersListService, router: Router) {
+  constructor (private monstersListService: MonstersListService, router: Router) {
     this.router = router;
   }
 
   ngOnInit(): void {
-    this.monstersList.fetchMonsters().subscribe({
+    this.monstersListService.fetchMonsters().subscribe({
       next: (data) => {
-        console.log("🚀 ~ MonstersListComponent ~ this.monstersList.fetchMonsters ~ data:", data)
-        this.monsters = data.results
+        this.monsters = data.results;
       },
       error: (error) => {
-        console.error('Failed to fetch Monsters: ', error)
+        console.error('Failed to fetch Monsters: ', error);
       }
     })
   }
 
-  navigateMonsterDetail(monsterIndex: string): void {
-    this.router.navigate(['/monster', monsterIndex])
+  navigateMonsterDetail(monster: IMonster): void {
+    this.router.navigate(['/monster', monster.index]);
   }
 }
