@@ -1,8 +1,6 @@
 <section class="page-layout flex flex-col gap-12 w-full">
   <div class="flex flex-col desktop:flex-row gap-5 w-full">
-    <div class="desktop:w-[40%] h-[500px] border-4 border-timberWolf">
-      <img class="object-cover h-full w-full" src="/lucian-hero.jpg" />
-    </div>
+    <app-hero class="desktop:w-[40%] h-[500px] border-4 border-timberWolf" #hero></app-hero>
 
     <div class="relative flex flex-col justify-between items-start gap-5 desktop:pl-24 w-[35%] equipWrapper">
       <div *ngFor="let equipIcon of equipIcons" class="flex justify-center items-center border w-[100px] h-[110px]">
@@ -12,21 +10,21 @@
 
     <div class="flex flex-col pl-10 w-[25%] text-lg">
       <span>Hrdina: 
-        <span class="text-xl text-saffron">{{ heroAttributes.name }}</span>
+        <span class="text-xl text-saffron">{{ hero.heroAttributes.name }}</span>
       </span>
       <span>Brnění:
-        <span class="text-xl text-saffron">{{ heroAttributes.armor }}</span>
+        <span class="text-xl text-saffron">{{ hero.heroAttributes.armor }}</span>
       </span>
       <span>Životy:
-        <span class="text-xl text-saffron">{{ heroAttributes.health }}</span>
+        <span class="text-xl text-saffron">{{ hero.heroAttributes.health }}</span>
       </span>
       <span>Poškození:
-        <span class="text-xl text-saffron">{{ heroAttributes.damage }}
-          <span *ngIf="weapon.damage > 0" class="text-keppel"> + {{ weapon.damage }}</span>
+        <span class="text-xl text-saffron">{{ hero.heroAttributes.damage }}
+          <span *ngIf="hero.weapon.damage > 0" class="text-keppel"> + {{ hero.weapon.damage }}</span>
         </span>
       </span>
       <span>Level: 
-        <span class="text-xl text-saffron">{{ heroAttributes.level }}</span>
+        <span class="text-xl text-saffron">{{ hero.heroAttributes.level }}</span>
       </span>
     </div>
   </div>
