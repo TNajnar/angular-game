@@ -17,7 +17,7 @@ const equipIcons: EIconVariants[] = [
 })
 
 export class HeroPageComponent implements AfterViewInit {
-  @ViewChild('hero') heroComponent!: HeroComponent;
+  @ViewChild(HeroComponent) heroComponent!: HeroComponent;
 
   equipIcons: EIconVariants[] = equipIcons;
   EIconVariants = EIconVariants;

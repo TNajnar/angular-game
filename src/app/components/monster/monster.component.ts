@@ -1,10 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common';
 
+import { staticMonstersData } from '@pages/monsters/data';
 import { MonstersListService } from '@pages/monsters/services/monsters-list.service';
-import { IMonsterDetail, TMonstersData } from '../services/types';
-import { staticMonstersData } from '../data';
+import { IMonsterDetail, TMonstersData } from '@pages/monsters/services/types';
 
 @Component({
   selector: 'app-monster',
@@ -15,11 +15,13 @@ import { staticMonstersData } from '../data';
 
 export class MonsterComponent implements OnInit {
   private route: ActivatedRoute;
-  monsterDetails: IMonsterDetail | undefined;
-  staticMonstersData: TMonstersData = staticMonstersData;
+
+  monsterDetails?: IMonsterDetail;
   monsterIndex: string = '';
   isLoading: boolean = true;
-  
+
+  staticMonstersData: TMonstersData = staticMonstersData;
+
   constructor (private monstersListService: MonstersListService, route: ActivatedRoute) {
     this.route = route;
   }
@@ -30,8 +32,9 @@ export class MonsterComponent implements OnInit {
     if (monsterIndex) {
       this.monstersListService.fetchMonster(monsterIndex).subscribe({
         next: (monsterDetailData) => {
-          this.monsterIndex = monsterIndex;
           this.monsterDetails = monsterDetailData;
+          this.monsterIndex = monsterIndex;
+          console.log('', this.staticMonstersData[monsterIndex]);
           this.isLoading = false;
         },
         error: (error) => {

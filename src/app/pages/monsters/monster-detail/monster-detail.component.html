@@ -1,0 +1,24 @@
+<section class="page-layout">
+  <div class="flex gap-5">
+    <app-monster class="w-1/2" #monster></app-monster>
+    
+    <div class="w-1/2 text-lg">
+      <p>Name: {{ monster.monsterDetails?.name }}</p>
+      <p>Alignment: {{ monster.monsterDetails?.alignment }}</p>
+      <p>Monster type: {{ monster.monsterDetails?.type }}</p>
+      <p>Charisma: {{ monster.monsterDetails?.charisma }}</p>
+      <p>Size: {{ monster.monsterDetails?.size }}</p>
+    
+      <p *ngIf="monster.monsterDetails?.desc; else noDescription">
+        Description: {{ monster.monsterDetails?.desc }}
+      </p>
+      <ng-template #noDescription>
+        <p>Description: Not available</p>
+      </ng-template>
+
+
+      <!-- <p>Health: {{ monster.staticMonstersData[monsterIndex].health }}</p>
+      <p>Damage: {{ monster.staticMonstersData[monsterIndex].damage }}</p> -->
+    </div>
+  </div>
+</section>

@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { HeroComponent } from '@components/hero/hero.component';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+
+import { HeroComponent, IHero } from '@components/hero/hero.component';
 
 @Component({
   selector: 'app-fight',
@@ -8,5 +9,12 @@ import { HeroComponent } from '@components/hero/hero.component';
   templateUrl: './fight.component.html',
 })
 
-export class FightComponent {
+export class FightComponent implements AfterViewInit {
+  @ViewChild(HeroComponent) heroComponent!: HeroComponent;
+
+  hero!: IHero;
+
+  ngAfterViewInit(): void {
+    this.hero = this.heroComponent;
+  }
 }
