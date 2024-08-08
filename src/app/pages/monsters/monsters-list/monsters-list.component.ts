@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { MonstersListService } from '../services/monsters-list.service';
 import { IMonster, IMonsters, TMonstersData } from '../services/types';
-import { staticMonstersData } from '../data';
+import { staticMonstersData } from '@components/monster/data';
 
 @Component({
   selector: 'app-enemy-list',
@@ -15,6 +15,7 @@ import { staticMonstersData } from '../data';
 
 export class MonstersListComponent implements OnInit {
   private router: Router;
+
   monsters: IMonsters['results'] | undefined;
   staticMonstersData: TMonstersData = staticMonstersData;
 
