@@ -19,6 +19,7 @@ export class MonsterDetailComponent implements OnInit {
   
   monsterDetails?: IMonsterDetail;
   monsterIndex: string = '';
+  staticMonstersData: TMonstersData = staticMonstersData;
   isLoading: boolean = true;
   
   constructor (private monstersListService: MonstersListService, route: ActivatedRoute) {

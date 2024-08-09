@@ -13,7 +13,7 @@ import { staticMonstersData } from './data';
 
 export class MonsterComponent {
   @Input() monsterIndex: string = '';
-  @Input() isLoading: boolean = false;
+  @Input() isLoading?: boolean = false;
 
   staticMonstersData: TMonstersData = staticMonstersData;
 }
