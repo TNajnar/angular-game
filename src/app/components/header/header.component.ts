@@ -8,10 +8,10 @@ type THeader = {
 }
 
 const headerItems: THeader[] = [
-  {label: 'Domů', url: 'home'},
-  {label: 'Postava', url: 'hero'},
-  {label: 'Bestiář', url: 'monsters'},
-  {label: 'Boj', url: 'fight'},
+  {label: 'Home', url: 'home'},
+  {label: 'Hero', url: 'hero'},
+  {label: 'Bestiary', url: 'monsters'},
+  {label: 'Fight', url: 'fight'},
 ];
 
 @Component({

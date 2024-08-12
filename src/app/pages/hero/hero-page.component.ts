@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { CustomIconComponent, EIconVariants } from '@app/ui/custom-icon/custom-icon.component';
 import { InventoryComponent } from '@components/inventory/inventory.component';
-import { HeroComponent, IHero } from '@components/hero/hero.component';
+import { HeroComponent } from '@components/hero/hero.component';
+import { HeroService } from '@components/hero/hero.service';
 
 const equipIcons: EIconVariants[] = [
   EIconVariants.Helmet, EIconVariants.Armor,  EIconVariants.Pants, EIconVariants.Boots, EIconVariants.Weapon,
@@ -16,15 +17,13 @@ const equipIcons: EIconVariants[] = [
   templateUrl: './hero-page.component.html',
 })
 
-export class HeroPageComponent implements AfterViewInit {
-  @ViewChild(HeroComponent) heroComponent!: HeroComponent;
+export class HeroPageComponent {
+  hero!: HeroService;
 
   equipIcons: EIconVariants[] = equipIcons;
   EIconVariants = EIconVariants;
 
-  hero!: IHero;
-
-  ngAfterViewInit(): void {
-    this.hero = this.heroComponent;
-  }
+  constructor (heroService: HeroService) {
+    this.hero = heroService;
+  };
 }

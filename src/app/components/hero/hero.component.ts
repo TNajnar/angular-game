@@ -1,11 +1,6 @@
 import { Component } from '@angular/core';
 import { TWeapon } from '@app/lib/types';
 
-export interface IHero {
-  heroAttributes: THeroAttributes;
-  weapon: TWeapon;
-}
-
 export type THeroAttributes = {
   armor: number;
   damage: number; 

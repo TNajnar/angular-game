@@ -1,7 +1,7 @@
-import { isPlatformBrowser } from '@angular/common';
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Injectable } from '@angular/core';
+
+import { MonsterService } from '@components/monster/monster.service';
 import { RANDOM_MONSTER_KEY } from '@app/lib/consts';
-import { staticMonstersData } from '@components/monster/data';
 
 function randomNumber(number: number) {
   return Math.floor(Math.random() * number);
@@ -12,14 +12,10 @@ function randomNumber(number: number) {
 })
 
 export class FightService {
-  isBrowser: boolean;
+  constructor (private monsterService: MonsterService) {}
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-    this.isBrowser = isPlatformBrowser(this.platformId);
-  }
-  
-  getRandomEnemyKey() {
-    const keys = Object.keys(staticMonstersData);
+  getRandomEnemyKey(): string {
+    const keys = Object.keys(this.monsterService.staticMonstersData);
     const randomIndex = randomNumber(keys.length);
 
     return keys[randomIndex];
@@ -37,7 +33,7 @@ export class FightService {
     }
   }
 
-  removeRandomMonster() {
+  removeRandomMonster(): void {
     localStorage.removeItem(RANDOM_MONSTER_KEY)
   }
 }

@@ -14,14 +14,10 @@ import { staticMonstersData } from '@components/monster/data';
 })
 
 export class MonstersListComponent implements OnInit {
-  private router: Router;
-
   monsters: IMonsters['results'] | undefined;
   staticMonstersData: TMonstersData = staticMonstersData;
 
-  constructor (private monstersListService: MonstersListService, router: Router) {
-    this.router = router;
-  }
+  constructor (private monstersListService: MonstersListService, private router: Router) { }
 
   ngOnInit(): void {
     this.monstersListService.fetchMonsters().subscribe({

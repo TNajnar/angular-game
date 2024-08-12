@@ -1,7 +1,8 @@
 export type TMonsterDataItem = {
-  src: string,
-  health: number;
   damage: number;
+  health: number;
+  name: string;
+  src: string,
 }
 
 export type TMonstersData = Record<string, TMonsterDataItem>;

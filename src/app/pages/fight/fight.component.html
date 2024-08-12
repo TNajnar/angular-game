@@ -3,17 +3,28 @@
     <div class="w-full h-[500px]">
       <app-hero></app-hero>
       
-      <div>
-        <!-- <span>{{ hero.heroAttributes.name }}</span> -->
+      <div class="flex flex-col gap-2 pt-5">
+        <span>Name: {{ hero.heroAttributes.name }}</span>
+        <span>Health: {{ hero.heroAttributes.health }}</span>
+        <span>Damage: {{ hero.heroAttributes.damage }}</span>
+      </div>
+    </div>
+
+    <div class="w-full h-[500px]">
+      <app-monster [monsterIndex]="randomMonsterKey"></app-monster>
+      
+      <div class="flex flex-col gap-2 pt-5">
+        <span>Name: {{ monster.staticMonstersData[randomMonsterKey].name }}</span>
+        <span>Health: {{ monster.staticMonstersData[randomMonsterKey].health }}</span>
+        <span>Damage: {{ monster.staticMonstersData[randomMonsterKey].damage }}</span>
       </div>
     </div>
   
-    <app-monster class="w-full h-[500px]" [monsterIndex]="randomMonsterKey"></app-monster>
   </div>
   
   <div>
-    <button class="border-2 p-4 text-xl" (click)="navigateToHero()">
-      Ukonci boj
+    <button class="border-2 px-8 py-4 text-xl" (click)="startFight()">
+      Start Fight
     </button>
   </div>
 </section>

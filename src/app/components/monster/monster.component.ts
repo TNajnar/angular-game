@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 import { TMonstersData } from '@pages/monsters/services/types';
-import { staticMonstersData } from './data';
+import { MonsterService } from './monster.service';
 
 @Component({
   selector: 'app-monster',
@@ -15,5 +15,9 @@ export class MonsterComponent {
   @Input() monsterIndex: string = '';
   @Input() isLoading?: boolean = false;
 
-  staticMonstersData: TMonstersData = staticMonstersData;
+  staticMonstersData!: TMonstersData;
+
+  constructor (private monsterService: MonsterService) {
+    this.staticMonstersData = this.monsterService.staticMonstersData;
+  }
 }
