@@ -1,23 +1,23 @@
 <section class="page-layout gap-44">
   <div class="flex flex-col desktop:flex-row gap-96 w-full">
-    <div class="w-full h-[500px]">
-      <app-hero></app-hero>
-      
-      <div class="flex flex-col gap-2 pt-5">
-        <span>Name: {{ hero.heroAttributes.name }}</span>
-        <span>Health: {{ hero.heroAttributes.health }}</span>
-        <span>Damage: {{ hero.heroAttributes.damage }}</span>
-      </div>
+    <div class="relative w-full h-[500px]">
+      <app-hero />
+
+      <character-stats
+        [damage]="hero.heroAttributes.damage"
+        [health]="hero.heroAttributes.health"
+        [name]="hero.heroAttributes.name"
+      />
     </div>
 
     <div class="w-full h-[500px]">
-      <app-monster [monsterIndex]="randomMonsterKey"></app-monster>
+      <app-monster [monsterIndex]="randomMonsterKey" />
       
-      <div class="flex flex-col gap-2 pt-5">
-        <span>Name: {{ monster.staticMonstersData[randomMonsterKey].name }}</span>
-        <span>Health: {{ monster.staticMonstersData[randomMonsterKey].health }}</span>
-        <span>Damage: {{ monster.staticMonstersData[randomMonsterKey].damage }}</span>
-      </div>
+      <character-stats
+        [damage]="monster.staticMonstersData[randomMonsterKey].damage"
+        [name]="monster.staticMonstersData[randomMonsterKey].name"
+        [health]="monster.staticMonstersData[randomMonsterKey].health"
+      />
     </div>
   
   </div>

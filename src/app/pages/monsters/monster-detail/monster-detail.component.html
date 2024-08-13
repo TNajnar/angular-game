@@ -12,13 +12,12 @@
       <p>Monster type: {{ monsterDetails?.type }}</p>
       <p>Charisma: {{ monsterDetails?.charisma }}</p>
       <p>Size: {{ monsterDetails?.size }}</p>
-    
-      <p *ngIf="monsterDetails?.desc; else noDescription">
+
+      @if (monsterDetails?.desc) {
         Description: {{ monsterDetails?.desc }}
-      </p>
-      <ng-template #noDescription>
-        <p>Description: Not available</p>
-      </ng-template>
+      } @else {
+        <p>Description: Is not available</p>
+      }
 
       <p>Health: {{ staticMonstersData[monsterIndex].health }}</p>
       <p>Damage: {{ staticMonstersData[monsterIndex].damage }}</p>

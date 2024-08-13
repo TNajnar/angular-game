@@ -1,4 +1,6 @@
+import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
+
 import { TWeapon } from '@app/lib/types';
 
 export type THeroAttributes = {
@@ -12,7 +14,7 @@ export type THeroAttributes = {
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [],
+  imports: [NgOptimizedImage],
   templateUrl: './hero.component.html',
 })
 

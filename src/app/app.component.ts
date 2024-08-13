@@ -22,11 +22,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(event => {
-        this.pathname = event.url;
-        if (!this.pathname.startsWith('/fight')) {
-          localStorage.removeItem(RANDOM_MONSTER_KEY);
+        if (event instanceof NavigationEnd) {
+          this.pathname = event.url;
+          if (!this.pathname.startsWith('/fight')) {
+            localStorage.removeItem(RANDOM_MONSTER_KEY);
+          }
         }
       });
   }

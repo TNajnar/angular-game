@@ -2,7 +2,7 @@ export type TMonsterDataItem = {
   damage: number;
   health: number;
   name: string;
-  src: string,
+  src?: string,
 }
 
 export type TMonstersData = Record<string, TMonsterDataItem>;

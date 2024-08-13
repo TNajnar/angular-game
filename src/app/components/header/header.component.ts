@@ -8,10 +8,10 @@ type THeader = {
 }
 
 const headerItems: THeader[] = [
-  {label: 'Home', url: 'home'},
-  {label: 'Hero', url: 'hero'},
-  {label: 'Bestiary', url: 'monsters'},
-  {label: 'Fight', url: 'fight'},
+  { label: 'Home', url: 'home' },
+  { label: 'Hero', url: 'hero' },
+  { label: 'Bestiary', url: 'monsters' },
+  { label: 'Fight', url: 'fight' },
 ];
 
 @Component({
@@ -30,6 +30,6 @@ export class HeaderComponent {
   }
 
   navigateTo(url: string): void {
-    this.router.navigate([`/${url}`])
+    this.router.navigate([`/${url}`]);
   }
 }

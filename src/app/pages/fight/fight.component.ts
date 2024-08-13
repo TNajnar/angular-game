@@ -5,19 +5,20 @@ import { HeroService } from '@components/hero/hero.service';
 import { MonsterService } from '@components/monster/monster.service';
 import { HeroComponent } from '@components/hero/hero.component';
 import { MonsterComponent } from '@components/monster/monster.component';
+import { CharacterStatsComponent } from '@components/shared/character-stats/character-stats.component';
 
 @Component({
   selector: 'app-fight',
   standalone: true,
-  imports: [HeroComponent, MonsterComponent],
+  imports: [HeroComponent, MonsterComponent, CharacterStatsComponent],
   templateUrl: './fight.component.html',
 })
 
 export class FightComponent {
   randomMonsterKey!: string;
   
-  private hero: HeroService = inject(HeroService);
-  private monster: MonsterService = inject(MonsterService);
+  hero: HeroService = inject(HeroService);
+  monster: MonsterService = inject(MonsterService);
   
   isHeroAttackFirst: boolean = Math.floor(Math.random() * 2) === 0 ? false : true;
 

@@ -1,15 +1,16 @@
 <section class="page-layout gap-4">
-  <div
-    class="flex flex-row gap-10 cursor-pointer"
-    (click)="navigateMonsterDetail(monster)"
-    *ngFor="let monster of monsters"
-  >
-    <img class="w-48 h-48" [src]="staticMonstersData[monster.index].src" alt="{{ monster.name }}" />
-    
-    <div class="flex flex-col gap-4">
-      <h3 class="text-xl">{{ monster.name }}</h3>
-      <span>Health: {{ staticMonstersData[monster.index].health }}</span>
-      <span>Damage: {{ staticMonstersData[monster.index].damage }}</span>
+  @for (monster of monsters; track monster.url) {
+    <div
+      class="flex flex-row gap-10 cursor-pointer"
+      (click)="navigateMonsterDetail(monster)"
+    >
+      <img class="w-48 h-48" [src]="staticMonstersData[monster.index].src" alt="{{ monster.name }}" />
+      
+      <div class="flex flex-col gap-4">
+        <h3 class="text-xl font-semibold">{{ monster.name }}</h3>
+        <span>Health: {{ staticMonstersData[monster.index].health }}</span>
+        <span>Damage: {{ staticMonstersData[monster.index].damage }}</span>
+      </div>
     </div>
-  </div>
+  }
 </section>
