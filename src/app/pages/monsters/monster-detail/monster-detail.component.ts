@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
@@ -15,16 +15,13 @@ import { staticMonstersData } from '@components/monster/data';
 })
 
 export class MonsterDetailComponent implements OnInit {
-  private route: ActivatedRoute;
+  route: ActivatedRoute = inject(ActivatedRoute);
+  monstersListService: MonstersListService = inject(MonstersListService);
   
   monsterDetails?: IMonsterDetail;
   monsterIndex: string = '';
   staticMonstersData: TMonstersData = staticMonstersData;
   isLoading: boolean = true;
-  
-  constructor (private monstersListService: MonstersListService, route: ActivatedRoute) {
-    this.route = route;
-  }
   
   ngOnInit(): void {
     const monsterIndex = this.route.snapshot.paramMap.get('index');

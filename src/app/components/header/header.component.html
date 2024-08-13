@@ -1,11 +1,10 @@
-<header class="mb-10 border-b-2 border-b-timberWolf">
-  <div class="flex flex-row justify-center gap-5">
+<header class="flex flex-row justify-center gap-5 mb-10 border-b-2 border-b-timberWolf">
+  @for (item of headerItems; track item.url) {
     <button
       class="p-4 w-24 text-center cursor-pointer"
-      *ngFor="let item of headerItems"
       (click)="navigateTo(item.url)"
     >
       {{ item.label }}
     </button>
-  </div>
+  }
 </header>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -14,10 +14,11 @@ import { staticMonstersData } from '@components/monster/data';
 })
 
 export class MonstersListComponent implements OnInit {
+  monstersListService: MonstersListService = inject(MonstersListService);
+  router: Router = inject(Router);
+
   monsters: IMonsters['results'] | undefined;
   staticMonstersData: TMonstersData = staticMonstersData;
-
-  constructor (private monstersListService: MonstersListService, private router: Router) { }
 
   ngOnInit(): void {
     this.monstersListService.fetchMonsters().subscribe({

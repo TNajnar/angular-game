@@ -15,10 +15,10 @@ import { CharacterStatsComponent } from '@components/shared/character-stats/char
 })
 
 export class FightComponent {
-  randomMonsterKey!: string;
-  
   hero: HeroService = inject(HeroService);
   monster: MonsterService = inject(MonsterService);
+  
+  randomMonsterKey!: string;
   
   isHeroAttackFirst: boolean = Math.floor(Math.random() * 2) === 0 ? false : true;
 

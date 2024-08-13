@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 export enum EIconVariants {
   Armor = 'ARMOR',
@@ -20,6 +20,6 @@ export class CustomIconComponent {
   @Input() variant!: EIconVariants;
   @Input() fill!: string;
 
-  public EIconVariants = EIconVariants;
+  EIconVariants = EIconVariants;
 }
 
