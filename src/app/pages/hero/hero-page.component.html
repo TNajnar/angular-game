@@ -1,36 +1,20 @@
-<section class="page-layout flex flex-col gap-12 w-full">
-  <div class="flex flex-col desktop:flex-row gap-5 w-full">
-    <app-hero class="desktop:w-[40%] h-[500px]" />
-
-    <div class="relative flex flex-col justify-between items-start gap-5 desktop:pl-24 w-[35%] equipWrapper">
-      @for (equipIcon of equipIcons; track equipIcon) {
-        <app-icon
-          class="flex justify-center items-center border w-[100px] h-[110px]"
-          [variant]="equipIcon"
-          fill="#d3d0cb"
-        />
-      }
+<section class="page-layout flex flex-col gap-12">
+  <div class="flex flex-col gap-5 desktop:flex-row">
+    <div class="flex flex-col justify-between gap-5 w-full sm:flex-row">
+      <app-hero class="w-full sm:w-1/2 h-[400px] sm:h-[500px]" />
+  
+      <div class="relative flex flex-col justify-between items-start gap-5 w-full sm:w-[45%] equipWrapper desktop:pl-24 desktop:w-[35%]">
+        @for (equipIcon of equipIcons; track equipIcon) {
+          <app-icon
+            class="flex justify-center items-center border w-[100px] h-[110px]"
+            [variant]="equipIcon"
+            fill="#d3d0cb"
+          />
+        }
+      </div>
     </div>
 
-    <div class="flex flex-col pl-10 w-[25%] text-lg">
-      <span>Hrdina: 
-        <span class="text-xl text-saffron">{{ hero.heroAttributes.name }}</span>
-      </span>
-      <span>Brnění:
-        <span class="text-xl text-saffron">{{ hero.heroAttributes.armor }}</span>
-      </span>
-      <span>Životy:
-        <span class="text-xl text-saffron">{{ hero.heroAttributes.health }}</span>
-      </span>
-      <span>Poškození:
-        <span class="text-xl text-saffron">{{ hero.heroAttributes.damage }}
-          <span *ngIf="hero.weapon.damage > 0" class="text-keppel"> + {{ hero.weapon.damage }}</span>
-        </span>
-      </span>
-      <span>Level: 
-        <span class="text-xl text-saffron">{{ hero.heroAttributes.level }}</span>
-      </span>
-    </div>
+    <hero-stats />
   </div>
 
   <hero-inventory />

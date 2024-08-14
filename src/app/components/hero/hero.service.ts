@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { THeroAttributes } from './hero.component';
 import { TWeapon } from '@app/lib/types';
+import { IHeroAttributes } from './hero.component';
 
-export interface IHero {
-  heroAttributes: THeroAttributes;
-  weapon: TWeapon;
+type THeroDamage = {
+  baseDamage: number;
+  additionalDamage: number;
 }
 
 @Injectable({
@@ -13,7 +13,7 @@ export interface IHero {
 })
 
 export class HeroService {
-  heroAttributes: THeroAttributes = {
+  heroAttributes: IHeroAttributes = {
     armor: 25,
     damage: 95,
     health: 360,
@@ -22,4 +22,15 @@ export class HeroService {
   };
 
   weapon: TWeapon = { name: 'Sword', damage: 50 };
+
+  getHeroDamage(): THeroDamage | number {
+    const hasWeapon: THeroDamage = {
+      baseDamage: this.heroAttributes.damage,
+      additionalDamage: this.weapon.damage
+    }
+
+    return this.weapon.damage <= 0
+      ? this.heroAttributes.damage
+      : hasWeapon
+  }
 }
