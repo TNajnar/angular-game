@@ -3,11 +3,12 @@ import { Component, Input } from '@angular/core';
 
 import { TMonstersData } from '@pages/monsters/services/types';
 import { MonsterService } from './monster.service';
+import { CharacterProfileComponent } from "../shared/character-profile/character-profile.component";
 
 @Component({
   selector: 'app-monster',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CharacterProfileComponent],
   templateUrl: './monster.component.html',
 })
 

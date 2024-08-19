@@ -2,7 +2,7 @@
   <div class="flex gap-5">
     <app-monster
       [isLoading]="isLoading"
-      [monsterIndex]="monsterIndex"
+      [monsterIndex]="monstersListService.activeMonsterIndex"
       class="w-1/2"
     />
     
@@ -19,8 +19,8 @@
         <p>Description: Is not available</p>
       }
 
-      <p>Health: {{ staticMonstersData[monsterIndex].health }}</p>
-      <p>Damage: {{ staticMonstersData[monsterIndex].damage }}</p>
+      <p>Health: {{ staticMonstersData[monstersListService.activeMonsterIndex].health }}</p>
+      <p>Damage: {{ staticMonstersData[monstersListService.activeMonsterIndex].damage }}</p>
     </div>
   </div>
 </section>

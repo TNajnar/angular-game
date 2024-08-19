@@ -32,6 +32,7 @@ export class MonstersListComponent implements OnInit {
   }
 
   navigateMonsterDetail(monster: IMonster): void {
+    this.monstersListService.setSelectedMonsterIndex(monster.index);
     this.router.navigate(['/monster', monster.index]);
   }
 }

@@ -1,7 +1,7 @@
 import { NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 
-import { TWeapon } from '@app/lib/types';
+import { CharacterProfileComponent } from "../shared/character-profile/character-profile.component";
 
 export interface IHeroAttributes {
   armor: number;
@@ -14,7 +14,7 @@ export interface IHeroAttributes {
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [NgOptimizedImage],
+  imports: [NgOptimizedImage, CharacterProfileComponent],
   templateUrl: './hero.component.html',
 })
 

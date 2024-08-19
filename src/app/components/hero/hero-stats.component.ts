@@ -1,9 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
-import { HeroComponent, IHeroAttributes } from './hero.component';
 import { HeroService } from './hero.service';
-
 
 @Component({
   standalone: true,

@@ -15,28 +15,21 @@ import { staticMonstersData } from '@components/monster/data';
 })
 
 export class MonsterDetailComponent implements OnInit {
-  route: ActivatedRoute = inject(ActivatedRoute);
   monstersListService: MonstersListService = inject(MonstersListService);
   
   monsterDetails?: IMonsterDetail;
-  monsterIndex: string = '';
   staticMonstersData: TMonstersData = staticMonstersData;
   isLoading: boolean = true;
   
   ngOnInit(): void {
-    const monsterIndex = this.route.snapshot.paramMap.get('index');
-  
-    if (monsterIndex) {
-      this.monstersListService.fetchMonster(monsterIndex).subscribe({
-        next: (monsterDetailData) => {
-          this.monsterDetails = monsterDetailData;
-          this.monsterIndex = monsterIndex;
-          this.isLoading = false;
-        },
-        error: (error) => {
-          console.error('Failed to fetch Monster details: ', error);
-        },
-      });
-    }
+    this.monstersListService.fetchMonster().subscribe({
+      next: (monsterDetailData) => {
+        this.monsterDetails = monsterDetailData;
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error('Failed to fetch Monster details: ', error);
+      },
+    });
   }
 }

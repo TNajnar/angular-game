@@ -10,10 +10,19 @@ import { IMonsterDetail, IMonsters } from './types';
 
 export class MonstersListService {
   private monstersApiUrl: string = 'https://www.dnd5eapi.co/api/monsters';
-  http: HttpClient;
+  private http: HttpClient;
+  selectedMonsterIndex!: string;
 
   constructor(http: HttpClient) {
     this.http = http;
+  }
+
+  setSelectedMonsterIndex(index: string): void {
+    this.selectedMonsterIndex = index;
+  }
+
+  get activeMonsterIndex(): string {
+    return this.selectedMonsterIndex;
   }
 
   fetchMonsters(): Observable<IMonsters> {
@@ -26,7 +35,7 @@ export class MonstersListService {
   }
 
   // Index is correct url from monsters API
-  fetchMonster(index: string): Observable<IMonsterDetail> {
-    return this.http.get<IMonsterDetail>(`${this.monstersApiUrl}/${index}`);
+  fetchMonster(): Observable<IMonsterDetail> {
+    return this.http.get<IMonsterDetail>(`${this.monstersApiUrl}/${this.selectedMonsterIndex}`);
   }
 }

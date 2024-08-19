@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 import { HeroService } from '@components/hero/hero.service';
 import { CustomIconComponent, EIconVariants } from '@app/ui/custom-icon/custom-icon.component';
@@ -23,4 +23,5 @@ export class HeroPageComponent {
 
   equipIcons: EIconVariants[] = equipIcons;
   EIconVariants = EIconVariants;
+
 }

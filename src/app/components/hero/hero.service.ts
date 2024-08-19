@@ -23,7 +23,7 @@ export class HeroService {
 
   weapon: TWeapon = { name: 'Sword', damage: 50 };
 
-  getHeroDamage(): THeroDamage | number {
+  get heroDamage(): THeroDamage | number {
     const hasWeapon: THeroDamage = {
       baseDamage: this.heroAttributes.damage,
       additionalDamage: this.weapon.damage
