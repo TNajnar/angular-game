@@ -1,11 +1,10 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
-import { MonstersListService } from '@pages/monsters/services/monsters-list.service';
+import { MonstersListService } from '@pages/monsters/monsters-list.service';
 import { MonsterComponent } from '@components/monster/monster.component';
-import { IMonsterDetail, TMonstersData } from '../services/types';
 import { staticMonstersData } from '@components/monster/data';
+import type { IMonsterDetail, TMonstersData } from '../monster.model';
 
 @Component({
   selector: 'app-monster-detail',
@@ -15,11 +14,11 @@ import { staticMonstersData } from '@components/monster/data';
 })
 
 export class MonsterDetailComponent implements OnInit {
-  monstersListService: MonstersListService = inject(MonstersListService);
-  
   monsterDetails?: IMonsterDetail;
   staticMonstersData: TMonstersData = staticMonstersData;
   isLoading: boolean = true;
+
+  monstersListService: MonstersListService = inject(MonstersListService);
   
   ngOnInit(): void {
     this.monstersListService.fetchMonster().subscribe({

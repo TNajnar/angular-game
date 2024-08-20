@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
 
-import { IMonsterDetail, IMonsters } from './types';
+import type { IMonsterDetail, IMonsters } from './monster.model';
 
 @Injectable({
   providedIn: 'root'

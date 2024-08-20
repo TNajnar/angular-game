@@ -2,9 +2,9 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
-import { MonstersListService } from '../services/monsters-list.service';
-import { IMonster, IMonsters, TMonstersData } from '../services/types';
+import { MonstersListService } from '../monsters-list.service';
 import { staticMonstersData } from '@components/monster/data';
+import type { IMonster, IMonsters, TMonstersData } from '../monster.model';
 
 @Component({
   selector: 'app-enemy-list',
@@ -14,11 +14,11 @@ import { staticMonstersData } from '@components/monster/data';
 })
 
 export class MonstersListComponent implements OnInit {
-  monstersListService: MonstersListService = inject(MonstersListService);
-  router: Router = inject(Router);
-
   monsters: IMonsters['results'] | undefined;
   staticMonstersData: TMonstersData = staticMonstersData;
+
+  monstersListService: MonstersListService = inject(MonstersListService);
+  router: Router = inject(Router);
 
   ngOnInit(): void {
     this.monstersListService.fetchMonsters().subscribe({

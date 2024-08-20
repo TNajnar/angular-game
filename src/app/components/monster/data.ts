@@ -1,4 +1,4 @@
-import { TMonstersData } from "@pages/monsters/services/types";
+import type { TMonstersData } from "@pages/monsters/monster.model";
 
 export const staticMonstersData: TMonstersData = {
   'white-dragon-wyrmling': { src: 'monsters/wyvern.jpg', name: 'White Dragon Wyrmling', health: 500, damage: 25 },

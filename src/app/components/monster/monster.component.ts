@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
-import { TMonstersData } from '@pages/monsters/services/types';
 import { MonsterService } from './monster.service';
 import { CharacterProfileComponent } from "../shared/character-profile/character-profile.component";
+import { TMonstersData } from '@pages/monsters/monster.model';
 
 @Component({
   selector: 'app-monster',
@@ -13,8 +13,8 @@ import { CharacterProfileComponent } from "../shared/character-profile/character
 })
 
 export class MonsterComponent {
-  @Input() monsterIndex: string = '';
-  @Input() isLoading?: boolean = false;
+  @Input({ required: true }) monsterIndex!: string;
+  @Input({ required: false }) isLoading?: boolean = false;
 
   staticMonstersData!: TMonstersData;
 

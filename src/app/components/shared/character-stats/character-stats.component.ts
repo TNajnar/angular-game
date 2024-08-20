@@ -14,7 +14,7 @@ import { Component, Input } from '@angular/core';
 })
 
 export class CharacterStatsComponent {
-  @Input() damage!: number;
-  @Input() health!: number;
-  @Input() name!: string;
+  @Input({ required: true }) damage!: number;
+  @Input({ required: true }) health!: number;
+  @Input({ required: true }) name!: string;
 }

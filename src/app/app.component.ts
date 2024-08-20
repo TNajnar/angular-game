@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
-import { filter } from 'rxjs';
 
 import { HeaderComponent } from './components/header/header.component';
+import { MonsterService } from '@components/monster/monster.service';
 import { RANDOM_MONSTER_KEY } from './lib/consts';
 
 @Component({
@@ -20,6 +20,8 @@ export class AppComponent implements OnInit {
     this.router = router;
   };
 
+  private monsterService: MonsterService = inject(MonsterService);
+
   ngOnInit(): void {
     this.router.events
       .subscribe(event => {
@@ -27,6 +29,8 @@ export class AppComponent implements OnInit {
           this.pathname = event.url;
           if (!this.pathname.startsWith('/fight')) {
             localStorage.removeItem(RANDOM_MONSTER_KEY);
+          } else {
+            this.monsterService.getOrCreateRandomMonsterKey();
           }
         }
       });

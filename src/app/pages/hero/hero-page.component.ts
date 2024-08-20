@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { HeroService } from '@components/hero/hero.service';
 import { CustomIconComponent, EIconVariants } from '@app/ui/custom-icon/custom-icon.component';
@@ -19,9 +19,8 @@ const equipIcons: EIconVariants[] = [
 })
 
 export class HeroPageComponent {
-  hero: HeroService = inject(HeroService);
-
   equipIcons: EIconVariants[] = equipIcons;
   EIconVariants = EIconVariants;
-
+  
+  hero: HeroService = inject(HeroService);
 }
