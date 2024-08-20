@@ -29,7 +29,9 @@ export class MonstersListService {
     return this.http.get<IMonsters>(this.monstersApiUrl).pipe(
       map((monsters: IMonsters) => ({
         ...monsters,
-        results: monsters.results.slice(-20)
+        results: monsters.results
+          .filter(monster => !monster.name.toLowerCase().includes('dragon'))
+          .slice(-13)
       }))
     );
   }

@@ -1,9 +1,9 @@
 <section class="page-layout flex flex-col gap-12">
   <div class="flex flex-col gap-5 desktop:flex-row">
-    <div class="flex flex-col justify-between gap-5 w-full sm:flex-row">
+    <div class="flex flex-col gap-16 w-full sm:flex-row desktop:w-4/5 ">
       <app-hero class="w-full sm:w-1/2 h-[400px] sm:h-[500px]" />
   
-      <div class="relative flex flex-col justify-between items-start gap-5 w-full sm:w-[45%] equipWrapper desktop:pl-24 desktop:w-[35%]">
+      <div class="relative flex flex-col justify-between items-start gap-5 w-full sm:w-[45%] equipWrapper desktop:w-[35%]">
         @for (equipIcon of equipIcons; track equipIcon) {
           <app-icon
             class="flex justify-center items-center border w-[100px] h-[110px]"

@@ -8,7 +8,7 @@ import { HeroService } from './hero.service';
   imports: [CommonModule],
   selector: 'hero-stats',
   template: `
-    <div class="flex flex-col desktop:pl-10 w-full text-lg desktop:w-1/4">
+    <div class="flex flex-col w-full text-lg">
       <span>Hrdina: 
         <span class="text-xl text-saffron">{{ heroService.heroAttributes.name }}</span>
       </span>
