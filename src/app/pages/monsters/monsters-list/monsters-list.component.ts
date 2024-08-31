@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -18,16 +18,22 @@ export class MonstersListComponent implements OnInit {
   staticMonstersData: TMonstersData = staticMonstersData;
 
   monstersListService: MonstersListService = inject(MonstersListService);
-  router: Router = inject(Router);
+  private router: Router = inject(Router);
+  private destroyRef: DestroyRef = inject(DestroyRef);
+  
 
   ngOnInit(): void {
-    this.monstersListService.fetchMonsters().subscribe({
+    const subscription = this.monstersListService.fetchMonsters().subscribe({
       next: (data) => {
         this.monsters = data.results;
       },
       error: (error) => {
         console.error('Failed to fetch Monsters: ', error);
       }
+    })
+
+    this.destroyRef.onDestroy(() => {
+      subscription.unsubscribe();
     })
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MonstersListService } from '@pages/monsters/monsters-list.service';
@@ -19,9 +19,10 @@ export class MonsterDetailComponent implements OnInit {
   isLoading: boolean = true;
 
   monstersListService: MonstersListService = inject(MonstersListService);
+  private destroyRef: DestroyRef = inject(DestroyRef);
   
   ngOnInit(): void {
-    this.monstersListService.fetchMonster().subscribe({
+    const subscription = this.monstersListService.fetchMonster().subscribe({
       next: (monsterDetailData) => {
         this.monsterDetails = monsterDetailData;
         this.isLoading = false;
@@ -30,5 +31,9 @@ export class MonsterDetailComponent implements OnInit {
         console.error('Failed to fetch Monster details: ', error);
       },
     });
+
+    this.destroyRef.onDestroy(() => {
+      subscription.unsubscribe();
+    })
   }
 }

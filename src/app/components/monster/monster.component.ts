@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 
 import { MonsterService } from './monster.service';
 import { CharacterProfileComponent } from "../shared/character-profile/character-profile.component";
@@ -16,9 +16,7 @@ export class MonsterComponent {
   @Input({ required: true }) monsterIndex!: string;
   @Input({ required: false }) isLoading?: boolean = false;
 
-  staticMonstersData!: TMonstersData;
+  private monsterService: MonsterService = inject(MonsterService);
 
-  constructor (private monsterService: MonsterService) {
-    this.staticMonstersData = this.monsterService.staticMonstersData;
-  }
+  staticMonstersData: TMonstersData = this.monsterService.staticMonstersData;
 }
