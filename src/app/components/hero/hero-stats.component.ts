@@ -20,7 +20,9 @@ import { HeroService } from './hero.service';
       </span>
       <span>Poškození:
         <span class="text-xl text-saffron">{{ heroService.heroAttributes.damage }}
-          <span *ngIf="heroService.weapon.damage > 0" class="text-keppel"> + {{ heroService.weapon.damage }}</span>
+          <!-- TODO
+            <span *ngIf="heroService.weapon.damage > 0" class="text-keppel"> + {{ heroService.weapon.damage }}</span>
+          -->
         </span>
       </span>
       <span>Level: 

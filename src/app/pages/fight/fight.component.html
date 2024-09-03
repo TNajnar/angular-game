@@ -18,24 +18,28 @@
       <app-monster [monsterIndex]="monsterService.randomMonsterKey" />
       
       <character-stats
-        [damage]="monsterRandomUnit.damage"
-        [name]="monsterRandomUnit.name"
-        [health]="monsterRandomUnit.health"
+        [damage]="monsterUnit.damage"
+        [name]="monsterUnit.name"
+        [health]="monsterUnit.health"
       />
     </div>
   </div>
-  
+
   <div class="flex gap-5">
     <button class="extended-button" (click)="startFight()" mat-fab extended>
-      Start Fight
+      {{ buttonsText.start }}
     </button>
 
     <button class="extended-button" (click)="endFight()" mat-fab extended>
-      End battle
+      {{ buttonsText.end }}
     </button>
 
     <button class="extended-button" (click)="findNewMonster()" mat-fab extended>
-      Find new monster
+      {{ buttonsText.new }}
     </button>
   </div>
+
+  @if (droppedItem()) {
+    <app-dropped-item [droppedItem]="droppedItem()" />
+  }
 </section>

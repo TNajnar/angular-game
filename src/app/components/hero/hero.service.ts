@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 
 import { staticMonstersData } from '@components/monster/data';
 import type { IHeroAttributes } from './hero.component';
-import type { TWeapon } from '@components/weapon/weapon.model';
 import type { TMonstersData } from '@pages/monsters/monster.model';
 
 type THeroDamage = {
@@ -25,18 +24,17 @@ export class HeroService {
     name: 'Lucian',
   };
 
-  weapon: TWeapon = { name: 'Sword', damage: 50 };
+  // TODO
+  // get heroDamage(): THeroDamage | number {
+  //   const hasWeapon: THeroDamage = {
+  //     baseDamage: this.heroAttributes.damage,
+  //     additionalDamage: this.weapon.damage
+  //   }
 
-  get heroDamage(): THeroDamage | number {
-    const hasWeapon: THeroDamage = {
-      baseDamage: this.heroAttributes.damage,
-      additionalDamage: this.weapon.damage
-    }
-
-    return this.weapon.damage <= 0
-      ? this.heroAttributes.damage
-      : hasWeapon
-  }
+  //   return this.weapon.damage <= 0
+  //     ? this.heroAttributes.damage
+  //     : hasWeapon
+  // }
 
   heroAttack(randomMonsterKey: string): void {
     this.staticMonstersData[randomMonsterKey].health -= this.heroAttributes.damage;

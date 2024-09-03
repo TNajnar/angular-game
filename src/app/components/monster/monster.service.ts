@@ -2,12 +2,9 @@ import { Injectable, inject, signal } from '@angular/core';
 
 import { staticMonstersData } from './data';
 import { HeroService } from '@components/hero/hero.service';
+import { randomNumber } from '@app/lib/utils';
 import { RANDOM_MONSTER_KEY } from '@app/lib/consts';
 import type { TMonsterDataItem, TMonstersData } from '@pages/monsters/monster.model';
-
-function randomNumber(number: number) {
-  return Math.floor(Math.random() * number);
-}
 
 function getRandomEnemyKey(): string {
   const keys = Object.keys(staticMonstersData);
