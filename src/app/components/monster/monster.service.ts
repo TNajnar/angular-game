@@ -1,4 +1,4 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 
 import { staticMonstersData } from './data';
 import { HeroService } from '@components/hero/hero.service';
@@ -21,14 +21,16 @@ function getRandomEnemyKey(): string {
 })
 
 export class MonsterService {
-  staticMonstersData: TMonstersData = staticMonstersData;
+  private staticMonstersData = signal<TMonstersData>(staticMonstersData);
+  
   randomMonsterKey!: string;
+  monstersData = this.staticMonstersData.asReadonly();
+
+  private hero: HeroService = inject(HeroService);
 
   constructor() {
     this.randomMonsterKey = this.getOrCreateRandomMonsterKey();
   }
-
-  private hero: HeroService = inject(HeroService);
 
   generateNewRandomKey(): string {
     const newKey = getRandomEnemyKey();
@@ -55,7 +57,7 @@ export class MonsterService {
   }
 
   get monsterRandomUnit(): TMonsterDataItem {
-    return this.staticMonstersData[this.randomMonsterKey];
+    return this.monstersData()[this.randomMonsterKey];
   }
 
   monsterAttack(monsterDamage: number): void {

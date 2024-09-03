@@ -6,6 +6,7 @@ import { HeroComponent } from '@components/hero/hero.component';
 import { MonsterComponent } from '@components/monster/monster.component';
 import { CharacterStatsComponent } from '@components/shared/character-stats/character-stats.component';
 import { MatButtonModule } from '@angular/material/button';
+import { handleWinText } from './utils';
 import type { TMonsterDataItem } from '@pages/monsters/monster.model';
 import type { IFightDetails } from './fight.model';
 
@@ -27,7 +28,7 @@ export class FightComponent {
 
 
   get monsterRandomUnit(): TMonsterDataItem {
-    return this.monsterService.staticMonstersData[this.monsterService.randomMonsterKey];
+    return this.monsterService.monstersData()[this.monsterService.randomMonsterKey];
   }
 
   onHeroAttack(): void {
@@ -41,12 +42,11 @@ export class FightComponent {
   }
 
   startFight(): void {
-    const { name: heroName } = this.heroService.heroAttributes;
+    const { name: heroName, health } = this.heroService.heroAttributes;
 
     this.fightIntervalId = window.setInterval(() => {
       if (this.heroService.heroAttributes.health <= 0 || this.monsterRandomUnit.health <= 0) {
-        const winText = this.heroService.heroAttributes.health > 0 ? `${heroName} won` : 'Monster won';
-        this.fightDetails.update(details => ({ ...details, character: winText }));
+        this.fightDetails.update(details => ({ ...details, character: handleWinText(health, heroName) }));
         this.endFight();
         return;
       }
@@ -66,10 +66,9 @@ export class FightComponent {
   }
 
   endFight(): void {
-    const { name: heroName } = this.heroService.heroAttributes;
+    const { name: heroName, health } = this.heroService.heroAttributes;
 
-    const winText = this.heroService.heroAttributes.health > 0 ? `${heroName} won` : 'Monster won';
-    this.fightDetails.update(details => ({ ...details, character: winText }));
+    this.fightDetails.update(details => ({ ...details, character: handleWinText(health, heroName) }));
     if (this.fightIntervalId !== null) {
       clearInterval(this.fightIntervalId);
       this.fightIntervalId = null;

@@ -1,9 +1,9 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, Signal } from '@angular/core';
 import { NgIf } from '@angular/common';
 
 import { MonsterService } from './monster.service';
 import { CharacterProfileComponent } from "../shared/character-profile/character-profile.component";
-import { TMonstersData } from '@pages/monsters/monster.model';
+import type { TMonstersData } from '@pages/monsters/monster.model';
 
 @Component({
   selector: 'app-monster',
@@ -18,5 +18,5 @@ export class MonsterComponent {
 
   private monsterService: MonsterService = inject(MonsterService);
 
-  staticMonstersData: TMonstersData = this.monsterService.staticMonstersData;
+  monstersData: Signal<TMonstersData> = this.monsterService.monstersData;
 }

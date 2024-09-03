@@ -2,7 +2,7 @@
   <img
     *ngIf="isLoading !== true"
     class="w-full h-full object-cover"
-    [src]="staticMonstersData[monsterIndex].src"
+    [src]="monstersData()[monsterIndex].src"
     alt="monsterDetails?.name"
   />
 </app-character-profile>
