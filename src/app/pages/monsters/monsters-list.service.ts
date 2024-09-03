@@ -33,8 +33,7 @@ export class MonstersListService {
     );
   }
 
-  // Index is correct url from monsters API
-  fetchMonster(): Observable<IMonsterDetail> {
-    return this.httpClient.get<IMonsterDetail>(`${this.monstersApiUrl}/${this.selectedMonsterIndex}`);
+  fetchMonster(monsterIndex: string): Observable<IMonsterDetail> {
+    return this.httpClient.get<IMonsterDetail>(`${this.monstersApiUrl}/${monsterIndex}`);
   }
 }

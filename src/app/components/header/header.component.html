@@ -1,10 +1,11 @@
 <header class="flex flex-row justify-center gap-5 mb-10 border-b-2 border-b-timberWolf">
-  @for (item of headerItems; track item.url) {
-    <button
+  @for (headerItem of headerItems; track headerItem.url) {
+    <a
+      [routerLink]="[headerItem.url]"
+      [routerLinkActive]="'is-active'"
       class="p-2 sm:p-4 w-24 text-center cursor-pointer"
-      (click)="navigateTo(item.url)"
     >
-      {{ item.label }}
-    </button>
+      {{ headerItem.label }}
+    </a>
   }
 </header>

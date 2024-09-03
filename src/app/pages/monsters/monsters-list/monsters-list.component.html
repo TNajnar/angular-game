@@ -1,8 +1,12 @@
 <section class="page-layout gap-4">
+  @if(isLoading()) {
+    <mat-spinner class="self-center" />
+  }
+
   @for (monster of monsters; track monster.url) {
-    <div
+    <a
       class="flex flex-row gap-10 cursor-pointer"
-      (click)="navigateMonsterDetail(monster)"
+      [routerLink]="['/monster', monster.index]"
     >
       <img
         class="w-48 h-48"
@@ -16,6 +20,6 @@
         <span>Health: {{ staticMonstersData[monster.index].health }}</span>
         <span>Damage: {{ staticMonstersData[monster.index].damage }}</span>
       </div>
-    </div>
+    </a>
   }
 </section>

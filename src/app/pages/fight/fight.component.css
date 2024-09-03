@@ -6,3 +6,9 @@
   font-size: 20px;
   font-weight: 600;
 }
+
+.extended-button {
+  font-size: 20px;
+  width: max-content;
+  height: 65px;
+}

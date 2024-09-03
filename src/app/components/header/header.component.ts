@@ -1,6 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 type THeader = {
   label: string;
@@ -8,28 +7,21 @@ type THeader = {
 }
 
 const headerItems: THeader[] = [
-  { label: 'Home', url: 'home' },
-  { label: 'Hero', url: 'hero' },
-  { label: 'Bestiary', url: 'monsters' },
-  { label: 'Fight', url: 'fight' },
+  { label: 'Hero', url: '/hero' },
+  { label: 'Bestiary', url: '/monsters' },
+  { label: 'Fight', url: '/fight' },
 ];
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './header.component.html',
+  styleUrl: './header.component.css',
 })
 
 export class HeaderComponent {
   headerItems: THeader[] = headerItems;
-  router: Router;
-
-  constructor (router: Router) {
-    this.router = router;
-  }
-
-  navigateTo(url: string): void {
-    this.router.navigate([`/${url}`]);
-  }
+  
+  router: Router = inject(Router);
 }

@@ -3,7 +3,6 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'character-stats',
   standalone: true,
-  imports: [],
   template: `
     <div class="flex flex-col gap-2 pt-5">
       <span>Name: {{ name }}</span>

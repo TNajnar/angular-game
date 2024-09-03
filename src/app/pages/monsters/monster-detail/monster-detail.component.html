@@ -1,7 +1,11 @@
-<section *ngIf="isLoading !== true" class="page-layout">
+<section class="page-layout">
+  @if(isLoading()) {
+    <mat-spinner class="self-center" />
+  }
+
   <div class="flex gap-5">
     <app-monster
-      [isLoading]="isLoading"
+      [isLoading]="isLoading()"
       [monsterIndex]="monstersListService.activeMonsterIndex"
       class="w-1/2"
     />

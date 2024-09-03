@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common';
+import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'hero-inventory',
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgFor],
   templateUrl: './inventory.component.html',
 })
 

@@ -1,11 +1,11 @@
-import { CommonModule } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 
 import { HeroService } from './hero.service';
 
 @Component({
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgIf],
   selector: 'hero-stats',
   template: `
     <div class="flex flex-col w-full text-lg">

@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 
 import { HeroService } from '@components/hero/hero.service';
@@ -14,7 +13,7 @@ const equipIcons: EIconVariants[] = [
 @Component({
   selector: 'app-hero-page',
   standalone: true,
-  imports: [CommonModule, CustomIconComponent, InventoryComponent, HeroComponent, HeroStatsComponent],
+  imports: [CustomIconComponent, InventoryComponent, HeroComponent, HeroStatsComponent],
   templateUrl: './hero-page.component.html',
 })
 

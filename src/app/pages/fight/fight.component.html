@@ -11,7 +11,7 @@
     </div>
 
     <span [class]="{ fight: true }">
-      {{ fightDetails.character }}
+      {{ fightDetails().character }}
     </span>
 
     <div class="w-full h-[500px]">
@@ -26,15 +26,15 @@
   </div>
   
   <div class="flex gap-5">
-    <button class="border-2 px-8 py-4 text-xl" (click)="startFight()">
+    <button class="extended-button" (click)="startFight()" mat-fab extended>
       Start Fight
     </button>
 
-    <button class="border-2 px-8 py-4 text-xl" (click)="endFight()">
+    <button class="extended-button" (click)="endFight()" mat-fab extended>
       End battle
     </button>
 
-    <button class="border-2 px-8 py-4 text-xl" (click)="findNewMonster()">
+    <button class="extended-button" (click)="findNewMonster()" mat-fab extended>
       Find new monster
     </button>
   </div>

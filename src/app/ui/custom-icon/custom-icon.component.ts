@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgIf } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 export enum EIconVariants {
@@ -12,7 +12,7 @@ export enum EIconVariants {
 @Component({
   selector: 'app-icon',
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgIf],
   templateUrl: './custom-icon.component.html',
 })
 

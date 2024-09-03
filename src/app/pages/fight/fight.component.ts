@@ -1,27 +1,30 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 
 import { HeroService } from '@components/hero/hero.service';
 import { MonsterService } from '@components/monster/monster.service';
 import { HeroComponent } from '@components/hero/hero.component';
 import { MonsterComponent } from '@components/monster/monster.component';
 import { CharacterStatsComponent } from '@components/shared/character-stats/character-stats.component';
+import { MatButtonModule } from '@angular/material/button';
 import type { TMonsterDataItem } from '@pages/monsters/monster.model';
 import type { IFightDetails } from './fight.model';
 
 @Component({
   selector: 'app-fight',
   standalone: true,
-  imports: [HeroComponent, MonsterComponent, CharacterStatsComponent],
+  imports: [HeroComponent, MonsterComponent, CharacterStatsComponent, MatButtonModule],
   templateUrl: './fight.component.html',
   styleUrl: './fight.component.css',
 })
 
 export class FightComponent {
-  fightDetails: IFightDetails = { attacking: false, character: '' };
+  fightDetails = signal<IFightDetails>({ attacking: false, character: '' });
   private isHeroAttackFirst: boolean = !!(Math.floor(Math.random() * 2) === 0);
+  private fightIntervalId: number | null = null;
 
   heroService: HeroService = inject(HeroService);
   monsterService: MonsterService = inject(MonsterService);
+
 
   get monsterRandomUnit(): TMonsterDataItem {
     return this.monsterService.staticMonstersData[this.monsterService.randomMonsterKey];
@@ -34,36 +37,43 @@ export class FightComponent {
 
   onMonsterAttack(): void {
     this.isHeroAttackFirst = false;
-    this.monsterService.monsterAttack(this.monsterRandomUnit.damage)
+    this.monsterService.monsterAttack(this.monsterRandomUnit.damage);
   }
-  
+
   startFight(): void {
     const { name: heroName } = this.heroService.heroAttributes;
 
-    const fightIntervalId = setInterval(() => {
+    this.fightIntervalId = window.setInterval(() => {
       if (this.heroService.heroAttributes.health <= 0 || this.monsterRandomUnit.health <= 0) {
         const winText = this.heroService.heroAttributes.health > 0 ? `${heroName} won` : 'Monster won';
-        this.fightDetails = { ...this.fightDetails, character: winText };
-        clearInterval(fightIntervalId);
+        this.fightDetails.update(details => ({ ...details, character: winText }));
+        this.endFight();
         return;
       }
-      
-      this.fightDetails = { ...this.fightDetails, attacking: true };
+
+      this.fightDetails.update(details => ({ ...details, attacking: true }));
 
       if (this.isHeroAttackFirst) {
         this.onMonsterAttack();
-        this.fightDetails = { attacking: false, character: 'Monster attacking' };
+        this.fightDetails.update(details => ({ ...details, attacking: false, character: 'Monster attacking' }));
+
         return;
       }
-      
-      this.onHeroAttack();
-      this.fightDetails = { character: `${heroName} attacking`, attacking: false };
-    }, 2500)
-  };
 
-  // TODO
+      this.onHeroAttack();
+      this.fightDetails.update(details => ({ ...details, character: `${heroName} attacking`, attacking: false }));
+    }, 2500);
+  }
+
   endFight(): void {
-    console.log('Haloo');
+    const { name: heroName } = this.heroService.heroAttributes;
+
+    const winText = this.heroService.heroAttributes.health > 0 ? `${heroName} won` : 'Monster won';
+    this.fightDetails.update(details => ({ ...details, character: winText }));
+    if (this.fightIntervalId !== null) {
+      clearInterval(this.fightIntervalId);
+      this.fightIntervalId = null;
+    }
   }
 
   findNewMonster(): void {
