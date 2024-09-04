@@ -22,9 +22,10 @@
       "dom"
     ],
     "paths": {
-      "@components/*": ["app/components/*"],
-      "@pages/*": ["app/pages/*"],
       "@app/*": ["app/*"],
+      "@components/*": ["app/components/*"],
+      "@lib/*": ["lib/*"],
+      "@pages/*": ["app/pages/*"],
     }
   },
   "angularCompilerOptions": {

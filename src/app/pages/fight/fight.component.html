@@ -1,6 +1,6 @@
-<section class="page-layout gap-44">
-  <div class="relative flex flex-col desktop:flex-row gap-96 w-full">
-    <div class="w-full h-[500px]">
+<section class="page-layout">
+  <div class="relative flex flex-row gap-10 desktop:gap-96 w-full pb-40">
+    <div class="w-full md:h-[350px] desktop:h-[500px]">
       <app-hero />
 
       <character-stats
@@ -14,7 +14,7 @@
       {{ fightDetails().character }}
     </span>
 
-    <div class="w-full h-[500px]">
+    <div class="w-full md:h-[350px] desktop:h-[500px]">
       <app-monster [monsterIndex]="monsterService.randomMonsterKey" />
       
       <character-stats
@@ -25,7 +25,11 @@
     </div>
   </div>
 
-  <div class="flex gap-5">
+  <!-- @if (droppedItem()) { -->
+  <app-dropped-item class="w-fit" />
+  <!-- } -->
+
+  <div class="flex flex-col desktop:flex-row gap-5 pt-24 w-full">
     <button class="extended-button" (click)="startFight()" mat-fab extended>
       {{ buttonsText.start }}
     </button>
@@ -38,8 +42,4 @@
       {{ buttonsText.new }}
     </button>
   </div>
-
-  @if (droppedItem()) {
-    <app-dropped-item [droppedItem]="droppedItem()" />
-  }
 </section>

@@ -4,6 +4,7 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { MonsterService } from '@components/monster/monster.service';
 import { RANDOM_MONSTER_KEY } from './lib/consts';
+import { HeroService } from './components/hero/hero.service';
 
 @Component({
   selector: 'app-root',
@@ -33,6 +34,7 @@ export class AppComponent implements OnInit {
             this.monsterService.getOrCreateRandomMonsterKey();
           }
         }
-      });
+      }
+    );
   }
 }

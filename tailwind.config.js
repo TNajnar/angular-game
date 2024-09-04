@@ -5,6 +5,7 @@ module.exports = {
   ],
   theme: {
     colors: {
+      black: '#000',
       onyx: '#393E41',
       timberWolf: '#D3D0CB',
       platinum: '#E7E5DF',

@@ -5,15 +5,14 @@ import { MonsterService } from '@components/monster/monster.service';
 import { HeroComponent } from '@components/hero/hero.component';
 import { MonsterComponent } from '@components/monster/monster.component';
 import { CharacterStatsComponent } from '@components/shared/character-stats/character-stats.component';
-import { MatButtonModule } from '@angular/material/button';
-import { handleWinText } from './utils';
-import { randomNumber } from '@app/lib/utils';
-import equipment from '@components/equipment/equipment-data';
 import { DroppedItemComponent } from './dropped-item/dropped-item.component';
+import { MatButtonModule } from '@angular/material/button';
+import { handleWinText, randomNumber } from '@app/lib/utils';
+import equipment from '@components/equipment/equipment-data';
+import { buttonsText } from '../../lib/static-texts';
 import type { TMonsterDataItem } from '@pages/monsters/monster.model';
 import type { IFightDetails } from './fight.model';
 import type { TEquipment } from '@components/equipment/equipment.model';
-import { buttonsText } from './fightTexts';
 
 @Component({
   selector: 'app-fight',
@@ -28,7 +27,7 @@ import { buttonsText } from './fightTexts';
 export class FightComponent {
   buttonsText = buttonsText;
   fightDetails = signal<IFightDetails>({ attacking: false, character: '' });
-  droppedItem = signal<TEquipment | null>(null);
+  droppedItem = signal<TEquipment | undefined>(undefined);
   private isHeroAttackFirst: boolean = !!(Math.floor(Math.random() * 2) === 0);
   private fightIntervalId: number | null = null;
 

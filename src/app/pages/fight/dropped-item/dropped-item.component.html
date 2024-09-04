@@ -1,14 +1,6 @@
 <div class="relative w-fit">
-  <div
-    class="flex items-center justify-center w-28 h-28 text-2xl border"
-    (mouseenter)="isHoveredItem(true)"
-    (mouseleave)="isHoveredItem(false)"
-  >
-    ?
-  </div>
-  
-  @if (isHovered()) {
-    <div class="absolute -top-[90%] -right-12 shadow-lg bg-platinum text-[#000]">
+  @if (isHovered() && !isMenuOpen()) {
+    <div class="absolute -top-[90%] transform -left-1/2 translate-x-1/2 w-max shadow-lg rounded bg-platinum text-black">
       <div class="flex flex-col gap-1 p-2">
         <span>{{ droppedItem()?.name }}</span>
         <span *ngIf="droppedItem()?.damage">
@@ -23,4 +15,16 @@
       <span class="arrow"></span>
     </div>
   }
+
+  <div
+    class="flex items-center justify-center w-28 h-28 text-2xl border cursor-pointer"
+    (click)="toggleMenu()"
+    (mouseenter)="isHoveredItem(true)"
+    (mouseleave)="isHoveredItem(false)"
+  >
+    ?
+  </div>
+
+  <!-- when you pass function to children [onPickItem]="onPickItem.bind(this)" -->
+  <app-dropped-item-menu [isOpen]="isMenuOpen()" (pickItem)="onPickItem()" (dropItem)="onDropItem()" />
 </div>

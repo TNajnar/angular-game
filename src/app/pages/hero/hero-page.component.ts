@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
 
 import { HeroService } from '@components/hero/hero.service';
-import { CustomIconComponent, EIconVariants } from '@app/ui/custom-icon/custom-icon.component';
-import { InventoryComponent } from '@components/inventory/inventory.component';
 import { HeroComponent } from '@components/hero/hero.component';
-import { HeroStatsComponent } from '@components/hero/hero-stats.component';
+import { InventoryComponent } from '@components/hero/inventory/inventory.component';
+import { HeroStatsComponent } from '@app/components/hero/hero-stats/hero-stats.component';
+import { CustomIconComponent, EIconVariants } from '@app/ui/custom-icon/custom-icon.component';
 
 const equipIcons: EIconVariants[] = [
   EIconVariants.Helmet, EIconVariants.Armor,  EIconVariants.Pants, EIconVariants.Boots, EIconVariants.Weapon,

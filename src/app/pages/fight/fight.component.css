@@ -8,7 +8,13 @@
 }
 
 .extended-button {
-  font-size: 20px;
-  width: max-content;
-  height: 65px;
+  width: 100%;
+  height: 48px;
+  font-size: 17px;
+  
+  @media (min-width: 1224px) {
+    width: max-content;
+    font-size: 18px;
+    height: 60px;
+  }
 }

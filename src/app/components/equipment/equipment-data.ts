@@ -3,30 +3,35 @@ import type { TEquipment } from "./equipment.model";
 const weapons: TEquipment[] = [
   {
     damage: 30,
+    id: 1,
     name: 'Relentless Pursuit Blasters',
     src: 'images/relentless_pursuit_blasters.png',
     type: 'weapon',
   },
   {
     damage: 50,
+    id: 2,
     name: 'Piercing Light Rifle',
     src: 'images/piercing_light_rifle.png',
     type: 'weapon',
   },
   {
     damage: 40,
+    id: 3,
     name: 'Ardent Censer Pistols',
     src: 'images/ardent_censer_pistols.png',
     type: 'weapon',
   },
   {
     damage: 45,
+    id: 4,
     name: 'Sentinel’s Judgement',
     src: 'images/sentinels_judgement.png',
     type: 'weapon',
   },
   {
     damage: 35,
+    id: 5,
     name: 'Twin Shadows Guns',
     src: 'images/twin_shadows_guns.png',
     type: 'weapon',
@@ -35,31 +40,36 @@ const weapons: TEquipment[] = [
 
 const armors: TEquipment[] = [
   {
-    name: 'Shadow of the Dawn Armor',
-    type: 'armor',
     health: 20,
-    src: 'images/shadow_of_the_dawn_armor.png'
+    id: 6,
+    name: 'Shadow of the Dawn Armor',
+    src: 'images/shadow_of_the_dawn_armor.png',
+    type: 'armor',
   },
   {
-    name: 'Radiant Guard Armor',
-    type: 'armor',
     health: 35,
-    src: 'images/radiant_guard_armor.png'
+    id: 7,
+    name: 'Radiant Guard Armor',
+    src: 'images/radiant_guard_armor.png',
+    type: 'armor',
   },
   {
-    name: 'Vanguard’s Vow',
-    type: 'armor',
     health: 50,
-    src: 'images/vanguards_vow.png'
+    id: 8,
+    name: 'Vanguard’s Vow',
+    src: 'images/vanguards_vow.png',
+    type: 'armor',
   },
   {
-    name: 'Protector’s Bulwark',
-    type: 'armor',
     health: 60,
-    src: 'images/protectors_bulwark.png'
+    id: 9,
+    name: 'Protector’s Bulwark',
+    src: 'images/protectors_bulwark.png',
+    type: 'armor',
   },
   {
     health: 75,
+    id: 10,
     name: 'Aegis of the Sentinel',
     src: 'images/aegis_of_the_sentinel.png',
     type: 'armor',
@@ -68,34 +78,39 @@ const armors: TEquipment[] = [
 
 const elixirs: TEquipment[] = [
   {
-    name: 'Elixir of Wrath',
-    type: 'elixir',
     health: 50,
-    src: 'images/elixir_of_wrath.png'
+    id: 11,
+    name: 'Elixir of Wrath',
+    src: 'images/elixir_of_wrath.png',
+    type: 'elixir',
   },
   {
-    name: 'Elixir of Iron',
-    type: 'elixir',
     health: 100,
-    src: 'images/elixir_of_iron.png'
+    id: 12,
+    name: 'Elixir of Iron',
+    src: 'images/elixir_of_iron.png',
+    type: 'elixir',
   },
   {
-    name: 'Elixir of Life',
-    type: 'elixir',
     health: 200,
-    src: 'images/elixir_of_life.png'
+    id: 13,
+    name: 'Elixir of Life',
+    src: 'images/elixir_of_life.png',
+    type: 'elixir',
   },
   {
-    name: 'Elixir of Resilience',
-    type: 'elixir',
     health: 150,
-    src: 'images/elixir_of_resilience.png'
+    id: 14,
+    name: 'Elixir of Resilience',
+    src: 'images/elixir_of_resilience.png',
+    type: 'elixir',
   },
   {
-    name: 'Elixir of Fortitude',
-    type: 'elixir',
     health: 250,
-    src: 'images/elixir_of_fortitude.png'
+    id: 15,
+    name: 'Elixir of Fortitude',
+    src: 'images/elixir_of_fortitude.png',
+    type: 'elixir',
   }
 ];
 
