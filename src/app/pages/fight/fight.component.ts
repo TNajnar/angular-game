@@ -5,11 +5,11 @@ import { MonsterService } from '@components/monster/monster.service';
 import { HeroComponent } from '@components/hero/hero.component';
 import { MonsterComponent } from '@components/monster/monster.component';
 import { CharacterStatsComponent } from '@components/shared/character-stats/character-stats.component';
-import { DroppedItemComponent } from './dropped-item/dropped-item.component';
+import { DroppedItemComponent } from '../../components/shared/dropped-item/dropped-item.component';
 import { MatButtonModule } from '@angular/material/button';
 import { handleWinText, randomNumber } from '@app/lib/utils';
 import equipment from '@components/equipment/equipment-data';
-import { buttonsText } from '../../lib/static-texts';
+import { buttonsTexts } from '../../lib/static-texts';
 import type { TMonsterDataItem } from '@pages/monsters/monster.model';
 import type { IFightDetails } from './fight.model';
 import type { TEquipment } from '@components/equipment/equipment.model';
@@ -25,11 +25,11 @@ import type { TEquipment } from '@components/equipment/equipment.model';
 })
 
 export class FightComponent {
-  buttonsText = buttonsText;
-  fightDetails = signal<IFightDetails>({ attacking: false, character: '' });
-  droppedItem = signal<TEquipment | undefined>(undefined);
+  buttonsTexts = buttonsTexts;
   private isHeroAttackFirst: boolean = !!(Math.floor(Math.random() * 2) === 0);
   private fightIntervalId: number | null = null;
+  fightDetails = signal<IFightDetails>({ attacking: false, character: '' });
+  droppedItem = signal<TEquipment | undefined>(undefined);
 
   heroService: HeroService = inject(HeroService);
   monsterService: MonsterService = inject(MonsterService);
@@ -62,7 +62,6 @@ export class FightComponent {
       if (this.isHeroAttackFirst) {
         this.onMonsterAttack();
         this.fightDetails.update(details => ({ ...details, attacking: false, character: 'Monster attacking' }));
-
         return;
       }
 

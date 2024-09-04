@@ -1,8 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 
-import { HeroService } from '@components/hero/hero.service';
 import { HeroComponent } from '@components/hero/hero.component';
-import { InventoryComponent } from '@components/hero/inventory/inventory.component';
+import { InventoryComponent } from '@app/components/hero/inventory/inventory.component';
 import { HeroStatsComponent } from '@app/components/hero/hero-stats/hero-stats.component';
 import { CustomIconComponent, EIconVariants } from '@app/ui/custom-icon/custom-icon.component';
 
@@ -20,6 +19,4 @@ const equipIcons: EIconVariants[] = [
 export class HeroPageComponent {
   equipIcons: EIconVariants[] = equipIcons;
   EIconVariants = EIconVariants;
-  
-  hero: HeroService = inject(HeroService);
 }

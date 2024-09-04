@@ -1,12 +1,12 @@
 import { NgIf } from '@angular/common';
 import { Component, ElementRef, HostListener, inject, input, signal } from '@angular/core';
 
-import { DroppedItemMenuComponent } from '../dropped-item-menu/dropped-item-menu.component';
-import { droppedItemText } from '@app/lib/static-texts';
+import { HeroService } from '@app/components/hero/hero.service';
+import { DroppedItemMenuComponent } from './dropped-item-menu/dropped-item-menu.component';
+import { droppedItemTexts } from '@app/lib/static-texts';
 import type { TEquipment } from '@components/equipment/equipment.model';
 
 import equipment from '@components/equipment/equipment-data';
-import { HeroService } from '@app/components/hero/hero.service';
 
 @Component({
   selector: 'app-dropped-item',
@@ -17,7 +17,7 @@ import { HeroService } from '@app/components/hero/hero.service';
 })
 
 export class DroppedItemComponent {
-  droppedItemText = droppedItemText;
+  texts = droppedItemTexts;
 
   droppedItem = input<TEquipment| undefined>(equipment[0]);
 

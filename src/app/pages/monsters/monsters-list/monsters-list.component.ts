@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { MonstersListService } from '../monsters-list.service';
 import { staticMonstersData } from '@components/monster/data';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { monsterListTexts } from '@app/lib/static-texts';
 import type { IMonsters, TMonstersData } from '../monster.model';
 
 @Component({
@@ -15,7 +16,9 @@ import type { IMonsters, TMonstersData } from '../monster.model';
 
 export class MonstersListComponent implements OnInit {
   monsters: IMonsters['results'] | undefined;
-  staticMonstersData: TMonstersData = staticMonstersData;
+  monstersData: TMonstersData = staticMonstersData;
+  texts = monsterListTexts;
+
   isLoading = signal<boolean>(false);
 
   monstersListService: MonstersListService = inject(MonstersListService);

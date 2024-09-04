@@ -4,12 +4,12 @@
       <div class="flex flex-col gap-1 p-2">
         <span>{{ droppedItem()?.name }}</span>
         <span *ngIf="droppedItem()?.damage">
-          {{ droppedItemText.damage }} {{ droppedItem()?.damage }}
+          {{ texts.damage }} {{ droppedItem()?.damage }}
         </span>
         <span *ngIf="droppedItem()?.health">
-          {{ droppedItemText.health }} {{ droppedItem()?.health }}
+          {{ texts.health }} {{ droppedItem()?.health }}
         </span>
-        <span>{{ droppedItemText.type }} {{ droppedItem()?.type }}</span>
+        <span>{{ texts.type }} {{ droppedItem()?.type }}</span>
       </div>
 
       <span class="arrow"></span>

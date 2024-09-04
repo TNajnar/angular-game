@@ -10,15 +10,15 @@
     >
       <img
         class="w-48 h-48"
-        [src]="staticMonstersData[monster.index].src"
+        [src]="monstersData[monster.index].src"
         alt="{{ monster.name }}"
         loading="lazy"
       />
       
       <div class="flex flex-col gap-4">
         <h3 class="text-xl font-semibold">{{ monster.name }}</h3>
-        <span>Health: {{ staticMonstersData[monster.index].health }}</span>
-        <span>Damage: {{ staticMonstersData[monster.index].damage }}</span>
+        <span>{{ texts.health }} {{ monstersData[monster.index].health }}</span>
+        <span>{{ texts.damage }} {{ monstersData[monster.index].damage }}</span>
       </div>
     </a>
   }

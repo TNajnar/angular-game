@@ -1,5 +1,9 @@
 <div class="flex flex-wrap justify-center gap-2 w-full">
-  @for (inventoryItem of inventoryGrid; track $index) {
-    <div class=" w-[110px] h-[110px] border border-platinum p-4"></div>
+  @for (inventoryItem of inventory$ | async; track $index) {
+    <div class="flex justify-center items-center w-[110px] h-[110px] border border-platinum p-4">
+      @if (inventoryItem) {
+        <app-dropped-item />
+      }
+    </div>
   }
 </div>

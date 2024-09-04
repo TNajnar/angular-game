@@ -11,20 +11,20 @@
     />
     
     <div class="w-1/2 text-lg">
-      <p>Name: {{ monsterDetails?.name }}</p>
-      <p>Alignment: {{ monsterDetails?.alignment }}</p>
-      <p>Monster type: {{ monsterDetails?.type }}</p>
-      <p>Charisma: {{ monsterDetails?.charisma }}</p>
-      <p>Size: {{ monsterDetails?.size }}</p>
+      <p>{{ texts.name }} {{ monsterDetails?.name }}</p>
+      <p>{{ texts.alignment }} {{ monsterDetails?.alignment }}</p>
+      <p>{{ texts.type }} {{ monsterDetails?.type }}</p>
+      <p>{{ texts.charisma }} {{ monsterDetails?.charisma }}</p>
+      <p>{{ texts.size }} {{ monsterDetails?.size }}</p>
 
       @if (monsterDetails?.desc) {
-        Description: {{ monsterDetails?.desc }}
+        {{ texts.description }} {{ monsterDetails?.desc }}
       } @else {
-        <p>Description: Is not available</p>
+        <p>{{ texts.descriptionUnavailable }}</p>
       }
 
-      <p>Health: {{ staticMonstersData[monstersListService.activeMonsterIndex].health }}</p>
-      <p>Damage: {{ staticMonstersData[monstersListService.activeMonsterIndex].damage }}</p>
+      <p>{{ texts.health }} {{ monstersData[monstersListService.activeMonsterIndex].health }}</p>
+      <p>{{ texts.damage }} {{ monstersData[monstersListService.activeMonsterIndex].damage }}</p>
     </div>
   </div>
 </section>

@@ -1,0 +1,19 @@
+<div
+  class="shadow-xl"
+  [class]="{
+    menu: true,
+    'is-open': isOpen(),
+    'is-closed': !isOpen(),
+  }"
+>
+  <span class="menu-item" (click)="onPickItem()">
+    {{ texts.pickItem }}
+  </span>
+
+  <span class="menu-item" (click)="onDropItem()">
+    {{ texts.dropItem }}
+  </span>
+
+  <span class="arrow"></span>
+</div>
+

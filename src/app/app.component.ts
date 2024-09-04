@@ -1,10 +1,9 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 
 import { HeaderComponent } from './components/header/header.component';
 import { MonsterService } from '@components/monster/monster.service';
 import { RANDOM_MONSTER_KEY } from './lib/consts';
-import { HeroService } from './components/hero/hero.service';
 
 @Component({
   selector: 'app-root',
@@ -14,17 +13,14 @@ import { HeroService } from './components/hero/hero.service';
 })
 
 export class AppComponent implements OnInit {
-  private router: Router;
-  pathname!: string;
-
-  constructor (router: Router) {
-    this.router = router;
-  };
-
+  private pathname!: string;
+  
+  private router: Router = inject(Router);
+  private destroyRef: DestroyRef = inject(DestroyRef);
   private monsterService: MonsterService = inject(MonsterService);
 
   ngOnInit(): void {
-    this.router.events
+    const subscription = this.router.events
       .subscribe(event => {
         if (event instanceof NavigationEnd) {
           this.pathname = event.url;
@@ -36,5 +32,7 @@ export class AppComponent implements OnInit {
         }
       }
     );
+
+    this.destroyRef.onDestroy(() => subscription.unsubscribe())
   }
 }

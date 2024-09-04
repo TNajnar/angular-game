@@ -6,6 +6,7 @@ import { MonstersListService } from '@pages/monsters/monsters-list.service';
 import { MonsterComponent } from '@components/monster/monster.component';
 import { staticMonstersData } from '@components/monster/data';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { monsterDetailTexts } from '@app/lib/static-texts';
 import type { IMonsterDetail, TMonstersData } from '../monster.model';
 
 @Component({
@@ -17,7 +18,9 @@ import type { IMonsterDetail, TMonstersData } from '../monster.model';
 
 export class MonsterDetailComponent implements OnInit {
   monsterDetails?: IMonsterDetail;
-  staticMonstersData: TMonstersData = staticMonstersData;
+  monstersData: TMonstersData = staticMonstersData;
+  texts = monsterDetailTexts;
+
   isLoading = signal<boolean>(false);
 
   monstersListService: MonstersListService = inject(MonstersListService);

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output, input } from '@angular/core';
 
 import { TEquipment } from '@app/components/equipment/equipment.model';
-import { droppedItemMenuText } from '@app/lib/static-texts';
+import { droppedItemMenuTexts } from '@app/lib/static-texts';
 
 @Component({
   selector: 'app-dropped-item-menu',
@@ -11,7 +11,8 @@ import { droppedItemMenuText } from '@app/lib/static-texts';
 })
 
 export class DroppedItemMenuComponent {
-  droppedItemMenuText = droppedItemMenuText;
+  texts = droppedItemMenuTexts;
+
   @Output() pickItem = new EventEmitter<TEquipment>();
   @Output() dropItem = new EventEmitter<TEquipment>();
 
