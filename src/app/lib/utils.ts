@@ -1,7 +1,7 @@
 import { IRandomNumbers } from "./types";
 
-function handleWinText(heroHealth: number, heroName: string): string {
-  return heroHealth > 0 ? `${heroName} won` : 'Monster won';
+function handleWinText(enemyHealth: number, heroHealth: number, heroName: string): string {
+  return heroHealth > enemyHealth ? `${heroName} won` : 'Monster won';
 }
 
 function randomNumber(number: number): number {

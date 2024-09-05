@@ -81,7 +81,7 @@ export class FightComponent {
       ]);
     }
 
-    this.fightDetails.update(details => ({ ...details, character: handleWinText(heroHealth, heroName) }));
+    this.fightDetails.update(details => ({ ...details, character: handleWinText(enemyHealth, heroHealth, heroName) }));
     if (this.fightIntervalId !== null) {
       clearInterval(this.fightIntervalId);
       this.fightIntervalId = null;
