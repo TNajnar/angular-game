@@ -1,10 +1,15 @@
 .fight {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 20px;
-  font-weight: 600;
+  display: none;
+  @media (min-width: 1224px) {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    color: #e7bb41;
+    font-size: 20px;
+    font-weight: 600;
+  }
 }
 
 .extended-button {

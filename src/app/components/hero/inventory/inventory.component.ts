@@ -3,7 +3,7 @@ import { AsyncPipe } from '@angular/common';
 import { map, Observable } from 'rxjs';
 
 import { HeroService } from '../hero.service';
-import { DroppedItemComponent } from '@app/components/shared/dropped-item/dropped-item.component';
+import { DroppedItemComponent } from '@app/components/shared/dropped-items/dropped-item/dropped-item.component';
 import type { TEquipment } from '@app/components/equipment/equipment.model';
 
 @Component({

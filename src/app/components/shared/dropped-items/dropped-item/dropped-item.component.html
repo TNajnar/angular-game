@@ -17,12 +17,12 @@
   }
 
   <div
-    class="flex items-center justify-center w-28 h-28 text-2xl border cursor-pointer"
+    class="relative flex items-center justify-center w-28 h-28 text-2xl border cursor-pointer"
     (click)="toggleMenu()"
     (mouseenter)="isHoveredItem(true)"
     (mouseleave)="isHoveredItem(false)"
   >
-    ?
+    <img [alt]="droppedItem()?.name" ngSrc="{{ droppedItem()?.src }}" fill />
   </div>
 
   <!-- when you pass function to children [onPickItem]="onPickItem.bind(this)" -->

@@ -21,6 +21,10 @@ export const droppedItemTexts = {
   type: 'Type: ',
 }
 
+export const droppedItemsTexts = {
+  loot: 'Loot: ',
+}
+
 export const heroStatsTexts = {
   armor: 'Brnění: ',
   damage: 'Poškození: ',

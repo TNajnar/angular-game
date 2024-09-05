@@ -1,17 +1,16 @@
-import { NgIf } from '@angular/common';
+import { NgIf, NgOptimizedImage } from '@angular/common';
 import { Component, ElementRef, HostListener, inject, input, signal } from '@angular/core';
 
 import { HeroService } from '@app/components/hero/hero.service';
-import { DroppedItemMenuComponent } from './dropped-item-menu/dropped-item-menu.component';
 import { droppedItemTexts } from '@app/lib/static-texts';
+import { DroppedItemMenuComponent } from '../dropped-item-menu/dropped-item-menu.component';
 import type { TEquipment } from '@components/equipment/equipment.model';
 
-import equipment from '@components/equipment/equipment-data';
 
 @Component({
   selector: 'app-dropped-item',
   standalone: true,
-  imports: [NgIf, DroppedItemMenuComponent],
+  imports: [NgIf, NgOptimizedImage, DroppedItemMenuComponent],
   templateUrl: './dropped-item.component.html',
   styleUrl: './dropped-item.component.css'
 })
@@ -19,7 +18,7 @@ import equipment from '@components/equipment/equipment-data';
 export class DroppedItemComponent {
   texts = droppedItemTexts;
 
-  droppedItem = input<TEquipment| undefined>(equipment[0]);
+  droppedItem = input<TEquipment | undefined>();
 
   isHovered = signal<boolean>(false);
   isMenuOpen = signal<boolean>(false);
@@ -46,9 +45,11 @@ export class DroppedItemComponent {
 
   onPickItem(): void {
     this.heroService.pickItem(this.droppedItem());
+    this.toggleMenu();
   }
 
   onDropItem(): void {
     this.heroService.dropItem(this.droppedItem());
+    this.toggleMenu();
   }
 }
