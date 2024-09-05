@@ -29,7 +29,7 @@ export class MonstersListService {
         results: monsters.results
           .filter(monster => !monster.name.toLowerCase().includes('dragon'))
           .slice(-13)
-      }))
+      })),
     );
   }
 

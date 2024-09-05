@@ -2,7 +2,7 @@
   @for (inventoryItem of inventory$ | async; track $index) {
     <div class="flex justify-center items-center w-[110px] h-[110px] border border-platinum p-4">
       @if (inventoryItem) {
-        <app-dropped-item />
+        <app-dropped-item [droppedItem]="inventoryItem" />
       }
     </div>
   }

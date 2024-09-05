@@ -1,0 +1,5 @@
+<div class="flex gap-5">
+  @for (droppedItem of droppedItems(); track droppedItem.id) {
+    <app-dropped-item [droppedItem]="droppedItem" />
+  }
+</div>

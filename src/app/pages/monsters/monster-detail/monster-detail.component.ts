@@ -1,11 +1,11 @@
 import { Component, DestroyRef, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgIf } from '@angular/common';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { MonstersListService } from '@pages/monsters/monsters-list.service';
 import { MonsterComponent } from '@components/monster/monster.component';
 import { staticMonstersData } from '@components/monster/data';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { monsterDetailTexts } from '@app/lib/static-texts';
 import type { IMonsterDetail, TMonstersData } from '../monster.model';
 

@@ -1,15 +1,15 @@
 import { Component, inject, signal } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 
 import { HeroService } from '@components/hero/hero.service';
 import { MonsterService } from '@components/monster/monster.service';
 import { HeroComponent } from '@components/hero/hero.component';
 import { MonsterComponent } from '@components/monster/monster.component';
 import { CharacterStatsComponent } from '@components/shared/character-stats/character-stats.component';
-import { DroppedItemComponent } from '../../components/shared/dropped-item/dropped-item.component';
-import { MatButtonModule } from '@angular/material/button';
-import { handleWinText, randomNumber } from '@app/lib/utils';
+import { handleWinText, randomNumbers } from '@app/lib/utils';
+import { DroppedItemsComponent } from '@app/components/shared/dropped-items/dropped-items.component';
 import equipment from '@components/equipment/equipment-data';
-import { buttonsTexts } from '../../lib/static-texts';
+import { buttonsTexts } from '@app/lib/static-texts';
 import type { TMonsterDataItem } from '@pages/monsters/monster.model';
 import type { IFightDetails } from './fight.model';
 import type { TEquipment } from '@components/equipment/equipment.model';
@@ -18,7 +18,7 @@ import type { TEquipment } from '@components/equipment/equipment.model';
   selector: 'app-fight',
   standalone: true,
   imports: [
-    HeroComponent, MonsterComponent, CharacterStatsComponent, DroppedItemComponent, MatButtonModule,
+    HeroComponent, MonsterComponent, CharacterStatsComponent, MatButtonModule, DroppedItemsComponent
   ],
   templateUrl: './fight.component.html',
   styleUrl: './fight.component.css',
@@ -29,7 +29,7 @@ export class FightComponent {
   private isHeroAttackFirst: boolean = !!(Math.floor(Math.random() * 2) === 0);
   private fightIntervalId: number | null = null;
   fightDetails = signal<IFightDetails>({ attacking: false, character: '' });
-  droppedItem = signal<TEquipment | undefined>(undefined);
+  droppedItems = signal<TEquipment[] | undefined>(undefined);
 
   heroService: HeroService = inject(HeroService);
   monsterService: MonsterService = inject(MonsterService);
@@ -75,11 +75,10 @@ export class FightComponent {
     const { health: enemyHealth } = this.monsterUnit;
 
     if (heroHealth > enemyHealth) {
-      const lenght = equipment.length;
-      const randomEquipNumber = randomNumber(lenght);
-      this.droppedItem.set(equipment[randomEquipNumber]);
-
-      console.log(`${equipment[randomEquipNumber].name} Dropped right now.`)
+      const { number1, number2 } = randomNumbers(equipment.length);
+      this.droppedItems.update(prevState => [
+        ...prevState || [], equipment[number1], equipment[number2]
+      ]);
     }
 
     this.fightDetails.update(details => ({ ...details, character: handleWinText(heroHealth, heroName) }));

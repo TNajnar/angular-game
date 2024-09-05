@@ -25,9 +25,9 @@
     </div>
   </div>
 
-  <!-- @if (droppedItem()) { -->
-  <app-dropped-item class="w-fit" />
-  <!-- } -->
+  @if (droppedItems()) {
+    <app-dropped-items class="w-fit" [droppedItems]="droppedItems()" />
+  }
 
   <div class="flex flex-col desktop:flex-row gap-5 pt-28 w-full">
     <button class="extended-button" (click)="startFight()" mat-fab extended>
