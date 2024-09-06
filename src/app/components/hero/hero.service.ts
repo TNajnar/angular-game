@@ -39,7 +39,7 @@ export class HeroService {
     return this._inventory;
   }
   
-  pickItem(item?: TEquipment): void {
+  pickEquip(item?: TEquipment): void {
     if (item) {
       this._inventory = [...this._inventory, item]; // This step is important (Create a new array reference)
       this.inventory$.next(this._inventory);
@@ -47,7 +47,7 @@ export class HeroService {
     }
   }
   
-  dropItem(item?: TEquipment): void {
+  dropEquip(item?: TEquipment): void {
     this._inventory = this._inventory.filter(invItem => invItem.id !== item?.id);
     this.inventory$.next(this._inventory);
     localStorage.setItem(HERO_KEY, JSON.stringify({ inventory: this._inventory }));

@@ -1,6 +1,7 @@
 import { NgIf, NgOptimizedImage } from '@angular/common';
 import { Component, ElementRef, HostListener, inject, input, signal } from '@angular/core';
 
+import { DroppedItemsService } from '../dropped-items.service';
 import { HeroService } from '@app/components/hero/hero.service';
 import { droppedItemTexts } from '@app/lib/static-texts';
 import { DroppedItemMenuComponent } from '../dropped-item-menu/dropped-item-menu.component';
@@ -25,6 +26,7 @@ export class DroppedItemComponent {
 
   elementRef: ElementRef = inject(ElementRef);
   heroService: HeroService = inject(HeroService);
+  droppedItemsService: DroppedItemsService = inject(DroppedItemsService);
 
   isHoveredItem(value: boolean): void {
     this.isHovered.set(value);
@@ -44,12 +46,14 @@ export class DroppedItemComponent {
   }
 
   onPickItem(): void {
-    this.heroService.pickItem(this.droppedItem());
+    this.heroService.pickEquip(this.droppedItem());
+    this.droppedItemsService.dropItem(this.droppedItem())
     this.toggleMenu();
   }
-
+  
   onDropItem(): void {
-    this.heroService.dropItem(this.droppedItem());
+    this.heroService.dropEquip(this.droppedItem());
+    this.droppedItemsService.dropItem(this.droppedItem())
     this.toggleMenu();
   }
 }

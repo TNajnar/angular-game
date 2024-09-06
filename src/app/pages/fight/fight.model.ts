@@ -1,4 +1,4 @@
 export interface IFightDetails {
-  attacking: boolean;
-  character: string;
+  infoText: string;
+  isFightOn: boolean;
 }
