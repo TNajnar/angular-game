@@ -26,10 +26,10 @@ export const droppedItemsTexts = {
 }
 
 export const heroStatsTexts = {
-  armor: 'Brnění: ',
-  damage: 'Poškození: ',
-  health: 'Životy:',
-  hero: 'Hrdina:',
+  armor: 'Armor: ',
+  damage: 'Damage: ',
+  health: 'Health:',
+  hero: 'Hero:',
   level: 'Level: ',
 }
 

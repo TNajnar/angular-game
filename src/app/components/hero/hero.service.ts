@@ -10,7 +10,7 @@ import type { TEquipment } from '@components/equipment/equipment.model';
 const heroAttributes: IHeroAttributes = {
   armor: 25,
   damage: 95,
-  health: 360,
+  health: 1300,
   level: 1,
   name: 'Lucian',
 };
