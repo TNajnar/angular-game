@@ -7,6 +7,8 @@ module.exports = {
     colors: {
       black: '#000',
       onyx: '#393E41',
+      'onyx-darker': '#2E3336',
+      'dark': '#24292C',
       timberWolf: '#D3D0CB',
       platinum: '#E7E5DF',
       keppel: '#44BBA4',

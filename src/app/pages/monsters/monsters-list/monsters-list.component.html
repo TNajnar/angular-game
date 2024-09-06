@@ -5,17 +5,19 @@
 
   @for (monster of monsters; track monster.url) {
     <a
-      class="flex flex-row gap-10 cursor-pointer"
+      class="flex flex-col sm:flex-row items-center gap-3 sm:gap-10 overflow-hidden border-2 border-keppel rounded-lg cursor-pointer hover:shadow-2xl"
       [routerLink]="['/monster', monster.index]"
     >
+    <div class="sm:w-48 sm:h-48">
       <img
-        class="w-48 h-48"
+        class="object-cover h-full"
         [src]="monstersData[monster.index].src"
         alt="{{ monster.name }}"
         loading="lazy"
       />
+    </div>
       
-      <div class="flex flex-col gap-4">
+      <div class="flex flex-col gap-3 sm:gap-4 pb-3 sm:pb-0">
         <h3 class="text-xl font-semibold">{{ monster.name }}</h3>
         <span>{{ texts.health }} {{ monstersData[monster.index].health }}</span>
         <span>{{ texts.damage }} {{ monstersData[monster.index].damage }}</span>
