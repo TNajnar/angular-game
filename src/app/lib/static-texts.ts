@@ -26,6 +26,10 @@ export const droppedItemsTexts = {
   loot: 'Loot: ',
 }
 
+export const heroTexts = {
+  unequip: 'Unequip',
+}
+
 export const heroStatsTexts = {
   armor: 'Armor: ',
   damage: 'Damage: ',

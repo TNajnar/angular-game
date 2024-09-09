@@ -2,11 +2,10 @@ import { Component, ElementRef, HostListener, inject, signal } from '@angular/co
 
 import { HeroService } from '../hero.service';
 import { CustomIconComponent, EIconVariants } from '@app/ui/custom-icon/custom-icon.component';
-import { HERO_KEY } from '@app/lib/consts';
+import { heroTexts } from '@app/lib/static-texts';
+import { EEquipVariants } from '../hero.model';
 import type { TEquipment } from '@app/components/equipment/equipment.model';
-
-type TEquipType = 'armor' | 'weapon';
-type TToggleMenu = Record<TEquipType, boolean>;
+import type { TToggleMenu } from '../hero.model';
 
 @Component({
   selector: 'app-equipped-items',
@@ -16,25 +15,27 @@ type TToggleMenu = Record<TEquipType, boolean>;
   styleUrl: './equipped-items.component.css',
 })
 export class EquippedItemsComponent {
+  texts = heroTexts;
   toggleMenu = signal<TToggleMenu>({
-    'armor': false,
-    'weapon': false,
+    [EEquipVariants.Armor]: false,
+    [EEquipVariants.Weapon]: false,
   });
   EIconVariants = EIconVariants;
+  EEquipVariants = EEquipVariants;
 
   private heroService: HeroService = inject(HeroService);
   elementRef: ElementRef = inject(ElementRef);
 
   equippedItems = this.heroService.equippedItems;
 
-  onClick(equipType: TEquipType): void {
+  onClick(equipType: EEquipVariants): void {
     this.toggleMenu.update(prevState => ({
       ...prevState,
       [equipType]: !this.toggleMenu()[equipType],
     }));
   }
 
-  isMenuOpen(equipType: TEquipType): boolean {
+  isMenuOpen(equipType: EEquipVariants): boolean {
     return !this.toggleMenu()[equipType];
   }
 
@@ -48,8 +49,8 @@ export class EquippedItemsComponent {
 
     if (!this.elementRef.nativeElement.contains(targetElement)) {
       this.toggleMenu.update(() => ({
-        'armor': false,
-        'weapon': false,
+        [EEquipVariants.Armor]: false,
+        [EEquipVariants.Weapon]: false,
       }));
     }
   }

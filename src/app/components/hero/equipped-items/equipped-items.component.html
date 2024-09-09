@@ -1,7 +1,7 @@
 <div class="flex flex-col justify-center gap-5 h-full">
   @if (equippedItems().equippedArmor) {
     <div class="relative">
-      <button (click)="onClick('armor')">
+      <button (click)="onClick(EEquipVariants.Armor)">
         <img
           class="w-equipped-item h-equipped-item border-2"
           [alt]="equippedItems().equippedArmor?.name"
@@ -9,8 +9,10 @@
         />
       </button>
       
-      <div class="menu shadow-lg" [class]="{ 'is-open': isMenuOpen('armor'), 'is-closed': isMenuOpen('armor') }">
-        <button class="menu-item" (click)="unEquip(equippedItems().equippedArmor)">Unequip</button>
+      <div class="menu shadow-lg" [class]="{ 'is-open': isMenuOpen(EEquipVariants.Armor), 'is-closed': isMenuOpen(EEquipVariants.Armor) }">
+        <button class="menu-item" (click)="unEquip(equippedItems().equippedArmor)">
+          {{ texts.unequip }}
+        </button>
 
         <span class="arrow"></span>
       </div>
@@ -25,7 +27,7 @@
   
   @if (equippedItems().equippedWeapon) {
     <div class="relative">
-      <button (click)="onClick('weapon')">
+      <button (click)="onClick(EEquipVariants.Weapon)">
         <img
           class="w-equipped-item h-equipped-item border-2"
           [alt]="equippedItems().equippedWeapon?.name"
@@ -33,8 +35,10 @@
         />
       </button>
 
-      <div class="menu shadow-lg" [class]="{ 'is-open': isMenuOpen('weapon'), 'is-closed': isMenuOpen('weapon') }">
-        <button class="menu-item" (click)="unEquip(equippedItems().equippedWeapon)">Unequip</button>
+      <div class="menu shadow-lg" [class]="{ 'is-open': isMenuOpen(EEquipVariants.Weapon), 'is-closed': isMenuOpen(EEquipVariants.Weapon) }">
+        <button class="menu-item" (click)="unEquip(equippedItems().equippedWeapon)">
+          {{ texts.unequip }}
+        </button>
 
         <span class="arrow"></span>
       </div>

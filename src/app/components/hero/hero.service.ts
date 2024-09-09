@@ -5,12 +5,7 @@ import { staticMonstersData } from '@components/monster/data';
 import { HERO_KEY } from '@app/lib/consts';
 import type { TMonstersData } from '@pages/monsters/monster.model';
 import type { TEquipment } from '@components/equipment/equipment.model';
-import type { IEquippedItems, IHeroAttributes } from './hero.model';
-
-interface IHeroStorage {
-  inventory: TEquipment[];
-  equippedItems: IEquippedItems;
-}
+import type { IEquippedItems, IHeroAttributes, IHeroStorage } from './hero.model';
 
 const heroAttributes: IHeroAttributes = {
   armor: 25,
