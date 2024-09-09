@@ -47,14 +47,14 @@ export class DroppedItemComponent {
   }
 
   onPickItem(): void {
-    this.heroService.pickEquip(this.droppedItem());
+    this.heroService.addToInventory(this.droppedItem());
     this.droppedItemsService.dropItem(this.droppedItem());
     this.toggleMenu();
   }
   
   onDropItem(): void {
     if (this.isHeroPage()) {
-      this.heroService.dropInventoryEquip(this.droppedItem());
+      this.heroService.removeFromInventory(this.droppedItem());
     } else {
       this.droppedItemsService.dropItem(this.droppedItem());
     }

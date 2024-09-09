@@ -52,66 +52,8 @@ export class HeroService {
   get inventory(): TEquipment[] {
     return this._inventory;
   }
-
-  equipItem(pickedItem: TEquipment): void {
-    const isTypeArmor = pickedItem.type === 'armor';
-
-    const actualEquippedItem = (isTypeArmor
-      ? this.equippedItems().equippedArmor
-      : this.equippedItems().equippedWeapon
-    ) as TEquipment;
-
-    if (actualEquippedItem) {
-      this.exchange(pickedItem);
-      return;
-    }
-    
-    this.equippedItems.update(prevState => ({
-      ...prevState,
-      ...(isTypeArmor ? { equippedArmor: pickedItem } : { equippedWeapon: pickedItem })
-    }));
   
-    const equipToStore = {
-      ...this.equippedItems(),
-      ...(isTypeArmor ? { equippedArmor: pickedItem } : { equippedWeapon: pickedItem })
-    };
-  
-    this.dropInventoryEquip(pickedItem);
-    this.heroStorage = { ...this.heroStorage, equippedItems: equipToStore };
-    localStorage.setItem(HERO_KEY, JSON.stringify(this.heroStorage));
-  }
-
-  exchange(equippedItem?: TEquipment): void {
-    if (!equippedItem || !this.equippedItems()) return;
-  
-    const isTypeArmor = equippedItem.type === 'armor';
-
-    const actualEquippedItem = (isTypeArmor
-      ? this.equippedItems().equippedArmor
-      : this.equippedItems().equippedWeapon
-    ) as TEquipment;
-
-    this._inventory = [...this._inventory, actualEquippedItem]; // This step is important (Create a new array reference)
-    this.inventory$.next(this._inventory);
-
-    this.equippedItems.update(prevState => ({
-      ...prevState,
-      ...(isTypeArmor ? { equippedArmor: equippedItem } : { equippedWeapon: equippedItem })
-    }));
-  
-    const equipToStore = {
-      ...this.equippedItems(),
-      ...(isTypeArmor ? { equippedArmor: equippedItem } : { equippedWeapon: equippedItem })
-    };
-
-    this._inventory = this._inventory.filter(invItem => invItem.id !== equippedItem?.id);
-    this.inventory$.next(this._inventory);
-
-    this.heroStorage = { inventory: this._inventory, equippedItems: equipToStore };
-    localStorage.setItem(HERO_KEY, JSON.stringify(this.heroStorage));
-  }
-
-  pickEquip(item: TEquipment): void {
+  addToInventory(item: TEquipment): void {
     this._inventory = [...this._inventory, item]; // This step is important (Create a new array reference)
     this.inventory$.next(this._inventory);
 
@@ -119,12 +61,62 @@ export class HeroService {
     localStorage.setItem(HERO_KEY, JSON.stringify(this.heroStorage));
   }
 
-  dropInventoryEquip(item: TEquipment): void {
+  removeFromInventory(item: TEquipment): void {
     this._inventory = this._inventory.filter(invItem => invItem.id !== item?.id);
     this.inventory$.next(this._inventory);
 
     this.heroStorage = { ...this.heroStorage, inventory: this._inventory };
     localStorage.setItem(HERO_KEY, JSON.stringify(this.heroStorage));
+  }
+
+  updateEquippedItem(isArmor: boolean, pickedItem?: TEquipment): void {
+    this.equippedItems.update(prevState => ({
+      ...prevState,
+      ...(isArmor ? { equippedArmor: pickedItem } : { equippedWeapon: pickedItem })
+    }));
+  
+    const equipToStore = {
+      ...this.equippedItems(),
+      ...(isArmor ? { equippedArmor: pickedItem } : { equippedWeapon: pickedItem })
+    };
+
+    this.heroStorage = { ...this.heroStorage, equippedItems: equipToStore };
+    localStorage.setItem(HERO_KEY, JSON.stringify(this.heroStorage));
+  }
+
+  equipItem(pickedItem: TEquipment): void {
+    const isArmor = pickedItem.type === 'armor';
+
+    const actualEquippedItem = (isArmor
+      ? this.equippedItems().equippedArmor
+      : this.equippedItems().equippedWeapon
+    );
+
+    if (actualEquippedItem) {
+      this.exchangeItem(pickedItem, actualEquippedItem, isArmor);
+      return;
+    }
+
+    this.updateEquippedItem(isArmor, pickedItem);
+    this.removeFromInventory(pickedItem);
+  }
+
+  unEquipItem(equippedItem?: TEquipment): void {
+    if (!equippedItem) return;
+
+    const isArmor = equippedItem.type === 'armor';
+  
+    this.updateEquippedItem(isArmor, undefined);
+    this.addToInventory(equippedItem);
+  }
+
+  exchangeItem(equippedItem: TEquipment, actualEquippedItem: TEquipment, isArmor: boolean): void {
+    if (!this.equippedItems()) return;
+
+    this.addToInventory(actualEquippedItem);
+
+    this.updateEquippedItem(isArmor, equippedItem);
+    this.removeFromInventory(equippedItem);
   }
 
   heroAttack(randomMonsterKey: string): void {

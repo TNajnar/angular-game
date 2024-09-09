@@ -39,24 +39,7 @@ export class EquippedItemsComponent {
   }
 
   unEquip(equippedItem?: TEquipment): void {
-    if (!equippedItem) return;
-  
-    const isTypeArmor = equippedItem.type === 'armor';
-    
-    this.heroService.equippedItems.update(prevState => ({
-      ...prevState,
-      ...(isTypeArmor ? { equippedArmor: undefined } : { equippedWeapon: undefined })
-    }));
-
-    const updatedEquip = {
-      ...this.heroService.equippedItems(),
-      ...(isTypeArmor ? { equippedArmor: undefined } : { equippedWeapon: undefined }),
-    };
-
-    this.heroService.heroStorage = { ...this.heroService.heroStorage, equippedItems: updatedEquip };
-    localStorage.setItem(HERO_KEY, JSON.stringify(this.heroService.heroStorage));
-
-    this.heroService.pickEquip(equippedItem);
+    this.heroService.unEquipItem(equippedItem);
   }
 
   @HostListener('document:click', ['$event'])
