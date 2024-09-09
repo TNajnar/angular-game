@@ -32,7 +32,7 @@ const heroStorage: IHeroStorage = {
 export class HeroService {
   private staticMonstersData: TMonstersData = staticMonstersData;
   private _inventory: TEquipment[] = [];
-  private heroStorage: IHeroStorage = heroStorage;
+  heroStorage: IHeroStorage = heroStorage;
 
   inventory$ = new BehaviorSubject<TEquipment[]>([]);
   heroAttributes: IHeroAttributes = heroAttributes;
@@ -53,9 +53,7 @@ export class HeroService {
     return this._inventory;
   }
 
-  equipItem(pickedItem?: TEquipment): void {
-    if (!pickedItem) return;
-  
+  equipItem(pickedItem: TEquipment): void {
     const isTypeArmor = pickedItem.type === 'armor';
     
     this.equippedItems.update(prevState => ({
@@ -73,18 +71,18 @@ export class HeroService {
     localStorage.setItem(HERO_KEY, JSON.stringify(this.heroStorage));
   }
 
-  pickEquip(item?: TEquipment): void {
-    if (item) {
-      this._inventory = [...this._inventory, item]; // This step is important (Create a new array reference)
-      this.inventory$.next(this._inventory);
-      this.heroStorage = { ...this.heroStorage, inventory: this._inventory };
-      localStorage.setItem(HERO_KEY, JSON.stringify(this.heroStorage));
-    }
+  pickEquip(item: TEquipment): void {
+    this._inventory = [...this._inventory, item]; // This step is important (Create a new array reference)
+    this.inventory$.next(this._inventory);
+
+    this.heroStorage = { ...this.heroStorage, inventory: this._inventory };
+    localStorage.setItem(HERO_KEY, JSON.stringify(this.heroStorage));
   }
 
-  dropInventoryEquip(item?: TEquipment): void {
+  dropInventoryEquip(item: TEquipment): void {
     this._inventory = this._inventory.filter(invItem => invItem.id !== item?.id);
     this.inventory$.next(this._inventory);
+
     this.heroStorage = { ...this.heroStorage, inventory: this._inventory };
     localStorage.setItem(HERO_KEY, JSON.stringify(this.heroStorage));
   }

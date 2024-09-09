@@ -19,7 +19,7 @@ import type { TEquipment } from '@components/equipment/equipment.model';
 export class DroppedItemComponent {
   texts = droppedItemTexts;
   
-  droppedItem = input<TEquipment | undefined>(undefined);
+  droppedItem = input.required<TEquipment>();
   isHeroPage = input<boolean>(false);
 
   isHovered = signal<boolean>(false);

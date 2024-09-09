@@ -1,9 +1,20 @@
 <div class="flex flex-col justify-center gap-5 h-full">
-  @if (equippedArmor().equippedArmor) {
-    <img
-      class="w-equipped-item h-equipped-item border-2"
-      [alt]="equippedArmor().equippedArmor?.name"
-      src="{{ equippedArmor().equippedArmor?.src }}" />
+  @if (equippedItems().equippedArmor) {
+    <div class="relative">
+      <button (click)="onClick('armor')">
+        <img
+          class="w-equipped-item h-equipped-item border-2"
+          [alt]="equippedItems().equippedArmor?.name"
+          src="{{ equippedItems().equippedArmor?.src }}"
+        />
+      </button>
+      
+      <div class="menu shadow-lg" [class]="{ 'is-open': isMenuOpen('armor'), 'is-closed': isMenuOpen('armor') }">
+        <button class="menu-item" (click)="unEquip(equippedItems().equippedArmor)">Unequip</button>
+
+        <span class="arrow"></span>
+      </div>
+    </div>
   } @else {
     <app-icon
       class="flex justify-center items-center w-equipped-item h-equipped-item border-2"
@@ -12,12 +23,22 @@
     />
   }
   
-  @if (equippedWeapon().equippedWeapon) {
-    <img
-      class="w-equipped-item h-equipped-item border-2"
-      [alt]="equippedWeapon().equippedWeapon?.name"
-      src="{{ equippedWeapon().equippedWeapon?.src }}"
-    />
+  @if (equippedItems().equippedWeapon) {
+    <div class="relative">
+      <button (click)="onClick('weapon')">
+        <img
+          class="w-equipped-item h-equipped-item border-2"
+          [alt]="equippedItems().equippedWeapon?.name"
+          src="{{ equippedItems().equippedWeapon?.src }}"
+        />
+      </button>
+
+      <div class="menu shadow-lg" [class]="{ 'is-open': isMenuOpen('weapon'), 'is-closed': isMenuOpen('weapon') }">
+        <button class="menu-item" (click)="unEquip(equippedItems().equippedWeapon)">Unequip</button>
+
+        <span class="arrow"></span>
+      </div>
+    </div>
   } @else {
     <app-icon
       class="flex justify-center items-center w-equipped-item h-equipped-item border-2"
@@ -25,4 +46,5 @@
       fill="#d3d0cb"
     />
   }
+
 </div>
