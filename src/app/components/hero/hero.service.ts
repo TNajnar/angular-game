@@ -54,12 +54,17 @@ export class HeroService {
   }
 
   equipItem(pickedItem: TEquipment): void {
-    if (this.equippedItems().equippedArmor || this.equippedItems().equippedWeapon) {
+    const isTypeArmor = pickedItem.type === 'armor';
+
+    const actualEquippedItem = (isTypeArmor
+      ? this.equippedItems().equippedArmor
+      : this.equippedItems().equippedWeapon
+    ) as TEquipment;
+
+    if (actualEquippedItem) {
       this.exchange(pickedItem);
       return;
     }
-
-    const isTypeArmor = pickedItem.type === 'armor';
     
     this.equippedItems.update(prevState => ({
       ...prevState,
@@ -86,7 +91,9 @@ export class HeroService {
       : this.equippedItems().equippedWeapon
     ) as TEquipment;
 
-    this.pickEquip(actualEquippedItem);
+    this._inventory = [...this._inventory, actualEquippedItem]; // This step is important (Create a new array reference)
+    this.inventory$.next(this._inventory);
+
     this.equippedItems.update(prevState => ({
       ...prevState,
       ...(isTypeArmor ? { equippedArmor: equippedItem } : { equippedWeapon: equippedItem })
@@ -96,9 +103,11 @@ export class HeroService {
       ...this.equippedItems(),
       ...(isTypeArmor ? { equippedArmor: equippedItem } : { equippedWeapon: equippedItem })
     };
-  
-    this.dropInventoryEquip(equippedItem);
-    this.heroStorage = { ...this.heroStorage, equippedItems: equipToStore };
+
+    this._inventory = this._inventory.filter(invItem => invItem.id !== equippedItem?.id);
+    this.inventory$.next(this._inventory);
+
+    this.heroStorage = { inventory: this._inventory, equippedItems: equipToStore };
     localStorage.setItem(HERO_KEY, JSON.stringify(this.heroStorage));
   }
 
