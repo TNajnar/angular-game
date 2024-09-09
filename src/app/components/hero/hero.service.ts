@@ -54,6 +54,11 @@ export class HeroService {
   }
 
   equipItem(pickedItem: TEquipment): void {
+    if (this.equippedItems().equippedArmor || this.equippedItems().equippedWeapon) {
+      this.exchange(pickedItem);
+      return;
+    }
+
     const isTypeArmor = pickedItem.type === 'armor';
     
     this.equippedItems.update(prevState => ({
@@ -67,6 +72,32 @@ export class HeroService {
     };
   
     this.dropInventoryEquip(pickedItem);
+    this.heroStorage = { ...this.heroStorage, equippedItems: equipToStore };
+    localStorage.setItem(HERO_KEY, JSON.stringify(this.heroStorage));
+  }
+
+  exchange(equippedItem?: TEquipment): void {
+    if (!equippedItem || !this.equippedItems()) return;
+  
+    const isTypeArmor = equippedItem.type === 'armor';
+
+    const actualEquippedItem = (isTypeArmor
+      ? this.equippedItems().equippedArmor
+      : this.equippedItems().equippedWeapon
+    ) as TEquipment;
+
+    this.pickEquip(actualEquippedItem);
+    this.equippedItems.update(prevState => ({
+      ...prevState,
+      ...(isTypeArmor ? { equippedArmor: equippedItem } : { equippedWeapon: equippedItem })
+    }));
+  
+    const equipToStore = {
+      ...this.equippedItems(),
+      ...(isTypeArmor ? { equippedArmor: equippedItem } : { equippedWeapon: equippedItem })
+    };
+  
+    this.dropInventoryEquip(equippedItem);
     this.heroStorage = { ...this.heroStorage, equippedItems: equipToStore };
     localStorage.setItem(HERO_KEY, JSON.stringify(this.heroStorage));
   }
