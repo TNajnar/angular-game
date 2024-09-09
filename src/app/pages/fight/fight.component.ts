@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { HeroService } from '@components/hero/hero.service';
 import { MonsterService } from '@components/monster/monster.service';
 import { DroppedItemsService } from '@app/components/shared/dropped-items/dropped-items.service';
-import { HeroComponent, IHeroAttributes } from '@components/hero/hero.component';
+import { HeroComponent } from '@components/hero/hero.component';
 import { MonsterComponent } from '@components/monster/monster.component';
 import { CharacterStatsComponent } from '@components/shared/character-stats/character-stats.component';
 import { DroppedItemsComponent } from '@app/components/shared/dropped-items/dropped-items.component';
@@ -13,6 +13,7 @@ import equipment from '@components/equipment/equipment-data';
 import { buttonsTexts } from '@app/lib/static-texts';
 import type { TMonsterDataItem } from '@pages/monsters/monster.model';
 import type { IFightDetails } from './fight.model';
+import type { IHeroAttributes } from '@app/components/hero/hero.model';
 
 @Component({
   selector: 'app-fight',

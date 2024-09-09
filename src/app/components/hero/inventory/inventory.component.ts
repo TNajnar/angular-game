@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 import { map, Observable } from 'rxjs';
 
@@ -11,7 +11,6 @@ import type { TEquipment } from '@app/components/equipment/equipment.model';
   standalone: true,
   imports: [AsyncPipe, DroppedItemComponent],
   templateUrl: './inventory.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
 export class InventoryComponent implements OnInit{

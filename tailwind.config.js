@@ -15,6 +15,12 @@ module.exports = {
       saffron: '#E7BB41',
     },
     extend: {
+      height: {
+        'equipped-item': '115px',
+      },
+      width: {
+        'equipped-item': '115px',
+      },
       screens: {
         sm: '576px',
         md: '768px',

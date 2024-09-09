@@ -2,16 +2,9 @@ import { Injectable, inject, signal } from '@angular/core';
 
 import { staticMonstersData } from './data';
 import { HeroService } from '@components/hero/hero.service';
-import { randomNumber } from '@app/lib/utils';
+import { getRandomEnemyKey } from '@app/lib/utils';
 import { RANDOM_MONSTER_KEY } from '@app/lib/consts';
 import type { TMonsterDataItem, TMonstersData } from '@pages/monsters/monster.model';
-
-function getRandomEnemyKey(): string {
-  const keys = Object.keys(staticMonstersData);
-  const randomIndex = randomNumber(keys.length);
-
-  return keys[randomIndex];
-}
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +23,7 @@ export class MonsterService {
   }
 
   generateNewRandomKey(): string {
-    const newKey = getRandomEnemyKey();
+    const newKey = getRandomEnemyKey(staticMonstersData);
     localStorage.setItem(RANDOM_MONSTER_KEY, newKey);
 
     return newKey;
@@ -42,7 +35,7 @@ export class MonsterService {
     if (storedKey) {
       return storedKey;
     } else {
-      const newKey = getRandomEnemyKey();
+      const newKey = getRandomEnemyKey(staticMonstersData);
       localStorage.setItem(RANDOM_MONSTER_KEY, newKey);
       this.randomMonsterKey = newKey;
       return newKey;

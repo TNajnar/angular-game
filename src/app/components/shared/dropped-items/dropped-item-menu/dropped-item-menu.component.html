@@ -6,13 +6,19 @@
     'is-closed': !isOpen(),
   }"
 >
-  <span class="menu-item" (click)="onPickItem()">
-    {{ texts.pickItem }}
-  </span>
+  @if (isHeroPage()) {
+    <button class="menu-item" (click)="onEquipItem()">
+      {{ texts.equipItem }}
+    </button>
+  } @else {
+    <button class="menu-item" (click)="onPickItem()">
+      {{ texts.pickItem }}
+    </button>
+  }
 
-  <span class="menu-item" (click)="onDropItem()">
+  <button class="menu-item" (click)="onDropItem()">
     {{ texts.dropItem }}
-  </span>
+  </button>
 
   <span class="arrow"></span>
 </div>

@@ -22,9 +22,15 @@
     (mouseenter)="isHoveredItem(true)"
     (mouseleave)="isHoveredItem(false)"
   >
-    <img [alt]="droppedItem()?.name" ngSrc="{{ droppedItem()?.src }}" fill />
+    <img class="object-cover" [alt]="droppedItem()?.name" ngSrc="{{ droppedItem()?.src }}" fill />
   </div>
 
   <!-- when you pass function to children [onPickItem]="onPickItem.bind(this)" -->
-  <app-dropped-item-menu [isOpen]="isMenuOpen()" (pickItem)="onPickItem()" (dropItem)="onDropItem()" />
+  <app-dropped-item-menu
+    (dropItem)="onDropItem()"
+    (equipItem)="onEquipItem()"
+    (pickItem)="onPickItem()"
+    [isHeroPage]="isHeroPage()"
+    [isOpen]="isMenuOpen()"
+  />
 </div>

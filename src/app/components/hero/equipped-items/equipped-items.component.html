@@ -1,0 +1,28 @@
+<div class="flex flex-col justify-center gap-5 h-full">
+  @if (equippedArmor().equippedArmor) {
+    <img
+      class="w-equipped-item h-equipped-item border-2"
+      [alt]="equippedArmor().equippedArmor?.name"
+      src="{{ equippedArmor().equippedArmor?.src }}" />
+  } @else {
+    <app-icon
+      class="flex justify-center items-center w-equipped-item h-equipped-item border-2"
+      [variant]="EIconVariants.Armor"
+      fill="#d3d0cb"
+    />
+  }
+  
+  @if (equippedWeapon().equippedWeapon) {
+    <img
+      class="w-equipped-item h-equipped-item border-2"
+      [alt]="equippedWeapon().equippedWeapon?.name"
+      src="{{ equippedWeapon().equippedWeapon?.src }}"
+    />
+  } @else {
+    <app-icon
+      class="flex justify-center items-center w-equipped-item h-equipped-item border-2"
+      [variant]="EIconVariants.Weapon"
+      fill="#d3d0cb"
+    />
+  }
+</div>

@@ -18,8 +18,9 @@ import type { TEquipment } from '@components/equipment/equipment.model';
 
 export class DroppedItemComponent {
   texts = droppedItemTexts;
-
-  droppedItem = input<TEquipment | undefined>();
+  
+  droppedItem = input<TEquipment | undefined>(undefined);
+  isHeroPage = input<boolean>(false);
 
   isHovered = signal<boolean>(false);
   isMenuOpen = signal<boolean>(false);
@@ -47,13 +48,21 @@ export class DroppedItemComponent {
 
   onPickItem(): void {
     this.heroService.pickEquip(this.droppedItem());
-    this.droppedItemsService.dropItem(this.droppedItem())
+    this.droppedItemsService.dropItem(this.droppedItem());
     this.toggleMenu();
   }
   
   onDropItem(): void {
-    this.heroService.dropEquip(this.droppedItem());
-    this.droppedItemsService.dropItem(this.droppedItem())
+    if (this.isHeroPage()) {
+      this.heroService.dropInventoryEquip(this.droppedItem());
+    } else {
+      this.droppedItemsService.dropItem(this.droppedItem());
+    }
+    this.toggleMenu();
+  }
+
+  onEquipItem(): void {
+    this.heroService.equipItem(this.droppedItem());
     this.toggleMenu();
   }
 }

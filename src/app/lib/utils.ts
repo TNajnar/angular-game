@@ -1,7 +1,15 @@
+import { TMonstersData } from "@app/pages/monsters/monster.model";
 import { IRandomNumbers } from "./types";
 
 function generateId(): number {
   return Math.floor(Math.random() * 1000);
+}
+
+function getRandomEnemyKey(staticMonstersData: TMonstersData): string {
+  const keys = Object.keys(staticMonstersData);
+  const randomIndex = randomNumber(keys.length);
+
+  return keys[randomIndex];
 }
 
 function handleWinText(enemyHealth: number, heroHealth: number, heroName: string): string {
@@ -19,4 +27,4 @@ function randomNumbers(lenght: number): IRandomNumbers {
   return { number1: randomEquipNumber1, number2: randomEquipNumber2 };
 }
 
-export { generateId, handleWinText, randomNumber, randomNumbers }
+export { generateId, getRandomEnemyKey, handleWinText, randomNumber, randomNumbers }

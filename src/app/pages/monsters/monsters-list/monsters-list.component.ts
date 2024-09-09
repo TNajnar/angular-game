@@ -22,7 +22,7 @@ export class MonstersListComponent implements OnInit {
 
   isLoading = signal<boolean>(false);
 
-  monstersListService: MonstersListService = inject(MonstersListService);
+  private monstersListService: MonstersListService = inject(MonstersListService);
   private destroyRef: DestroyRef = inject(DestroyRef);
 
   ngOnInit(): void {

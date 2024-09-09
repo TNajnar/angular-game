@@ -12,6 +12,7 @@ export const characterStatsTexts = {
 
 export const droppedItemMenuTexts = {
   dropItem: 'Drop item',
+  equipItem: 'Equip item',
   pickItem: 'Pick item',
 }
 

@@ -4,5 +4,9 @@ export type TEquipment = {
   id: number;
   name: string;
   src?: string;
-  type: string;
+  type: 'armor' | 'elixir' | 'weapon';
 }
+
+export type TArmor = TEquipment & { type: 'armor' };
+
+export type TWeapon = TEquipment & { type: 'weapon' };

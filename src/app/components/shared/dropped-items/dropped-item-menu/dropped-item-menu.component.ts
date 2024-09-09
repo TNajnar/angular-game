@@ -13,13 +13,20 @@ import { droppedItemMenuTexts } from '@app/lib/static-texts';
 export class DroppedItemMenuComponent {
   texts = droppedItemMenuTexts;
 
-  @Output() pickItem = new EventEmitter<TEquipment>();
+  isHeroPage = input<boolean>(false);
+
   @Output() dropItem = new EventEmitter<TEquipment>();
+  @Output() equipItem = new EventEmitter<TEquipment>();
+  @Output() pickItem = new EventEmitter<TEquipment>();
 
   isOpen = input.required<boolean>();
 
   onPickItem() {
     this.pickItem.emit();
+  }
+
+  onEquipItem(): void {
+    this.equipItem.emit();
   }
 
   onDropItem(): void {
