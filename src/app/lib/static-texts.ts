@@ -11,6 +11,7 @@ export const characterStatsTexts = {
 }
 
 export const equipItemMenuTexts = {
+  drinkPotion: 'Drink potion',
   dropItem: 'Drop item',
   equipItem: 'Equip item',
   pickItem: 'Pick item',

@@ -10,10 +10,12 @@
 
           <app-equip-item-menu
             [activeItem]="inventoryItem"
+            [isHeroPage]="true"
+            [isPotion]="inventoryItem.type === 'elixir'"
+            [isOpen]="activeMenuId() === inventoryItem.id"
             (dropItem)="onDropItem(inventoryItem)"
             (equipItem)="onEquipItem($event)"
-            [isHeroPage]="true"
-            [isOpen]="activeMenuId() === inventoryItem.id"
+            (drinkPotion)="onDrinkPotion()"
           />
         </div>
       }

@@ -36,6 +36,11 @@ export class InventoryComponent implements OnInit{
     this.handleActiveMenu(undefined);
   }
 
+  // TODO logic for potion
+  onDrinkPotion(): void {
+    console.log('Drink potion');
+  }
+
   onDropItem(inventoryItem: TEquipment): void {
     this.heroService.removeFromInventory(inventoryItem);
     this.handleActiveMenu(undefined);
