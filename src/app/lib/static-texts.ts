@@ -40,6 +40,10 @@ export const heroStatsTexts = {
   level: 'Level: ',
 }
 
+export const modalTexts = {
+  ok: 'Okay',
+}
+
 export const monsterDetailTexts = {
   name: 'Name: ',
   alignment: 'Alignment: ',

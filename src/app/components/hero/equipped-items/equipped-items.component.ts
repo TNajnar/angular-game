@@ -5,7 +5,7 @@ import { EquipItemComponent } from '@app/components/shared/equip-items/equip-ite
 import { CustomIconComponent, EIconVariants } from '@app/ui/custom-icon/custom-icon.component';
 import { heroTexts } from '@app/lib/static-texts';
 import { EEquipVariants } from '../hero.model';
-import type { TEquipment } from '@app/components/equipment/equipment.model';
+import type { TEquipment } from '@app/lib/equipment/equipment.model';
 import type { TToggleMenu } from '../hero.model';
 
 @Component({

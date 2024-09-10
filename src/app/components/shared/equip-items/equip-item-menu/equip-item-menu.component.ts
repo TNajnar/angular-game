@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output, input } from '@angular/core';
 import { NgIf } from '@angular/common';
 
 import { equipItemMenuTexts } from '@app/lib/static-texts';
-import type { TEquipment } from '@app/components/equipment/equipment.model';
+import type { TEquipment } from '@app/lib/equipment/equipment.model';
 
 @Component({
   selector: 'app-equip-item-menu',
@@ -20,10 +20,10 @@ export class EquipItemMenuComponent {
   isHeroPage = input<boolean>(false);
   isPotion = input<boolean>(false);
 
-  @Output() drinkPotion = new EventEmitter<void>();
-  @Output() dropItem = new EventEmitter<void>();
+  @Output() drinkPotion = new EventEmitter<TEquipment>();
+  @Output() dropItem = new EventEmitter<TEquipment>();
   @Output() equipItem = new EventEmitter<TEquipment>();
-  @Output() pickItem = new EventEmitter<void>();
+  @Output() pickItem = new EventEmitter<TEquipment>();
 
   isOpen = input<boolean>();
 
@@ -36,7 +36,7 @@ export class EquipItemMenuComponent {
   }
 
   onDrinkPotion(): void {
-    this.drinkPotion.emit();
+    this.drinkPotion.emit(this.activeItem);
   }
 
   onDropItem(): void {

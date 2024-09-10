@@ -8,7 +8,7 @@ import { MonsterComponent } from '@components/monster/monster.component';
 import { EquipItemsComponent } from '@app/components/shared/equip-items/equip-items.component';
 import { CharacterStatsComponent } from '@components/shared/character-stats/character-stats.component';
 import { handleWinText, randomNumbers } from '@app/lib/utils';
-import equipment from '@components/equipment/equipment-data';
+import equipment from '@app/lib/equipment/equipment-data';
 import { buttonsTexts } from '@app/lib/static-texts';
 import type { TMonsterDataItem } from '@pages/monsters/monster.model';
 import type { IFightDetails } from './fight.model';

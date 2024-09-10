@@ -3,9 +3,11 @@ import { AsyncPipe } from '@angular/common';
 import { map, Observable } from 'rxjs';
 
 import { HeroService } from '../hero.service';
+import { ErrorService } from '@app/components/shared/error.service';
 import { EquipItemComponent } from "@components/shared/equip-items/equip-item/equip-item.component";
 import { EquipItemMenuComponent } from "@components/shared/equip-items/equip-item-menu/equip-item-menu.component";
-import type { TEquipment } from '@app/components/equipment/equipment.model';
+import { BASE_HERO_HEALTH } from '@app/lib/consts';
+import type { TEquipment } from '@app/lib/equipment/equipment.model';
 
 @Component({
   selector: 'hero-inventory',
@@ -20,6 +22,7 @@ export class InventoryComponent implements OnInit{
 
   private heroService: HeroService = inject(HeroService);
   private elementRef: ElementRef = inject(ElementRef);
+  private errorService: ErrorService = inject(ErrorService);
 
   ngOnInit(): void {
     this.inventory$ = this.heroService.inventory$.pipe(
@@ -36,9 +39,16 @@ export class InventoryComponent implements OnInit{
     this.handleActiveMenu(undefined);
   }
 
-  // TODO logic for potion
-  onDrinkPotion(): void {
-    console.log('Drink potion');
+  onDrinkPotion(activeItem: TEquipment): void {
+    const { equippedArmor } = this.heroService.equippedItems();
+    const maxHealth = BASE_HERO_HEALTH + (equippedArmor?.health ?? 0);
+
+    if (maxHealth > this.heroService.heroGetter.health) {
+      this.heroService.hero.health += activeItem.health ?? 0;
+      this.heroService.removeFromInventory(activeItem);
+      return;
+    }
+    this.errorService.showError('Hero has full health, you can`t drink the potion!')
   }
 
   onDropItem(inventoryItem: TEquipment): void {

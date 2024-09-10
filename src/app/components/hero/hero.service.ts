@@ -1,18 +1,18 @@
-import { Injectable, OnInit, signal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { staticMonstersData } from '@components/monster/data';
-import { HERO_KEY } from '@app/lib/consts';
-import type { TMonstersData } from '@pages/monsters/monster.model';
-import type { TEquipment } from '@components/equipment/equipment.model';
+import { HERO_KEY, BASE_HERO_HEALTH, BASE_HERO_DAMAGE, BASE_HERO_ARMOR, BASE_HERO_LEVEL, HERO_NAME } from '@app/lib/consts';
 import type { IEquippedItems, IHeroAttributes, IHeroStorage } from './hero.model';
+import type { TEquipment } from '@app/lib/equipment/equipment.model';
+import type { TMonstersData } from '@pages/monsters/monster.model';
 
 const heroAttributes: IHeroAttributes = {
-  armor: 25,
-  damage: 95,
-  health: 1300,
-  level: 1,
-  name: 'Lucian',
+  armor: BASE_HERO_ARMOR,
+  damage: BASE_HERO_DAMAGE,
+  health: BASE_HERO_HEALTH,
+  level: BASE_HERO_LEVEL,
+  name: HERO_NAME,
 };
 
 const heroStorage: IHeroStorage = {

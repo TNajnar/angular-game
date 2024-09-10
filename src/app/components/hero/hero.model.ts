@@ -1,4 +1,4 @@
-import { TEquipment } from "../equipment/equipment.model";
+import { TEquipment } from "../../lib/equipment/equipment.model";
 
 export interface IHeroAttributes {
   armor: number;
