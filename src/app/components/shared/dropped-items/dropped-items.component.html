@@ -1,9 +1,22 @@
 <div class="flex flex-col gap-2 h-[150px]">
   <span class="text-xl text-keppel font-medium">{{ texts.loot }}</span>
 
-  <div class="flex gap-5">
+  <div class="realtive flex gap-5">
     @for (droppedItem of droppedItems(); track droppedItem.id) {
-      <app-dropped-item [droppedItem]="droppedItem" />
+      <div class="relative w-fit">
+        <app-dropped-item
+          [droppedItem]="droppedItem"
+          [isMenuOpen]="activeMenuId() === droppedItem.id"
+          (handleOpenMenu)="handleOpenMenu($event)"
+        />
+
+        <!-- when you pass function to children [onPickItem]="onPickItem.bind(this)" -->
+        <app-dropped-item-menu
+          (dropItem)="onDropItem(droppedItem)"
+          (pickItem)="onPickItem(droppedItem)"
+          [isOpen]="activeMenuId() === droppedItem.id"
+        />
+      </div>
     }
   </div>
 </div>

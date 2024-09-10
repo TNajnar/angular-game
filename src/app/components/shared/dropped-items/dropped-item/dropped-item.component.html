@@ -1,25 +1,14 @@
-<div class="relative w-fit">
-  <app-tooltip
-    [isHovered]="isHovered()"
-    [isMenuOpen]="isMenuOpen()"
-    [droppedItem]="droppedItem()"
-  />
+<app-tooltip
+  [isHovered]="isHovered()"
+  [isMenuOpen]="isMenuOpen()"
+  [droppedItem]="droppedItem()"
+/>
 
-  <button
-    class="relative flex items-center justify-center w-28 h-28 text-2xl border cursor-pointer"
-    (click)="toggleMenu()"
-    (mouseenter)="isHoveredItem(true)"
-    (mouseleave)="isHoveredItem(false)"
-  >
-    <img class="object-cover" [alt]="droppedItem().name" ngSrc="{{ droppedItem().src }}" fill />
-  </button>
-
-  <!-- when you pass function to children [onPickItem]="onPickItem.bind(this)" -->
-  <app-dropped-item-menu
-    (dropItem)="onDropItem()"
-    (equipItem)="onEquipItem()"
-    (pickItem)="onPickItem()"
-    [isHeroPage]="isHeroPage()"
-    [isOpen]="isMenuOpen()"
-  />
-</div>
+<button
+  class="relative flex items-center justify-center w-28 h-28 text-2xl border cursor-pointer"
+  (click)="handleMenu()"
+  (mouseenter)="isHoveredItem(true)"
+  (mouseleave)="isHoveredItem(false)"
+>
+  <img class="object-cover" [alt]="droppedItem().name" ngSrc="{{ droppedItem().src }}" fill />
+</button>

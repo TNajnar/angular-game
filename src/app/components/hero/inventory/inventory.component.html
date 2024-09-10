@@ -1,8 +1,21 @@
 <div class="flex flex-wrap justify-center gap-2 w-full">
   @for (inventoryItem of inventory$ | async; track $index) {
-    <div class="flex justify-center items-center w-[110px] h-[110px] border border-platinum p-4">
+    <div class="flex justify-center items-center w-equipped-item h-equipped-item border border-platinum p-4">
       @if (inventoryItem) {
-        <app-dropped-item [droppedItem]="inventoryItem" [isHeroPage]="true" />
+        <div class="relative">
+          <app-dropped-item
+            [droppedItem]="inventoryItem"
+            (handleOpenMenu)="handleActiveMenu($event)"
+          />
+
+          <app-dropped-item-menu
+            [activeItem]="inventoryItem"
+            (dropItem)="onDropItem(inventoryItem)"
+            (equipItem)="onEquipItem($event)"
+            [isHeroPage]="true"
+            [isOpen]="activeMenuId() === inventoryItem.id"
+          />
+        </div>
       }
     </div>
   }

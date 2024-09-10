@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, input } from '@angular/core';
+import { Component, EventEmitter, Input, Output, input } from '@angular/core';
 
 import { TEquipment } from '@app/components/equipment/equipment.model';
 import { droppedItemMenuTexts } from '@app/lib/static-texts';
@@ -12,6 +12,8 @@ import { droppedItemMenuTexts } from '@app/lib/static-texts';
 
 export class DroppedItemMenuComponent {
   texts = droppedItemMenuTexts;
+  
+  @Input() activeItem!: TEquipment;
 
   isHeroPage = input<boolean>(false);
 
@@ -19,14 +21,14 @@ export class DroppedItemMenuComponent {
   @Output() equipItem = new EventEmitter<TEquipment>();
   @Output() pickItem = new EventEmitter<TEquipment>();
 
-  isOpen = input.required<boolean>();
+  isOpen = input<boolean>();
 
   onPickItem() {
     this.pickItem.emit();
   }
 
   onEquipItem(): void {
-    this.equipItem.emit();
+    this.equipItem.emit(this.activeItem);
   }
 
   onDropItem(): void {

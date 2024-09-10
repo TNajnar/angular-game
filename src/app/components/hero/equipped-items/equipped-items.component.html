@@ -2,11 +2,7 @@
   @if (equippedItems().equippedArmor) {
     <div class="relative">
       <button (click)="onClick(EEquipVariants.Armor)">
-        <img
-          class="w-equipped-item h-equipped-item border-2"
-          [alt]="equippedItems().equippedArmor?.name"
-          src="{{ equippedItems().equippedArmor?.src }}"
-        />
+        <app-dropped-item [droppedItem]="equippedItems().equippedArmor!" />
       </button>
       
       <div class="menu shadow-lg" [class]="{ 'is-open': isMenuOpen(EEquipVariants.Armor), 'is-closed': isMenuOpen(EEquipVariants.Armor) }">
@@ -28,11 +24,7 @@
   @if (equippedItems().equippedWeapon) {
     <div class="relative">
       <button (click)="onClick(EEquipVariants.Weapon)">
-        <img
-          class="w-equipped-item h-equipped-item border-2"
-          [alt]="equippedItems().equippedWeapon?.name"
-          src="{{ equippedItems().equippedWeapon?.src }}"
-        />
+        <app-dropped-item [droppedItem]="equippedItems().equippedWeapon!" />
       </button>
 
       <div class="menu shadow-lg" [class]="{ 'is-open': isMenuOpen(EEquipVariants.Weapon), 'is-closed': isMenuOpen(EEquipVariants.Weapon) }">
