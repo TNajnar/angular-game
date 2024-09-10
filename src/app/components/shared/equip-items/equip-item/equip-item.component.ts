@@ -2,7 +2,7 @@ import { NgIf, NgOptimizedImage } from '@angular/common';
 import { Component, EventEmitter, Output, input, signal } from '@angular/core';
 
 import { TooltipComponent } from '@components/shared/tooltip/tooltip.component';
-import type { TEquipment } from '@components/equipment/equipment.model';
+import type { TEquipment } from '@app/lib/equipment/equipment.model';
 
 
 @Component({
