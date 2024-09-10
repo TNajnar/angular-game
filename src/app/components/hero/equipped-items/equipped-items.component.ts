@@ -24,7 +24,7 @@ export class EquippedItemsComponent {
   EEquipVariants = EEquipVariants;
 
   private heroService: HeroService = inject(HeroService);
-  elementRef: ElementRef = inject(ElementRef);
+  private elementRef: ElementRef = inject(ElementRef);
 
   equippedItems = this.heroService.equippedItems;
 

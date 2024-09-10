@@ -40,7 +40,7 @@ export class FightComponent {
   }
 
   get heroUnit(): IHeroAttributes {
-    return this.heroService.heroAttributes;
+    return this.heroService.hero;
   }
 
   get heroOrMonsterIsDefeated(): boolean {

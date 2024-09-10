@@ -1,4 +1,5 @@
 export type TEquipment = {
+  armor?: number;
   damage?: number;
   health?: number
   id: number;

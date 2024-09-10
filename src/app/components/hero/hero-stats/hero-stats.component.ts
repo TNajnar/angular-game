@@ -10,31 +10,39 @@ import { heroStatsTexts } from '@app/lib/static-texts';
   selector: 'hero-stats',
   template: `
     <div class="flex flex-col w-full text-lg">
-      <span>{{ heroStatsTexts.hero }}
-        <span class="text-xl text-saffron">{{ heroService.heroAttributes.name }}</span>
+      <span>{{ texts.hero }}
+        <span class="text-xl text-saffron">{{ heroService.hero.name }}</span>
       </span>
-      <span>{{ heroStatsTexts.armor }}
-        <span class="text-xl text-saffron">{{ heroService.heroAttributes.armor }}</span>
-      </span>
-      <span>{{ heroStatsTexts.health }}
-        <span class="text-xl text-saffron">{{ heroService.heroAttributes.health }}</span>
-      </span>
-      <span>{{ heroStatsTexts.damage }}
-        <span class="text-xl text-saffron">{{ heroService.heroAttributes.damage }}
-          <!-- TODO
-            <span *ngIf="heroService.weapon.damage > 0" class="text-keppel"> + {{ heroService.weapon.damage }}</span>
-          -->
+      <span>{{ texts.armor }}
+        <span class="text-xl text-saffron">{{ heroService.hero.armor }}
+          <span *ngIf="heroService.equippedItems().equippedArmor" class="text-keppel">
+            + {{ heroService.equippedItems().equippedArmor?.armor }}
+          </span>
         </span>
       </span>
-      <span>{{ heroStatsTexts.level }} 
-        <span class="text-xl text-saffron">{{ heroService.heroAttributes.level }}</span>
+      <span>{{ texts.health }}
+        <span class="text-xl text-saffron">{{ heroService.hero.health }}
+          <span *ngIf="heroService.equippedItems().equippedArmor" class="text-keppel">
+            + {{ heroService.equippedItems().equippedArmor?.health }}
+          </span>
+        </span>
+      </span>
+      <span>{{ texts.damage }}
+        <span class="text-xl text-saffron">{{ heroService.hero.damage }}
+          <span *ngIf="heroService.equippedItems().equippedWeapon" class="text-keppel">
+            + {{ heroService.equippedItems().equippedWeapon?.damage }}
+          </span>
+        </span>
+      </span>
+      <span>{{ texts.level }} 
+        <span class="text-xl text-saffron">{{ heroService.hero.level }}</span>
       </span>
     </div>
   `
 })
 
 export class HeroStatsComponent {
-  heroStatsTexts = heroStatsTexts;
+  texts = heroStatsTexts;
 
   heroService: HeroService = inject(HeroService);
 }

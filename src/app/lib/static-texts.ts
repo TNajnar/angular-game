@@ -17,6 +17,7 @@ export const droppedItemMenuTexts = {
 }
 
 export const droppedItemTexts = {
+  armor: 'Armor: ',
   damage: 'Damage: ',
   health: 'Health: ',
   type: 'Type: ',

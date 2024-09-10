@@ -30,8 +30,8 @@ export class HeroService {
   heroStorage: IHeroStorage = heroStorage;
 
   inventory$ = new BehaviorSubject<TEquipment[]>([]);
-  heroAttributes: IHeroAttributes = heroAttributes;
-  equippedItems = signal<IEquippedItems>({});
+  hero: IHeroAttributes = heroAttributes;
+  private _equippedItems = signal<IEquippedItems>({});
 
   constructor() {
     const storedHeroData = localStorage.getItem(HERO_KEY);
@@ -40,14 +40,16 @@ export class HeroService {
       const parsedData: IHeroStorage = JSON.parse(storedHeroData);
       this._inventory = parsedData.inventory || [];
       this.inventory$.next([...this._inventory]);
-      this.equippedItems.set(parsedData.equippedItems);
+      this._equippedItems.set(parsedData.equippedItems);
     }
   }
 
   get inventory(): TEquipment[] {
     return this._inventory;
   }
-  
+
+  equippedItems = this._equippedItems.asReadonly();
+
   addToInventory(item: TEquipment): void {
     this._inventory = [...this._inventory, item]; // This step is important (Create a new array reference)
     this.inventory$.next(this._inventory);
@@ -65,13 +67,13 @@ export class HeroService {
   }
 
   updateEquippedItem(isArmor: boolean, pickedItem?: TEquipment): void {
-    this.equippedItems.update(prevState => ({
+    this._equippedItems.update(prevState => ({
       ...prevState,
       ...(isArmor ? { equippedArmor: pickedItem } : { equippedWeapon: pickedItem })
     }));
   
     const equipToStore = {
-      ...this.equippedItems(),
+      ...this._equippedItems(),
       ...(isArmor ? { equippedArmor: pickedItem } : { equippedWeapon: pickedItem })
     };
 
@@ -83,8 +85,8 @@ export class HeroService {
     const isArmor = pickedItem.type === 'armor';
 
     const actualEquippedItem = (isArmor
-      ? this.equippedItems().equippedArmor
-      : this.equippedItems().equippedWeapon
+      ? this._equippedItems().equippedArmor
+      : this._equippedItems().equippedWeapon
     );
 
     if (actualEquippedItem) {
@@ -105,8 +107,8 @@ export class HeroService {
     this.addToInventory(equippedItem);
   }
 
-  exchangeItem(equippedItem: TEquipment, actualEquippedItem: TEquipment, isArmor: boolean): void {
-    if (!this.equippedItems()) return;
+  private exchangeItem(equippedItem: TEquipment, actualEquippedItem: TEquipment, isArmor: boolean): void {
+    if (!this._equippedItems()) return;
 
     this.addToInventory(actualEquippedItem);
 
@@ -115,7 +117,7 @@ export class HeroService {
   }
 
   heroAttack(randomMonsterKey: string): void {
-    this.staticMonstersData[randomMonsterKey].health -= this.heroAttributes.damage;
+    this.staticMonstersData[randomMonsterKey].health -= this.hero.damage;
 
     if (this.staticMonstersData[randomMonsterKey].health <= 0) {
       this.staticMonstersData[randomMonsterKey].health = 0;

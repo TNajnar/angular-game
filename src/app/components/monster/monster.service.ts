@@ -16,7 +16,7 @@ export class MonsterService {
   randomMonsterKey!: string;
   monstersData = this.staticMonstersData.asReadonly();
 
-  private hero: HeroService = inject(HeroService);
+  private heroService: HeroService = inject(HeroService);
 
   constructor() {
     this.randomMonsterKey = this.getOrCreateRandomMonsterKey();
@@ -51,10 +51,10 @@ export class MonsterService {
   }
 
   monsterAttack(monsterDamage: number): void {
-    this.hero.heroAttributes.health -= monsterDamage;
+    this.heroService.hero.health -= monsterDamage;
     
-    if (this.hero.heroAttributes.health <= 0) {
-      this.hero.heroAttributes.health = 0;
+    if (this.heroService.hero.health <= 0) {
+      this.heroService.hero.health = 0;
       return;
     }
   }

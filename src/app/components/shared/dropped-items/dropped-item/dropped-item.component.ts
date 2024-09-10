@@ -3,15 +3,16 @@ import { Component, ElementRef, HostListener, inject, input, signal } from '@ang
 
 import { DroppedItemsService } from '../dropped-items.service';
 import { HeroService } from '@app/components/hero/hero.service';
-import { droppedItemTexts } from '@app/lib/static-texts';
 import { DroppedItemMenuComponent } from '../dropped-item-menu/dropped-item-menu.component';
+import { TooltipComponent } from '@components/shared/tooltip/tooltip.component';
+import { droppedItemTexts } from '@app/lib/static-texts';
 import type { TEquipment } from '@components/equipment/equipment.model';
 
 
 @Component({
   selector: 'app-dropped-item',
   standalone: true,
-  imports: [NgIf, NgOptimizedImage, DroppedItemMenuComponent],
+  imports: [NgIf, NgOptimizedImage, DroppedItemMenuComponent, TooltipComponent],
   templateUrl: './dropped-item.component.html',
   styleUrl: './dropped-item.component.css'
 })
