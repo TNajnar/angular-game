@@ -7,7 +7,7 @@ import type { TEquipment } from '../../equipment/equipment.model';
   providedIn: 'root'
 })
 
-export class DroppedItemsService {
+export class EquipItemsService {
   private droppedItems = signal<TEquipment[] | undefined>(undefined);
 
   allDroppedItems = this.droppedItems.asReadonly();

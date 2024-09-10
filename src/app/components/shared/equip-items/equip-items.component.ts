@@ -1,32 +1,32 @@
 import { ChangeDetectionStrategy, Component, ElementRef, HostListener, inject, signal } from '@angular/core';
 import { AsyncPipe } from '@angular/common';
 
-import { DroppedItemsService } from './dropped-items.service';
-import { DroppedItemComponent } from './dropped-item/dropped-item.component';
-import { droppedItemsTexts } from '@app/lib/static-texts';
-import { DroppedItemMenuComponent } from "./dropped-item-menu/dropped-item-menu.component";
 import { HeroService } from '@app/components/hero/hero.service';
+import { EquipItemsService } from './equip-items.service';
+import { EquipItemComponent } from './equip-item/equip-item.component';
+import { EquipItemMenuComponent } from './equip-item-menu/equip-item-menu.component';
+import { equipItemsTexts } from '@app/lib/static-texts';
 import type { TEquipment } from '@app/components/equipment/equipment.model';
 
 @Component({
   selector: 'app-dropped-items',
   standalone: true,
-  imports: [AsyncPipe, DroppedItemComponent, DroppedItemMenuComponent],
-  templateUrl: './dropped-items.component.html',
-  styleUrl: './dropped-items.component.css',
+  imports: [AsyncPipe, EquipItemComponent, EquipItemMenuComponent],
+  templateUrl: './equip-items.component.html',
+  styleUrl: './equip-items.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class DroppedItemsComponent {
-  texts = droppedItemsTexts;
+export class EquipItemsComponent {
+  texts = equipItemsTexts;
 
   activeMenuId = signal<number | undefined>(undefined);
   
   private elementRef: ElementRef = inject(ElementRef);
   private heroService: HeroService = inject(HeroService);
-  private droppedItemsService: DroppedItemsService = inject(DroppedItemsService);
+  private equipItemsService: EquipItemsService = inject(EquipItemsService);
 
-  droppedItems = this.droppedItemsService.allDroppedItems;
+  droppedItems = this.equipItemsService.allDroppedItems;
 
   handleOpenMenu(activeMenuId?: number): void {
     this.activeMenuId.set(activeMenuId);
@@ -34,12 +34,12 @@ export class DroppedItemsComponent {
 
   onPickItem(droppedItem: TEquipment): void {
     this.heroService.addToInventory(droppedItem);
-    this.droppedItemsService.dropItem(droppedItem);
+    this.equipItemsService.dropItem(droppedItem);
     this.handleOpenMenu(undefined);
   }
   
   onDropItem(droppedItem: TEquipment): void {
-    this.droppedItemsService.dropItem(droppedItem);
+    this.equipItemsService.dropItem(droppedItem);
     this.handleOpenMenu(undefined);
   }
 

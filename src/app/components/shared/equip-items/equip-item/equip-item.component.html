@@ -1,7 +1,7 @@
 <app-tooltip
   [isHovered]="isHovered()"
   [isMenuOpen]="isMenuOpen()"
-  [droppedItem]="droppedItem()"
+  [equipItem]="equipItem()"
 />
 
 <button
@@ -10,5 +10,5 @@
   (mouseenter)="isHoveredItem(true)"
   (mouseleave)="isHoveredItem(false)"
 >
-  <img class="object-cover" [alt]="droppedItem().name" ngSrc="{{ droppedItem().src }}" fill />
+  <img class="object-cover" [alt]="equipItem().name" ngSrc="{{ equipItem().src }}" fill />
 </button>

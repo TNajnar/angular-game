@@ -3,14 +3,14 @@ import { AsyncPipe } from '@angular/common';
 import { map, Observable } from 'rxjs';
 
 import { HeroService } from '../hero.service';
-import { DroppedItemComponent } from '@app/components/shared/dropped-items/dropped-item/dropped-item.component';
-import { DroppedItemMenuComponent } from '@app/components/shared/dropped-items/dropped-item-menu/dropped-item-menu.component';
+import { EquipItemComponent } from "@components/shared/equip-items/equip-item/equip-item.component";
+import { EquipItemMenuComponent } from "@components/shared/equip-items/equip-item-menu/equip-item-menu.component";
 import type { TEquipment } from '@app/components/equipment/equipment.model';
 
 @Component({
   selector: 'hero-inventory',
   standalone: true,
-  imports: [AsyncPipe, DroppedItemComponent, DroppedItemMenuComponent],
+  imports: [AsyncPipe, EquipItemComponent, EquipItemMenuComponent],
   templateUrl: './inventory.component.html',
 })
 

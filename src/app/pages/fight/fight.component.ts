@@ -3,23 +3,23 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { HeroService } from '@components/hero/hero.service';
 import { MonsterService } from '@components/monster/monster.service';
-import { DroppedItemsService } from '@app/components/shared/dropped-items/dropped-items.service';
 import { HeroComponent } from '@components/hero/hero.component';
 import { MonsterComponent } from '@components/monster/monster.component';
+import { EquipItemsComponent } from '@app/components/shared/equip-items/equip-items.component';
 import { CharacterStatsComponent } from '@components/shared/character-stats/character-stats.component';
-import { DroppedItemsComponent } from '@app/components/shared/dropped-items/dropped-items.component';
 import { handleWinText, randomNumbers } from '@app/lib/utils';
 import equipment from '@components/equipment/equipment-data';
 import { buttonsTexts } from '@app/lib/static-texts';
 import type { TMonsterDataItem } from '@pages/monsters/monster.model';
 import type { IFightDetails } from './fight.model';
 import type { IHeroAttributes } from '@app/components/hero/hero.model';
+import { EquipItemsService } from '@app/components/shared/equip-items/equip-items.service';
 
 @Component({
   selector: 'app-fight',
   standalone: true,
   imports: [
-    HeroComponent, MonsterComponent, CharacterStatsComponent, MatButtonModule, DroppedItemsComponent,
+    HeroComponent, MonsterComponent, CharacterStatsComponent, MatButtonModule, EquipItemsComponent,
   ],
   templateUrl: './fight.component.html',
   styleUrl: './fight.component.css',
@@ -33,7 +33,7 @@ export class FightComponent {
 
   monsterService: MonsterService = inject(MonsterService);
   heroService: HeroService = inject(HeroService);
-  private droppedItemsService: DroppedItemsService = inject(DroppedItemsService);
+  private equipItemsService: EquipItemsService = inject(EquipItemsService);
 
   get monsterUnit(): TMonsterDataItem {
     return this.monsterService.monstersData()[this.monsterService.randomMonsterKey];
@@ -93,7 +93,7 @@ export class FightComponent {
     if (heroHealth > enemyHealth) {
       this.monsterUnit.health = 0;
       const { number1, number2 } = randomNumbers(equipment.length);
-      this.droppedItemsService.appendRandomEquipment(number1, number2);
+      this.equipItemsService.appendRandomEquipment(number1, number2);
     } else {
       this.heroUnit.health = 0;
     }

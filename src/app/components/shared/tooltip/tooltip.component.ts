@@ -1,8 +1,8 @@
 import { NgIf } from '@angular/common';
 import { Component, input } from '@angular/core';
 
-import { TEquipment } from '@app/components/equipment/equipment.model';
-import { droppedItemTexts } from '@app/lib/static-texts';
+import { equipItemTexts } from '@app/lib/static-texts';
+import type { TEquipment } from '@app/components/equipment/equipment.model';
 
 @Component({
   selector: 'app-tooltip',
@@ -12,9 +12,9 @@ import { droppedItemTexts } from '@app/lib/static-texts';
   styleUrl: './tooltip.component.css'
 })
 export class TooltipComponent {
-  texts = droppedItemTexts;
+  texts = equipItemTexts;
 
-  droppedItem = input.required<TEquipment>();
+  equipItem = input.required<TEquipment>();
   isHovered = input.required();
   isMenuOpen = input.required();
 }

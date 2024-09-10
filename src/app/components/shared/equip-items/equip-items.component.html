@@ -4,14 +4,14 @@
   <div class="realtive flex gap-5">
     @for (droppedItem of droppedItems(); track droppedItem.id) {
       <div class="relative w-fit">
-        <app-dropped-item
-          [droppedItem]="droppedItem"
+        <app-equip-item
+          [equipItem]="droppedItem"
           [isMenuOpen]="activeMenuId() === droppedItem.id"
           (handleOpenMenu)="handleOpenMenu($event)"
         />
 
         <!-- when you pass function to children [onPickItem]="onPickItem.bind(this)" -->
-        <app-dropped-item-menu
+        <app-equip-item-menu
           (dropItem)="onDropItem(droppedItem)"
           (pickItem)="onPickItem(droppedItem)"
           [isOpen]="activeMenuId() === droppedItem.id"

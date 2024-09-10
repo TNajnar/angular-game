@@ -1,17 +1,17 @@
 @if (isHovered() && !isMenuOpen()) {
   <div class="absolute bottom-[8rem] transform -left-1/2 translate-x-1/2 w-max text-left shadow-lg rounded bg-platinum text-black">
     <div class="flex flex-col gap-1 p-2">
-      <span class="font-medium">{{ droppedItem().name }}</span>
-      <span *ngIf="droppedItem().damage">
-        {{ texts.damage }} {{ droppedItem().damage }}
+      <span class="font-medium">{{ equipItem().name }}</span>
+      <span *ngIf="equipItem().damage">
+        {{ texts.damage }} {{ equipItem().damage }}
       </span>
-      <span *ngIf="droppedItem()?.armor">
-        {{ texts.armor }} {{ droppedItem().armor }}
+      <span *ngIf="equipItem()?.armor">
+        {{ texts.armor }} {{ equipItem().armor }}
       </span>
-      <span *ngIf="droppedItem()?.health">
-        {{ texts.health }} {{ droppedItem().health }}
+      <span *ngIf="equipItem()?.health">
+        {{ texts.health }} {{ equipItem().health }}
       </span>
-      <span>{{ texts.type }} {{ droppedItem().type }}</span>
+      <span>{{ texts.type }} {{ equipItem().type }}</span>
     </div>
 
     <span class="arrow"></span>

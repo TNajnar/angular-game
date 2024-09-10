@@ -10,20 +10,20 @@ export const characterStatsTexts = {
   name: 'Name: ',
 }
 
-export const droppedItemMenuTexts = {
+export const equipItemMenuTexts = {
   dropItem: 'Drop item',
   equipItem: 'Equip item',
   pickItem: 'Pick item',
 }
 
-export const droppedItemTexts = {
+export const equipItemTexts = {
   armor: 'Armor: ',
   damage: 'Damage: ',
   health: 'Health: ',
   type: 'Type: ',
 }
 
-export const droppedItemsTexts = {
+export const equipItemsTexts = {
   loot: 'Loot: ',
 }
 

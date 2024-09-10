@@ -3,12 +3,12 @@
     <div class="flex justify-center items-center w-equipped-item h-equipped-item border border-platinum p-4">
       @if (inventoryItem) {
         <div class="relative">
-          <app-dropped-item
-            [droppedItem]="inventoryItem"
+          <app-equip-item
+            [equipItem]="inventoryItem"
             (handleOpenMenu)="handleActiveMenu($event)"
           />
 
-          <app-dropped-item-menu
+          <app-equip-item-menu
             [activeItem]="inventoryItem"
             (dropItem)="onDropItem(inventoryItem)"
             (equipItem)="onEquipItem($event)"

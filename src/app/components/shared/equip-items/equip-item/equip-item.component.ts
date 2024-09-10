@@ -1,20 +1,19 @@
 import { NgIf, NgOptimizedImage } from '@angular/common';
 import { Component, EventEmitter, Output, input, signal } from '@angular/core';
 
-import { DroppedItemMenuComponent } from '../dropped-item-menu/dropped-item-menu.component';
 import { TooltipComponent } from '@components/shared/tooltip/tooltip.component';
 import type { TEquipment } from '@components/equipment/equipment.model';
 
 
 @Component({
-  selector: 'app-dropped-item',
+  selector: 'app-equip-item',
   standalone: true,
-  imports: [NgIf, NgOptimizedImage, DroppedItemMenuComponent, TooltipComponent],
-  templateUrl: './dropped-item.component.html',
+  imports: [NgIf, NgOptimizedImage, TooltipComponent],
+  templateUrl: './equip-item.component.html',
 })
 
-export class DroppedItemComponent {
-  droppedItem = input.required<TEquipment>();
+export class EquipItemComponent {
+  equipItem = input.required<TEquipment>();
   isMenuOpen = input<boolean>(false);
 
   @Output() handleOpenMenu = new EventEmitter();
@@ -26,9 +25,9 @@ export class DroppedItemComponent {
   }
   
   handleMenu(): void {
-    if (this.droppedItem().id) {
+    if (this.equipItem().id) {
       this.isHovered.set(false);
     }
-    this.handleOpenMenu.emit(this.droppedItem().id);
+    this.handleOpenMenu.emit(this.equipItem().id);
   }
 }

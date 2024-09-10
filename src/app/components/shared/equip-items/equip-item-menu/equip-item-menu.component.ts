@@ -1,17 +1,17 @@
 import { Component, EventEmitter, Input, Output, input } from '@angular/core';
 
-import { TEquipment } from '@app/components/equipment/equipment.model';
-import { droppedItemMenuTexts } from '@app/lib/static-texts';
+import { equipItemMenuTexts } from '@app/lib/static-texts';
+import type { TEquipment } from '@app/components/equipment/equipment.model';
 
 @Component({
-  selector: 'app-dropped-item-menu',
+  selector: 'app-equip-item-menu',
   standalone: true,
-  templateUrl: './dropped-item-menu.component.html',
-  styleUrl: './dropped-item-menu.component.css'
+  templateUrl: './equip-item-menu.component.html',
+  styleUrl: './equip-item-menu.component.css'
 })
 
-export class DroppedItemMenuComponent {
-  texts = droppedItemMenuTexts;
+export class EquipItemMenuComponent {
+  texts = equipItemMenuTexts;
   
   @Input() activeItem!: TEquipment;
 

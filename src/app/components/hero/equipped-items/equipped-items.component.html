@@ -1,9 +1,10 @@
 <div class="flex flex-col justify-center gap-5 h-full">
   @if (equippedItems().equippedArmor) {
     <div class="relative">
-      <button (click)="onClick(EEquipVariants.Armor)">
-        <app-dropped-item [droppedItem]="equippedItems().equippedArmor!" />
-      </button>
+      <app-equip-item
+        (click)="onClick(EEquipVariants.Armor)"
+        [equipItem]="equippedItems().equippedArmor!"
+      />
       
       <div class="menu shadow-lg" [class]="{ 'is-open': isMenuOpen(EEquipVariants.Armor), 'is-closed': isMenuOpen(EEquipVariants.Armor) }">
         <button class="menu-item" (click)="unEquip(equippedItems().equippedArmor)">
@@ -23,9 +24,10 @@
   
   @if (equippedItems().equippedWeapon) {
     <div class="relative">
-      <button (click)="onClick(EEquipVariants.Weapon)">
-        <app-dropped-item [droppedItem]="equippedItems().equippedWeapon!" />
-      </button>
+      <app-equip-item
+        (click)="onClick(EEquipVariants.Weapon)"
+        [equipItem]="equippedItems().equippedWeapon!"
+      />
 
       <div class="menu shadow-lg" [class]="{ 'is-open': isMenuOpen(EEquipVariants.Weapon), 'is-closed': isMenuOpen(EEquipVariants.Weapon) }">
         <button class="menu-item" (click)="unEquip(equippedItems().equippedWeapon)">
