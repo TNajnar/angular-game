@@ -32,7 +32,7 @@ export class FightComponent {
   fightDetails = signal<IFightDetails>({ infoText: '', isFightOn: false });
 
   monsterService: MonsterService = inject(MonsterService);
-  private heroService: HeroService = inject(HeroService);
+  heroService: HeroService = inject(HeroService);
   private droppedItemsService: DroppedItemsService = inject(DroppedItemsService);
 
   get monsterUnit(): TMonsterDataItem {
@@ -40,7 +40,7 @@ export class FightComponent {
   }
 
   get heroUnit(): IHeroAttributes {
-    return this.heroService.hero;
+    return this.heroService.heroGetter;
   }
 
   get heroOrMonsterIsDefeated(): boolean {

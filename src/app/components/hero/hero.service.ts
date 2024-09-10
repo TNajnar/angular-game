@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { Injectable, OnInit, signal } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { staticMonstersData } from '@components/monster/data';
@@ -27,11 +27,11 @@ const heroStorage: IHeroStorage = {
 export class HeroService {
   private staticMonstersData: TMonstersData = staticMonstersData;
   private _inventory: TEquipment[] = [];
-  heroStorage: IHeroStorage = heroStorage;
-
-  inventory$ = new BehaviorSubject<TEquipment[]>([]);
-  hero: IHeroAttributes = heroAttributes;
   private _equippedItems = signal<IEquippedItems>({});
+
+  hero: IHeroAttributes = heroAttributes;
+  inventory$ = new BehaviorSubject<TEquipment[]>([]);
+  heroStorage: IHeroStorage = heroStorage;
 
   constructor() {
     const storedHeroData = localStorage.getItem(HERO_KEY);
@@ -42,6 +42,15 @@ export class HeroService {
       this.inventory$.next([...this._inventory]);
       this._equippedItems.set(parsedData.equippedItems);
     }
+  }
+
+  get heroGetter(): IHeroAttributes {
+    return {
+      ...this.hero,
+      health: this.hero.health + (this._equippedItems().equippedArmor?.health ?? 0),
+      armor: this.hero.armor + (this._equippedItems().equippedArmor?.armor ?? 0),
+      damage: this.hero.damage + (this._equippedItems().equippedWeapon?.damage ?? 0),
+    };
   }
 
   get inventory(): TEquipment[] {
