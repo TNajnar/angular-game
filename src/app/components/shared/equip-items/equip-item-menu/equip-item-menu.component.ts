@@ -40,6 +40,6 @@ export class EquipItemMenuComponent {
   }
 
   onDropItem(): void {
-    this.dropItem.emit();
+    this.dropItem.emit(this.activeItem);
   }
 }
