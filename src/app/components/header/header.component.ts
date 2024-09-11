@@ -22,6 +22,4 @@ const headerItems: THeader[] = [
 
 export class HeaderComponent {
   headerItems: THeader[] = headerItems;
-  
-  router: Router = inject(Router);
 }

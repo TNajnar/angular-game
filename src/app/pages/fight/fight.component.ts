@@ -3,17 +3,17 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { HeroService } from '@components/hero/hero.service';
 import { MonsterService } from '@components/monster/monster.service';
+import { EquipItemsService } from '@app/components/shared/equip-items/equip-items.service';
 import { HeroComponent } from '@components/hero/hero.component';
 import { MonsterComponent } from '@components/monster/monster.component';
 import { EquipItemsComponent } from '@app/components/shared/equip-items/equip-items.component';
 import { CharacterStatsComponent } from '@components/shared/character-stats/character-stats.component';
 import { handleWinText, randomNumbers } from '@app/lib/utils';
-import equipment from '@app/lib/equipment/equipment-data';
+import equipment from '@app/lib/equipment-data';
 import { buttonsTexts } from '@app/lib/static-texts';
 import type { TMonsterDataItem } from '@pages/monsters/monster.model';
 import type { IFightDetails } from './fight.model';
 import type { IHeroAttributes } from '@app/components/hero/hero.model';
-import { EquipItemsService } from '@app/components/shared/equip-items/equip-items.service';
 
 @Component({
   selector: 'app-fight',

@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { staticMonstersData } from '@components/monster/data';
 import { HERO_KEY, BASE_HERO_HEALTH, BASE_HERO_DAMAGE, BASE_HERO_ARMOR, BASE_HERO_LEVEL, HERO_NAME } from '@app/lib/consts';
 import type { IEquippedItems, IHeroAttributes, IHeroStorage } from './hero.model';
-import type { TEquipment } from '@app/lib/equipment/equipment.model';
+import type { TEquipment } from '@app/lib/types-model';
 import type { TMonstersData } from '@pages/monsters/monster.model';
 
 const heroAttributes: IHeroAttributes = {
@@ -116,6 +116,7 @@ export class HeroService {
     this.addToInventory(equippedItem);
   }
 
+  // If hero has some item equipped, change them
   private exchangeItem(equippedItem: TEquipment, actualEquippedItem: TEquipment, isArmor: boolean): void {
     if (!this._equippedItems()) return;
 

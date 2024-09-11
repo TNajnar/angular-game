@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 
-import equipment from '../../../lib/equipment/equipment-data';
-import type { TEquipment } from '../../../lib/equipment/equipment.model';
+import equipment from '@app/lib/equipment-data';
+import type { TEquipment } from '@app/lib/types-model';
 
 @Injectable({
   providedIn: 'root'

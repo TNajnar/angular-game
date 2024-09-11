@@ -1,5 +1,5 @@
-import { TMonstersData } from "@app/pages/monsters/monster.model";
-import { IRandomNumbers } from "./types";
+import type { TMonstersData } from "@app/pages/monsters/monster.model";
+import type { IRandomNumbers } from "./types-model";
 
 function generateId(): number {
   return Math.floor(Math.random() * 1000);

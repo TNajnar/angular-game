@@ -7,7 +7,7 @@ import { ErrorService } from '@app/components/shared/error.service';
 import { EquipItemComponent } from "@components/shared/equip-items/equip-item/equip-item.component";
 import { EquipItemMenuComponent } from "@components/shared/equip-items/equip-item-menu/equip-item-menu.component";
 import { BASE_HERO_HEALTH } from '@app/lib/consts';
-import type { TEquipment } from '@app/lib/equipment/equipment.model';
+import type { TEquipment } from '@app/lib/types-model';
 
 @Component({
   selector: 'hero-inventory',

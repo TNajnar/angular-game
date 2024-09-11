@@ -1,5 +1,5 @@
 import { generateId } from "@app/lib/utils";
-import type { TEquipment } from "./equipment.model";
+import type { TEquipment } from "./types-model";
 
 const weapons: TEquipment[] = [
   {

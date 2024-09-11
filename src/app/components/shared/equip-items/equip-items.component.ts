@@ -6,7 +6,7 @@ import { EquipItemsService } from './equip-items.service';
 import { EquipItemComponent } from './equip-item/equip-item.component';
 import { EquipItemMenuComponent } from './equip-item-menu/equip-item-menu.component';
 import { equipItemsTexts } from '@app/lib/static-texts';
-import type { TEquipment } from '@app/lib/equipment/equipment.model';
+import type { TEquipment } from '@app/lib/types-model';
 
 @Component({
   selector: 'app-dropped-items',

@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output, input } from '@angular/core';
 import { NgIf } from '@angular/common';
 
 import { equipItemMenuTexts } from '@app/lib/static-texts';
-import type { TEquipment } from '@app/lib/equipment/equipment.model';
+import type { TEquipment } from '@app/lib/types-model';
 
 @Component({
   selector: 'app-equip-item-menu',
