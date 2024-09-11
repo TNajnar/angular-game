@@ -13,7 +13,7 @@
             [isHeroPage]="true"
             [isPotion]="inventoryItem.type === 'elixir'"
             [isOpen]="activeMenuId() === inventoryItem.id"
-            (dropItem)="onDropItem($event)"
+            (dropItem)="onDropItem(inventoryItem)"
             (equipItem)="onEquipItem($event)"
             (drinkPotion)="onDrinkPotion($event)"
           />
