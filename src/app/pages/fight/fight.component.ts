@@ -11,7 +11,7 @@ import { CharacterStatsComponent } from '@components/shared/character-stats/char
 import { handleWinText, randomNumbers } from '@app/lib/utils';
 import equipment from '@app/lib/equipment-data';
 import { buttonsTexts } from '@app/lib/static-texts';
-import type { TMonsterDataItem } from '@pages/monsters/monster.model';
+import type { TMonster } from '@pages/monsters/monster.model';
 import type { IFightDetails } from './fight.model';
 import type { IHeroAttributes } from '@app/components/hero/hero.model';
 
@@ -35,7 +35,7 @@ export class FightComponent {
   heroService: HeroService = inject(HeroService);
   private equipItemsService: EquipItemsService = inject(EquipItemsService);
 
-  get monsterUnit(): TMonsterDataItem {
+  get monsterUnit(): TMonster {
     return this.monsterService.monstersData()[this.monsterService.randomMonsterKey];
   }
 

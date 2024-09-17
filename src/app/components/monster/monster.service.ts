@@ -1,10 +1,10 @@
 import { Injectable, inject, signal } from '@angular/core';
 
-import { staticMonstersData } from './data';
+import { staticMonstersData } from '../../lib/monsters-data';
 import { HeroService } from '@components/hero/hero.service';
 import { getRandomEnemyKey } from '@app/lib/utils';
 import { RANDOM_MONSTER_KEY } from '@app/lib/consts';
-import type { TMonsterDataItem, TMonstersData } from '@pages/monsters/monster.model';
+import type { TMonster, TMonstersData } from '@pages/monsters/monster.model';
 
 @Injectable({
   providedIn: 'root'
@@ -46,7 +46,7 @@ export class MonsterService {
     localStorage.removeItem(RANDOM_MONSTER_KEY)
   }
 
-  get monsterRandomUnit(): TMonsterDataItem {
+  get monsterRandomUnit(): TMonster {
     return this.monstersData()[this.randomMonsterKey];
   }
 

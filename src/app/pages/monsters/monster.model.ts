@@ -1,21 +1,22 @@
-export type TMonsterDataItem = {
+export type TMonster = {
   damage: number;
+  experience: number;
   health: number;
   name: string;
   src?: string,
 }
 
-export type TMonstersData = Record<string, TMonsterDataItem>;
+export type TMonstersData = Record<string, TMonster>;
 
 
 /* #region Monster List */
 
-export interface IMonsters {
+export interface IMonstersList {
   count: number;
-  results: IMonster[];
+  results: IMonsterDetail[];
 }
 
-export interface IMonster {
+export interface IMonsterDetail {
   index: string;
   name: string;
   url: string;

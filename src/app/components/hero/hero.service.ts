@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { staticMonstersData } from '@components/monster/data';
+import { staticMonstersData } from '@app/lib/monsters-data';
 import { HERO_KEY, BASE_HERO_HEALTH, BASE_HERO_DAMAGE, BASE_HERO_ARMOR, BASE_HERO_LEVEL, HERO_NAME } from '@app/lib/consts';
 import type { IEquippedItems, IHeroAttributes, IHeroStorage } from './hero.model';
 import type { TEquipment } from '@app/lib/types-model';

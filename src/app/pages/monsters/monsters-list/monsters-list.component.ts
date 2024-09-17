@@ -3,10 +3,10 @@ import { RouterLink } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { MonstersListService } from '../monsters-list.service';
-import { staticMonstersData } from '@components/monster/data';
+import { staticMonstersData } from '@app/lib/monsters-data';
 import { monsterListTexts } from '@app/lib/static-texts';
 import { MONSTERS_KEY } from '@app/lib/consts';
-import type { IMonsters, TMonstersData } from '../monster.model';
+import type { IMonstersList, TMonstersData } from '../monster.model';
 
 @Component({
   selector: 'app-enemy-list',
@@ -16,7 +16,7 @@ import type { IMonsters, TMonstersData } from '../monster.model';
 })
 
 export class MonstersListComponent implements OnInit {
-  monsters: IMonsters['results'] | undefined;
+  monsters: IMonstersList['results'] | undefined;
   monstersData: TMonstersData = staticMonstersData;
   texts = monsterListTexts;
 
@@ -29,7 +29,7 @@ export class MonstersListComponent implements OnInit {
     const cachedMonsters = sessionStorage.getItem(MONSTERS_KEY);
   
     if (cachedMonsters) {
-      const storedMonsters: IMonsters['results'] = JSON.parse(cachedMonsters);
+      const storedMonsters: IMonstersList['results'] = JSON.parse(cachedMonsters);
       this.monsters = storedMonsters;
       return;
     }
