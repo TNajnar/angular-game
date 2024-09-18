@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { increaseMonsterExperience } from '@app/lib/utils';
+import { increaseMonstersAttributes } from '@app/lib/utils';
 import { staticMonstersData } from '@app/lib/monsters-data';
 import { HERO_KEY, BASE_HERO_HEALTH, BASE_HERO_DAMAGE, BASE_HERO_ARMOR, BASE_HERO_LEVEL, HERO_NAME, BASE_HERO_EXPERIENCE, BASE_HERO_NEXT_LEVEL_EXPERIENCE } from '@app/lib/consts';
 import type { IEquippedItems, IHero, IHeroStorage } from './hero.model';
@@ -72,14 +72,15 @@ export class HeroService {
   }
 
   handleHeroNextLevel(randomMonsterKey: string): void {
-
     this.hero.experience += this.staticMonstersData[randomMonsterKey].experience;
 
     if (this.hero.experience >= this.heroGetter.experienceToNextLevel) {
       this.hero.experience -= this.heroGetter.experienceToNextLevel;
       this.hero.level++;
       this.hero.experienceToNextLevel = this.hero.experienceToNextLevel * 1.5;
-      increaseMonsterExperience(this.staticMonstersData, 40);
+      if (this.staticMonstersData[randomMonsterKey].health > 0) {
+        increaseMonstersAttributes(this.staticMonstersData, 15, 40, 40);
+      }
     }
   }
 
