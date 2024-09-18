@@ -17,7 +17,7 @@ import type { TEquipment } from '@app/lib/types-model';
 })
 
 export class InventoryComponent implements OnInit{
-  activeMenuId = signal<number | undefined>(undefined);
+  activeMenuId = signal<string | undefined>(undefined);
   inventory$!: Observable<(TEquipment | null)[]>;
 
   private heroService: HeroService = inject(HeroService);
@@ -30,7 +30,7 @@ export class InventoryComponent implements OnInit{
     );
   }
 
-  handleActiveMenu(id?: number): void {
+  handleActiveMenu(id?: string): void {
     this.activeMenuId.set(id);
   }
 

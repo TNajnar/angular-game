@@ -22,7 +22,7 @@ import type { TMonster } from '@app/pages/monsters/monster.model';
 export class EquipItemsComponent {
   texts = equipItemsTexts;
 
-  activeMenuId = signal<number | undefined>(undefined);
+  activeMenuId = signal<string | undefined>(undefined);
   
   private elementRef: ElementRef = inject(ElementRef);
   private heroService: HeroService = inject(HeroService);
@@ -35,7 +35,7 @@ export class EquipItemsComponent {
     return this.monsterService.fightedMonsterUnit;
   }
 
-  handleOpenMenu(activeMenuId?: number): void {
+  handleOpenMenu(activeMenuId?: string): void {
     this.activeMenuId.set(activeMenuId);
   }
 

@@ -1,5 +1,6 @@
 import { Injectable, signal } from '@angular/core';
 
+import { generateId } from '@app/lib/utils';
 import equipment from '@app/lib/equipment-data';
 import type { TEquipment } from '@app/lib/types-model';
 
@@ -13,8 +14,11 @@ export class EquipItemsService {
   allDroppedItems = this.droppedItems.asReadonly();
 
   appendRandomEquipment(number1: number, number2: number): void {
-    this.droppedItems.update(prevState => [
-      ...prevState || [], equipment[number1], equipment[number2]
+    const firstItem = { ...equipment[number1], id: generateId() };
+    const secondItem = { ...equipment[number2], id: generateId() };
+
+    this.droppedItems.update((prevState) => [
+      ...prevState || [], firstItem, secondItem,
     ]);
   }
 

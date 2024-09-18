@@ -1,8 +1,8 @@
 import type { TMonstersData } from "@app/pages/monsters/monster.model";
 import type { IRandomNumbers } from "./types-model";
 
-export function generateId(): number {
-  return Math.floor(Math.random() * 1000);
+export function generateId(): string {
+  return Math.random().toString(36).substring(2, 9);
 }
 
 export function getRandomEnemyKey(staticMonstersData: TMonstersData): string {
