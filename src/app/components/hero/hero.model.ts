@@ -1,8 +1,10 @@
 import type { TEquipment } from "@app/lib/types-model";
 
-export interface IHeroAttributes {
+export interface IHero {
   armor: number;
   damage: number; 
+  experience: number;
+  experienceToNextLevel: number;
   health: number; // health = health + armor
   level: number;
   name: string;

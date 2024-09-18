@@ -1,7 +1,13 @@
-<div class="flex flex-col gap-2 h-[150px]">
-  <span class="text-xl text-keppel font-medium">{{ texts.loot }}</span>
+<div class="flex flex-col gap-2 min-h-40">
+  <span class="text-3xl text-keppel font-semibold">
+    {{ texts.loot }} 
 
-  <div class="realtive flex gap-5">
+    <span class="text-xl font-medium" *ngIf="monster.health <= 0">
+      + {{ monster.experience }}&nbsp;{{ texts.experience }}
+    </span>
+  </span>
+
+  <div class="realtive flex flex-wrap gap-5 w-full">
     @for (droppedItem of droppedItems(); track droppedItem.id) {
       <div class="relative w-fit">
         <app-equip-item

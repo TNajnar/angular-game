@@ -46,7 +46,7 @@ export class MonsterService {
     localStorage.removeItem(RANDOM_MONSTER_KEY)
   }
 
-  get monsterRandomUnit(): TMonster {
+  get fightedMonsterUnit(): TMonster {
     return this.monstersData()[this.randomMonsterKey];
   }
 

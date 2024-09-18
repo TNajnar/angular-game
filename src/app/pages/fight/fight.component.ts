@@ -13,7 +13,7 @@ import equipment from '@app/lib/equipment-data';
 import { buttonsTexts } from '@app/lib/static-texts';
 import type { TMonster } from '@pages/monsters/monster.model';
 import type { IFightDetails } from './fight.model';
-import type { IHeroAttributes } from '@app/components/hero/hero.model';
+import type { IHero } from '@app/components/hero/hero.model';
 
 @Component({
   selector: 'app-fight',
@@ -39,7 +39,7 @@ export class FightComponent {
     return this.monsterService.monstersData()[this.monsterService.randomMonsterKey];
   }
 
-  get heroUnit(): IHeroAttributes {
+  get heroUnit(): IHero {
     return this.heroService.heroGetter;
   }
 
@@ -92,6 +92,7 @@ export class FightComponent {
 
     if (heroHealth > enemyHealth) {
       this.monsterUnit.health = 0;
+      this.heroService.handleHeroNextLevel(this.monsterService.randomMonsterKey);
       const { number1, number2 } = randomNumbers(equipment.length);
       this.equipItemsService.appendRandomEquipment(number1, number2);
     } else {

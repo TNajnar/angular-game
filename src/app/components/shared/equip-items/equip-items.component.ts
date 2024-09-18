@@ -32,7 +32,7 @@ export class EquipItemsComponent {
   droppedItems = this.equipItemsService.allDroppedItems;
 
   get monster(): TMonster {
-    return this.monsterService.monsterRandomUnit;
+    return this.monsterService.fightedMonsterUnit;
   }
 
   handleOpenMenu(activeMenuId?: number): void {
