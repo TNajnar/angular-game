@@ -52,7 +52,13 @@
       {{ buttonsTexts.end }}
     </button>
 
-    <button class="extended-button" (click)="findNewMonster()" mat-fab extended>
+    <button
+      class="extended-button"
+      disabled="{{ fightDetails().isFightOn }}"
+      (click)="findNewMonster()"
+      mat-fab
+      extended
+    >
       {{ buttonsTexts.new }}
     </button>
   </div>
