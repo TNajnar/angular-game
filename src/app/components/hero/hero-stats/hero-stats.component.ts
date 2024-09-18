@@ -41,7 +41,7 @@ import type { IEquippedItems, IHero } from '../hero.model';
 
       <span>{{ texts.level }} 
         <span class="text-xl text-saffron">
-          {{ hero.level }} &nbsp; ({{ hero.experience }} / {{ hero.experienceToNextLevel }} exp.)
+          {{ hero.level }} &nbsp;({{ hero.experience }} / {{ hero.experienceToNextLevel }} exp.)
         </span>
       </span>
     </div>

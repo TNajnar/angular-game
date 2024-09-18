@@ -25,7 +25,7 @@ export const equipItemTexts = {
 }
 
 export const equipItemsTexts = {
-  experience: 'experience',
+  experience: 'experiences',
   loot: 'Loot: ',
 }
 

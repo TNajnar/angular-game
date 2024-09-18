@@ -1,6 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
+import { increaseMonsterExperience } from '@app/lib/utils';
 import { staticMonstersData } from '@app/lib/monsters-data';
 import { HERO_KEY, BASE_HERO_HEALTH, BASE_HERO_DAMAGE, BASE_HERO_ARMOR, BASE_HERO_LEVEL, HERO_NAME, BASE_HERO_EXPERIENCE, BASE_HERO_NEXT_LEVEL_EXPERIENCE } from '@app/lib/consts';
 import type { IEquippedItems, IHero, IHeroStorage } from './hero.model';
@@ -78,6 +79,7 @@ export class HeroService {
       this.hero.experience -= this.heroGetter.experienceToNextLevel;
       this.hero.level++;
       this.hero.experienceToNextLevel = this.hero.experienceToNextLevel * 1.5;
+      increaseMonsterExperience(this.staticMonstersData, 40);
     }
   }
 

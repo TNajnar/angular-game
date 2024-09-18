@@ -26,3 +26,9 @@ export function randomNumbers(lenght: number): IRandomNumbers {
   
   return { number1: randomEquipNumber1, number2: randomEquipNumber2 };
 }
+
+export function increaseMonsterExperience(staticMonstersData: TMonstersData, increment: number): void {
+  Object.keys(staticMonstersData).forEach(monsterKey => {
+    staticMonstersData[monsterKey].experience += increment;
+  });
+}
