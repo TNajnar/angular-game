@@ -24,10 +24,10 @@ export class EquippedItemsComponent {
   EIconVariants = EIconVariants;
   EEquipVariants = EEquipVariants;
 
-  private heroService: HeroService = inject(HeroService);
-  private elementRef: ElementRef = inject(ElementRef);
+  private _heroService: HeroService = inject(HeroService);
+  private _elementRef: ElementRef = inject(ElementRef);
 
-  equippedItems = this.heroService.equippedItems;
+  equippedItems = this._heroService.equippedItems;
 
   onClick(equipType: EEquipVariants): void {
     this.toggleMenu.update(prevState => ({
@@ -41,14 +41,14 @@ export class EquippedItemsComponent {
   }
 
   unEquip(equippedItem?: TEquipment): void {
-    this.heroService.unEquipItem(equippedItem);
+    this._heroService.unEquipItem(equippedItem);
   }
 
   @HostListener('document:click', ['$event'])
   handleOutsideClick(event: MouseEvent): void {
     const targetElement = event.target as HTMLElement;
 
-    if (!this.elementRef.nativeElement.contains(targetElement)) {
+    if (!this._elementRef.nativeElement.contains(targetElement)) {
       this.toggleMenu.update(() => ({
         [EEquipVariants.Armor]: false,
         [EEquipVariants.Weapon]: false,

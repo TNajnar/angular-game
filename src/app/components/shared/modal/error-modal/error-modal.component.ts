@@ -17,9 +17,9 @@ export class ErrorModalComponent {
   title = input<string>();
   message = input<string>();
 
-  private errorService: ErrorService = inject(ErrorService);
+  private _errorService: ErrorService = inject(ErrorService);
 
   onClearError() {
-    this.errorService.clearError();
+    this._errorService.clearError();
   }
 }

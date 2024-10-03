@@ -15,29 +15,29 @@ import { RANDOM_MONSTER_KEY } from './lib/consts';
 })
 
 export class AppComponent implements OnInit {
-  private pathname!: string;
+  private _pathname!: string;
   
-  private router: Router = inject(Router);
-  private destroyRef: DestroyRef = inject(DestroyRef);
-  private monsterService: MonsterService = inject(MonsterService);
-  private errorService: ErrorService = inject(ErrorService);
+  private _router: Router = inject(Router);
+  private _destroyRef: DestroyRef = inject(DestroyRef);
+  private _monsterService: MonsterService = inject(MonsterService);
+  private _errorService: ErrorService = inject(ErrorService);
 
-  error = this.errorService.error;
+  error = this._errorService.error;
 
   ngOnInit(): void {
-    const subscription = this.router.events
+    const subscription = this._router.events
       .subscribe(event => {
         if (event instanceof NavigationEnd) {
-          this.pathname = event.url;
-          if (!this.pathname.startsWith('/fight')) {
+          this._pathname = event.url;
+          if (!this._pathname.startsWith('/fight')) {
             localStorage.removeItem(RANDOM_MONSTER_KEY);
           } else {
-            this.monsterService.getOrCreateRandomMonsterKey();
+            this._monsterService.getOrCreateRandomMonsterKey();
           }
         }
       }
     );
 
-    this.destroyRef.onDestroy(() => subscription.unsubscribe())
+    this._destroyRef.onDestroy(() => subscription.unsubscribe())
   }
 }

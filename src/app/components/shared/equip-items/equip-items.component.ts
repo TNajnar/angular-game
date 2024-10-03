@@ -24,15 +24,15 @@ export class EquipItemsComponent {
 
   activeMenuId = signal<string | undefined>(undefined);
   
-  private elementRef: ElementRef = inject(ElementRef);
-  private heroService: HeroService = inject(HeroService);
-  private monsterService: MonsterService = inject(MonsterService);
-  private equipItemsService: EquipItemsService = inject(EquipItemsService);
+  private _elementRef: ElementRef = inject(ElementRef);
+  private _heroService: HeroService = inject(HeroService);
+  private _monsterService: MonsterService = inject(MonsterService);
+  private _equipItemsService: EquipItemsService = inject(EquipItemsService);
 
-  droppedItems = this.equipItemsService.allDroppedItems;
+  droppedItems = this._equipItemsService.allDroppedItems;
 
   get monster(): TMonster {
-    return this.monsterService.fightedMonsterUnit;
+    return this._monsterService.fightedMonsterUnit;
   }
 
   handleOpenMenu(activeMenuId?: string): void {
@@ -40,18 +40,18 @@ export class EquipItemsComponent {
   }
 
   onPickItem(droppedItem: TEquipment): void {
-    this.heroService.addToInventory(droppedItem);
-    this.equipItemsService.dropItem(droppedItem);
+    this._heroService.addToInventory(droppedItem);
+    this._equipItemsService.dropItem(droppedItem);
     this.handleOpenMenu(undefined);
   }
   
   onDropItem(droppedItem: TEquipment): void {
-    this.equipItemsService.dropItem(droppedItem);
+    this._equipItemsService.dropItem(droppedItem);
     this.handleOpenMenu(undefined);
   }
 
   onEquipItem(droppedItem: TEquipment): void {
-    this.heroService.equipItem(droppedItem);
+    this._heroService.equipItem(droppedItem);
     this.handleOpenMenu(undefined);
   }
 
@@ -59,7 +59,7 @@ export class EquipItemsComponent {
   handleOutsideClick(event: MouseEvent): void {
     const targetElement = event.target as HTMLElement;
     
-    if (this.activeMenuId && !this.elementRef.nativeElement.contains(targetElement)) {
+    if (this.activeMenuId && !this._elementRef.nativeElement.contains(targetElement)) {
       this.activeMenuId.set(undefined);
     }
   }

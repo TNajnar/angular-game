@@ -27,13 +27,13 @@ import type { IHero } from '@app/components/hero/hero.model';
 
 export class FightComponent {
   buttonsTexts = buttonsTexts;
-  private isHeroAttackFirst: boolean = !!(Math.floor(Math.random() * 2) === 0);
-  private fightIntervalId: number | null = null;
+  private _isHeroAttackFirst: boolean = !!(Math.floor(Math.random() * 2) === 0);
+  private _fightIntervalId: number | null = null;
   fightDetails = signal<IFightDetails>({ infoText: '', isFightOn: false });
 
   monsterService: MonsterService = inject(MonsterService);
   heroService: HeroService = inject(HeroService);
-  private equipItemsService: EquipItemsService = inject(EquipItemsService);
+  private _equipItemsService: EquipItemsService = inject(EquipItemsService);
 
   get monsterUnit(): TMonster {
     return this.monsterService.monstersData()[this.monsterService.randomMonsterKey];
@@ -47,13 +47,13 @@ export class FightComponent {
     return this.heroUnit.health <= 0 || this.monsterUnit.health <= 0;
   }
 
-  onHeroAttack(): void {
-    this.isHeroAttackFirst = true;
+  private _onHeroAttack(): void {
+    this._isHeroAttackFirst = true;
     this.heroService.heroAttack(this.monsterService.randomMonsterKey);
   }
 
-  onMonsterAttack(): void {
-    this.isHeroAttackFirst = false;
+  private _onMonsterAttack(): void {
+    this._isHeroAttackFirst = false;
     this.monsterService.monsterAttack(this.monsterUnit.damage);
   }
 
@@ -65,21 +65,21 @@ export class FightComponent {
     const { name: heroName } = this.heroUnit;
     this.fightDetails.update(details => ({ ...details, isFightOn: true }));
 
-    this.fightIntervalId = window.setInterval(() => {
+    this._fightIntervalId = window.setInterval(() => {
       if (this.heroOrMonsterIsDefeated) {
         this.endFight();
         return;
       }
 
-      if (this.isHeroAttackFirst) {
-        this.onMonsterAttack();
+      if (this._isHeroAttackFirst) {
+        this._onMonsterAttack();
         this.fightDetails.update(details => ({
           ...details, infoText: 'Monster attacking',
         }));
         return;
       }
 
-      this.onHeroAttack();
+      this._onHeroAttack();
       this.fightDetails.update(details => ({
         ...details, infoText: `${heroName} attacking`,
       }));
@@ -94,7 +94,7 @@ export class FightComponent {
       this.monsterUnit.health = 0;
       this.heroService.handleHeroNextLevel(this.monsterService.randomMonsterKey);
       const { number1, number2 } = randomNumbers(equipment.length);
-      this.equipItemsService.appendRandomEquipment(number1, number2);
+      this._equipItemsService.appendRandomEquipment(number1, number2);
     } else {
       this.heroUnit.health = 0;
     }
@@ -102,9 +102,9 @@ export class FightComponent {
     this.fightDetails.update(details => ({
       ...details, infoText: handleWinText(enemyHealth, heroHealth, heroName), isFightOn: false,
     }));
-    if (this.fightIntervalId !== null) {
-      clearInterval(this.fightIntervalId);
-      this.fightIntervalId = null;
+    if (this._fightIntervalId !== null) {
+      clearInterval(this._fightIntervalId);
+      this._fightIntervalId = null;
     }
   }
 

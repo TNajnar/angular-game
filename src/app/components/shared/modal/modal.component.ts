@@ -7,10 +7,10 @@ import { AfterViewInit, Component, ElementRef, viewChild } from '@angular/core';
   styleUrl: './modal.component.css'
 })
 export class ModalComponent implements AfterViewInit {
-  private dialogEl = viewChild.required<ElementRef<HTMLDialogElement>>('dialog');
+  private _dialogEl = viewChild.required<ElementRef<HTMLDialogElement>>('dialog');
 
   ngAfterViewInit(): void {
-    this.dialogEl().nativeElement.showModal();
-    this.dialogEl().nativeElement.focus();
+    this._dialogEl().nativeElement.showModal();
+    this._dialogEl().nativeElement.focus();
   }
 }

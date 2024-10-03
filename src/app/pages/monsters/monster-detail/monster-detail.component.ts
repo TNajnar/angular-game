@@ -24,11 +24,11 @@ export class MonsterDetailComponent implements OnInit {
   isLoading = signal<boolean>(false);
 
   monstersListService: MonstersListService = inject(MonstersListService);
-  private route: ActivatedRoute = inject(ActivatedRoute);
-  private destroyRef: DestroyRef = inject(DestroyRef);
+  private _route: ActivatedRoute = inject(ActivatedRoute);
+  private _destroyRef: DestroyRef = inject(DestroyRef);
   
   ngOnInit(): void {
-    const monsterIndex = this.route.snapshot.paramMap.get('index');
+    const monsterIndex = this._route.snapshot.paramMap.get('index');
     
     if (monsterIndex) {
       this.monstersListService.setSelectedMonsterIndex(monsterIndex);
@@ -44,7 +44,7 @@ export class MonsterDetailComponent implements OnInit {
         }
       });
 
-      this.destroyRef.onDestroy(() =>
+      this._destroyRef.onDestroy(() =>
         subscription.unsubscribe()
       );
     }

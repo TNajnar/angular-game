@@ -9,10 +9,10 @@ import type { IMonsterDetail, IMonstersList } from './monster.model';
 })
 
 export class MonstersListService {
-  private monstersApiUrl: string = 'https://www.dnd5eapi.co/api/monsters';
+  private _monstersApiUrl: string = 'https://www.dnd5eapi.co/api/monsters';
   selectedMonsterIndex!: string;
   
-  private httpClient: HttpClient = inject(HttpClient);
+  private _httpClient: HttpClient = inject(HttpClient);
 
   setSelectedMonsterIndex(index: string): void {
     this.selectedMonsterIndex = index;
@@ -23,7 +23,7 @@ export class MonstersListService {
   }
 
   fetchMonsters(): Observable<IMonstersList> {
-    return this.httpClient.get<IMonstersList>(this.monstersApiUrl).pipe(
+    return this._httpClient.get<IMonstersList>(this._monstersApiUrl).pipe(
       map((monsters: IMonstersList) => ({
         ...monsters,
         results: monsters.results
@@ -34,6 +34,6 @@ export class MonstersListService {
   }
 
   fetchMonster(monsterIndex: string): Observable<IMonsterDetail> {
-    return this.httpClient.get<IMonsterDetail>(`${this.monstersApiUrl}/${monsterIndex}`);
+    return this._httpClient.get<IMonsterDetail>(`${this._monstersApiUrl}/${monsterIndex}`);
   }
 }

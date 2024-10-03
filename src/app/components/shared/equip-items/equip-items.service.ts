@@ -9,21 +9,21 @@ import type { TEquipment } from '@app/lib/types-model';
 })
 
 export class EquipItemsService {
-  private droppedItems = signal<TEquipment[] | undefined>(undefined);
+  private _droppedItems = signal<TEquipment[] | undefined>(undefined);
 
-  allDroppedItems = this.droppedItems.asReadonly();
+  allDroppedItems = this._droppedItems.asReadonly();
 
   appendRandomEquipment(number1: number, number2: number): void {
     const firstItem = { ...equipment[number1], id: generateId() };
     const secondItem = { ...equipment[number2], id: generateId() };
 
-    this.droppedItems.update((prevState) => [
+    this._droppedItems.update((prevState) => [
       ...prevState || [], firstItem, secondItem,
     ]);
   }
 
   dropItem(removedEquip?: TEquipment): void {
-    const filterEquip = this.droppedItems()?.filter(item => item.id !== removedEquip?.id);
-    this.droppedItems.set(filterEquip);
+    const filterEquip = this._droppedItems()?.filter(item => item.id !== removedEquip?.id);
+    this._droppedItems.set(filterEquip);
   }
 }

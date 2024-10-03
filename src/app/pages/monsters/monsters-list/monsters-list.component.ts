@@ -22,8 +22,8 @@ export class MonstersListComponent implements OnInit {
 
   isLoading = signal<boolean>(false);
 
-  private monstersListService: MonstersListService = inject(MonstersListService);
-  private destroyRef: DestroyRef = inject(DestroyRef);
+  private _monstersListService: MonstersListService = inject(MonstersListService);
+  private _destroyRef: DestroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
     const cachedMonsters = sessionStorage.getItem(MONSTERS_KEY);
@@ -36,7 +36,7 @@ export class MonstersListComponent implements OnInit {
 
     this.isLoading.set(true);
   
-    const subscription = this.monstersListService.fetchMonsters().subscribe({
+    const subscription = this._monstersListService.fetchMonsters().subscribe({
       next: (data) => {
         this.monsters = data.results;
         sessionStorage.setItem(MONSTERS_KEY, JSON.stringify(this.monsters))
@@ -49,7 +49,7 @@ export class MonstersListComponent implements OnInit {
       }
     });
 
-    this.destroyRef.onDestroy(() =>
+    this._destroyRef.onDestroy(() =>
       subscription.unsubscribe()
     );
   }

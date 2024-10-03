@@ -16,7 +16,7 @@ export class MonsterComponent {
   @Input({ required: true }) monsterIndex!: string;
   @Input({ required: false }) isLoading?: boolean = false;
 
-  private monsterService: MonsterService = inject(MonsterService);
+  private _monsterService: MonsterService = inject(MonsterService);
 
-  monstersData: Signal<TMonstersData> = this.monsterService.monstersData;
+  monstersData: Signal<TMonstersData> = this._monsterService.monstersData;
 }

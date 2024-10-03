@@ -11,12 +11,12 @@ import type { TMonster, TMonstersData } from '@pages/monsters/monster.model';
 })
 
 export class MonsterService {
-  private staticMonstersData = signal<TMonstersData>(staticMonstersData);
+  private _staticMonstersData = signal<TMonstersData>(staticMonstersData);
   
   randomMonsterKey!: string;
-  monstersData = this.staticMonstersData.asReadonly();
+  monstersData = this._staticMonstersData.asReadonly();
 
-  private heroService: HeroService = inject(HeroService);
+  private _heroService: HeroService = inject(HeroService);
 
   constructor() {
     this.randomMonsterKey = this.getOrCreateRandomMonsterKey();
@@ -51,10 +51,10 @@ export class MonsterService {
   }
 
   monsterAttack(monsterDamage: number): void {
-    this.heroService.hero.health -= monsterDamage;
+    this._heroService.hero.health -= monsterDamage;
     
-    if (this.heroService.hero.health <= 0) {
-      this.heroService.hero.health = 0;
+    if (this._heroService.hero.health <= 0) {
+      this._heroService.hero.health = 0;
       return;
     }
   }

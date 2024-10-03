@@ -20,12 +20,12 @@ export class InventoryComponent implements OnInit{
   activeMenuId = signal<string | undefined>(undefined);
   inventory$!: Observable<(TEquipment | null)[]>;
 
-  private heroService: HeroService = inject(HeroService);
-  private elementRef: ElementRef = inject(ElementRef);
-  private errorService: ErrorService = inject(ErrorService);
+  private _heroService: HeroService = inject(HeroService);
+  private _elementRef: ElementRef = inject(ElementRef);
+  private _errorService: ErrorService = inject(ErrorService);
 
   ngOnInit(): void {
-    this.inventory$ = this.heroService.inventory$.pipe(
+    this.inventory$ = this._heroService.inventory$.pipe(
       map(inventory => Array.from({ length: 20 }, (_, index) => inventory[index] || null))
     );
   }
@@ -35,24 +35,24 @@ export class InventoryComponent implements OnInit{
   }
 
   onEquipItem(activeItem: TEquipment): void {
-    this.heroService.equipItem(activeItem);
+    this._heroService.equipItem(activeItem);
     this.handleActiveMenu(undefined);
   }
 
   onDrinkPotion(activeItem: TEquipment): void {
-    const { equippedArmor } = this.heroService.equippedItems();
+    const { equippedArmor } = this._heroService.equippedItems();
     const maxHealth = BASE_HERO_HEALTH + (equippedArmor?.health ?? 0);
 
-    if (maxHealth > this.heroService.heroGetter.health) {
-      this.heroService.hero.health += activeItem.health ?? 0;
-      this.heroService.removeFromInventory(activeItem);
+    if (maxHealth > this._heroService.heroGetter.health) {
+      this._heroService.hero.health += activeItem.health ?? 0;
+      this._heroService.removeFromInventory(activeItem);
       return;
     }
-    this.errorService.showError('Hero has full health, you can`t drink the potion!')
+    this._errorService.showError('Hero has full health, you can`t drink the potion!')
   }
 
   onDropItem(inventoryItem: TEquipment): void {
-    this.heroService.removeFromInventory(inventoryItem);
+    this._heroService.removeFromInventory(inventoryItem);
     this.handleActiveMenu(undefined);
   }
 
@@ -60,7 +60,7 @@ export class InventoryComponent implements OnInit{
   handleOutsideClick(event: MouseEvent): void {
     const targetElement = event.target as HTMLElement;
     
-    if (this.activeMenuId && !this.elementRef.nativeElement.contains(targetElement)) {
+    if (this.activeMenuId && !this._elementRef.nativeElement.contains(targetElement)) {
       this.activeMenuId.set(undefined);
     }
   }

@@ -28,7 +28,7 @@ const heroStorage: IHeroStorage = {
 })
 
 export class HeroService {
-  private staticMonstersData: TMonstersData = staticMonstersData;
+  private _staticMonstersData: TMonstersData = staticMonstersData;
   private _inventory: TEquipment[] = [];
   private _equippedItems = signal<IEquippedItems>({});
 
@@ -63,23 +63,23 @@ export class HeroService {
   equippedItems = this._equippedItems.asReadonly();
 
   heroAttack(randomMonsterKey: string): void {
-    this.staticMonstersData[randomMonsterKey].health -= this.hero.damage;
+    this._staticMonstersData[randomMonsterKey].health -= this.hero.damage;
 
-    if (this.staticMonstersData[randomMonsterKey].health <= 0) {
-      this.staticMonstersData[randomMonsterKey].health = 0;
+    if (this._staticMonstersData[randomMonsterKey].health <= 0) {
+      this._staticMonstersData[randomMonsterKey].health = 0;
       return;
     }
   }
 
   handleHeroNextLevel(randomMonsterKey: string): void {
-    this.hero.experience += this.staticMonstersData[randomMonsterKey].experience;
+    this.hero.experience += this._staticMonstersData[randomMonsterKey].experience;
 
     if (this.hero.experience >= this.heroGetter.experienceToNextLevel) {
       this.hero.experience -= this.heroGetter.experienceToNextLevel;
       this.hero.level++;
       this.hero.experienceToNextLevel = this.hero.experienceToNextLevel * 1.5;
-      if (this.staticMonstersData[randomMonsterKey].health > 0) {
-        increaseMonstersAttributes(this.staticMonstersData, 15, 40, 40);
+      if (this._staticMonstersData[randomMonsterKey].health > 0) {
+        increaseMonstersAttributes(this._staticMonstersData, 15, 40, 40);
       }
     }
   }
@@ -124,7 +124,7 @@ export class HeroService {
     );
 
     if (actualEquippedItem) {
-      this.exchangeItem(pickedItem, actualEquippedItem, isArmor);
+      this._exchangeItem(pickedItem, actualEquippedItem, isArmor);
       return;
     }
 
@@ -142,7 +142,7 @@ export class HeroService {
   }
 
   // If hero has some item equipped, change them
-  private exchangeItem(equippedItem: TEquipment, actualEquippedItem: TEquipment, isArmor: boolean): void {
+  private _exchangeItem(equippedItem: TEquipment, actualEquippedItem: TEquipment, isArmor: boolean): void {
     if (!this._equippedItems()) return;
 
     this.addToInventory(actualEquippedItem);
